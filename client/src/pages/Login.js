@@ -137,7 +137,7 @@ const Login = (props) => {
             </form>
           )}
           {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div className=" flex justify-center text-sm font-medium text-gray-700">
                 {error.message}
               </div>
             )}
