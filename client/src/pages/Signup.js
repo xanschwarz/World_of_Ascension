@@ -148,7 +148,7 @@ const Signup = () => {
       </form>
     )}
     {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div className="py-2 px-4 flex justify-center text-sm font-medium text-gray-700">
                 {error.message}
               </div>
             )}
