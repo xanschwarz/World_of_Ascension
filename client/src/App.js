@@ -12,10 +12,18 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
+import NavBar from './components/NavBar.js';
+import StatsBar from './components/StatsBar.js';
+import MinionBattle from './pages/Fighting/MinionBattle';
+import BossBattle from './pages/Fighting/BossBattle';
+import Gathering from './pages/Gathering/Gathering';
+import Fighting from './pages/Fighting/Fighting';
+import Store from './pages/Store';
+
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,15 +50,24 @@ const client = new ApolloClient({
 });
 
 function App() {
+  
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
+          <div
+          className="col-12 w-screen mb-3 bg-gray-800 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
+        >
+          <StatsBar />
+        </div>
+        <div className="col-12 mb-3"> <NavBar /> 
+        
           <div className="container">
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <Home />
-            </Route>
+            </Route> */}
             <Route exact path="/login">
               <Login />
             </Route>
@@ -60,12 +77,19 @@ function App() {
             <Route exact path="/me">
               <Profile />
             </Route>
+            <Route path='/Home' component={Home} />
+            <Route path='/MinionBattle' component={MinionBattle} />
+            <Route path='/BossBattle' component={BossBattle} />
+            <Route path='/Fighting' component={Fighting} />
+            <Route path='/Gathering' component={Gathering} />
+            <Route path='/Store' component={Store} />
+
             <Route exact path="/profiles/:username">
               <Profile />
             </Route>
             <Route exact path="/thoughts/:thoughtId">
-              <SingleThought />
             </Route>
+          </div>
           </div>
           <Footer />
         </div>
