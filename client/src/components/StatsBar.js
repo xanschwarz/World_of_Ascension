@@ -56,7 +56,7 @@ export default function StatsBar() {
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <ChipIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
-            Gobbldygook:
+            Gobbldeygook:
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <HeartIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
