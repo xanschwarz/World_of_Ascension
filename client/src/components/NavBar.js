@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { BookmarkAltIcon, FireIcon, HomeIcon, InboxIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
+import { BeakerIcon, FireIcon, HomeIcon, ShoppingCartIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 
 
 const user = {
@@ -12,13 +12,13 @@ const user = {
 }
 const navigation = [
   { name: 'Home', href: '#', icon: HomeIcon },
+  { name: 'Bookmarks', href: '#', icon: BeakerIcon },
   { name: 'Trending', href: '#', icon: FireIcon },
-  { name: 'Bookmarks', href: '#', icon: BookmarkAltIcon },
-  { name: 'Messages', href: '#', icon: InboxIcon },
+  { name: 'Messages', href: '#', icon: ShoppingCartIcon },
   { name: 'Profile', href: '#', icon: UserIcon },
 ]
 
-export default function ThoughtList() {
+export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -101,7 +101,7 @@ export default function ThoughtList() {
                     </div>
                   </nav>
                 </div>
-                <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+                {/* <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
                   <a href="#" className="flex-shrink-0 group block">
                     <div className="flex items-center">
                       <div>
@@ -113,7 +113,7 @@ export default function ThoughtList() {
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> */}
               </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -148,13 +148,13 @@ export default function ThoughtList() {
                 </nav>
               </div>
               <div className="flex-shrink-0 flex pb-5">
-                <a href="#" className="flex-shrink-0 w-full">
+                {/* <a href="#" className="flex-shrink-0 w-full">
                   <img className="block mx-auto h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
                   <div className="sr-only">
                     <p>{user.name}</p>
                     <p>Account settings</p>
                   </div>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
