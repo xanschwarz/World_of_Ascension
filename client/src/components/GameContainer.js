@@ -6,7 +6,7 @@ import BossBattle from '../pages/Fighting/BossBattle';
 import Gathering from '../pages/Gathering/Gathering';
 import Fighting from '../pages/Fighting/Fighting';
 import MinionBattle from '../pages/Fighting/MinionBattle';
-import Store from '../pages/Store';
+import Store from '../pages/Store/Store';
 import StatsBar from '../components/StatsBar';
 
 export default function GameContainer() {
@@ -29,9 +29,9 @@ export default function GameContainer() {
     if (currentPage === 'MinionBattle') {
       return <MinionBattle />;
     }
-      if (currentPage === 'Store') {
-        return <Store />;
-      }
+    if (currentPage === 'Store') {
+      return <Store />;
+    }
   };
 
   const handlePageChange = (page) => setCurrentPage(page);
@@ -48,4 +48,3 @@ export default function GameContainer() {
     </div>
   );
 }
-
