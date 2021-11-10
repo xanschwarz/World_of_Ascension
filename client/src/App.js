@@ -17,8 +17,6 @@ import Gathering from "./pages/Gathering"
 // import Puzzle from "./components/pages/Puzzle"
 // import Store from "./components/pages/Store"
 // import Fighting from "./components/pages/Fighting"
-import { QUERY_MAGE_ATTRIBUTES } from "./utils/queries"
-import { useQuery } from '@apollo/client';
 
 
 
@@ -57,7 +55,7 @@ function App() {
           {/* <Route path='/MinionBattle' component={MinionBattle} />
           <Route path='/BossBattle' component={BossBattle} />
           <Route path='/Fighting' component={Fighting} /> */}
-          <Route path='/Gathering' /*mageData={mageData}*/ component={Gathering} />
+          <Route path='/Gathering' component={Gathering} />
           {/* <Route path='/Puzzle' component={Puzzle} />
           <Route path='/Store' component={Store} /> */}
         </Switch>
