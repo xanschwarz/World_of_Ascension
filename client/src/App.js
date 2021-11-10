@@ -22,6 +22,7 @@ import BossBattle from './pages/Fighting/BossBattle';
 import Gathering from './pages/Gathering/Gathering';
 import Fighting from './pages/Fighting/Fighting';
 import Store from './pages/Store';
+import GameContainer from './components/GameContainer';
 
 
 
@@ -62,35 +63,11 @@ function App() {
         >
           <StatsBar />
         </div>
-        <div className="col-12 mb-3"> <NavBar /> 
-        
-          <div className="container">
-            {/* <Route exact path="/">
-              <Home />
-            </Route> */}
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            <Route exact path="/me">
-              <Profile />
-            </Route>
-            <Route path='/Home' component={Home} />
-            <Route path='/MinionBattle' component={MinionBattle} />
-            <Route path='/BossBattle' component={BossBattle} />
-            <Route path='/Fighting' component={Fighting} />
-            <Route path='/Gathering' component={Gathering} />
-            <Route path='/Store' component={Store} />
-
-            <Route exact path="/profiles/:username">
-              <Profile />
-            </Route>
-            <Route exact path="/thoughts/:thoughtId">
-            </Route>
-          </div>
-          </div>
+          <div className="lg:flex">
+         <NavBar />
+         <GameContainer />
+        </div>
+ 
           <Footer />
         </div>
       </Router>
