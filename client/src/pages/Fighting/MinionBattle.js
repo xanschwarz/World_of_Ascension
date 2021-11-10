@@ -8,11 +8,15 @@ const failureSentences = [
   "Your Spell Missed, The minion attacks you!",
   "Your spell was not very effective, and you have been punished",
 ];
-const tieSenetences = ["Your spell slightly landed, dealing ", ""];
+const tieSentences = ["Your spell slightly landed, dealing reduced damage ", "Your spell was slightly effective"];
+
+function damageMinion(){
+  document.getElementById("minionIcon").classList.remove("animate-wiggle")
+}
 
 function showRandomTieSentence() {
-  const randomNumber = Math.floor(Math.random() * tieSenetences.length);
-  return tieSenetences[randomNumber];
+  const randomNumber = Math.floor(Math.random() * tieSentences.length);
+  return tieSentences[randomNumber];
 }
 
 function showRandomSuccessSentence() {
@@ -60,6 +64,8 @@ const MinionBattle = () => {
         const minionDamaged = minionHealth - 5;
         setMinionHealth(minionDamaged);
         setTurnResult(showRandomSuccessSentence());
+        document.getElementById("minionIcon").classList.add("animate-wiggle")
+        setTimeout(damageMinion(),1000)
         if (minionDamaged <= 0) {
           setResult("You have Defeated the Minion!");
           const gameOff = true;
@@ -90,6 +96,8 @@ const MinionBattle = () => {
         const minionDamaged = minionHealth - 2.5;
         setMinionHealth(minionDamaged);
         setTurnResult(showRandomTieSentence());
+        document.getElementById("minionIcon").classList.add("animate-wiggle")
+        setTimeout(damageMinion(),1000)
         if (minionDamaged <= 0) {
           setResult("You have Defeated the Minion!");
           const gameOff = true;
@@ -158,7 +166,7 @@ const MinionBattle = () => {
           </div>
           <ul
             role="list"
-            className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8"
+            className="space-y-4 "
           >
             {enemies.map((enemy) => (
               <li
@@ -166,17 +174,31 @@ const MinionBattle = () => {
                 className="py-10 px-6 bg-gray-800 text-center rounded-lg xl:px-10 xl:text-left"
               >
                 <div className="space-y-6 xl:space-y-10">
+
+                  <div className="inline-flex mx-auto">
+                 <div>
+                 <p className="text-indigo-400 flex justify-center">
+                    Health: {userHealth}
+                  </p>
+                  <img id="userIcon"
+                    className="animate-wiggle mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
+                    src="https://bn1303files.storage.live.com/y4mJyU2GJmDnv5nmFVwhxScRBNDB9WJgZMMC3Wbqi8Fi7JZfbkiOFJRi1aZZTRaTOf4EnmkFfnJjBDytJRwv9NW5fAwJxJtKzne9Dm3tfzpFnUuS0xRmGG3NCmUcvuQeJt--_iYvli6aCx6TaF_jhJIxLgtCRNrH92uWPSqtpnHxG2UY9Vgpxn6P1FEhFqLE8XU0tBcqlZXnHQs4Wa7E0Tj2A/Male_18_R.png?psid=1&width=188&height=188&cropMode=center"
+                    alt=""
+                  />
+                  </div>
+                  <a className="text-white align-center mt-20">VS</a>
+                  <div>
                   <p className="text-indigo-400 flex justify-center">
                     Minion Health: {minionHealth}
                   </p>
-                  <img
+                  
+                  <img id ="minionIcon"
                     className="mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
                     src={enemy.imageUrl}
                     alt=""
                   />
-                  <p className="text-indigo-400 flex justify-center">
-                    Health: {userHealth}
-                  </p>
+                  </div>
+</div>
                   {/* ${userAbility} */}
 
                   <img
@@ -198,7 +220,7 @@ const MinionBattle = () => {
                             disabled={gameOver}
                           >
                             <div>
-                              <img src={`../../images/${choice}.png`} />
+                              <img className="flex justify-center" src={`../../images/${choice}.png`} />
                               {choice}
                             </div>
                           </button>
