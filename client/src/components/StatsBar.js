@@ -6,14 +6,10 @@ import { Fragment } from 'react'
 import {
   BeakerIcon ,
   HeartIcon,
-  CheckIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
   ChipIcon,
-  LinkIcon,
   LightningBoltIcon,
   SparklesIcon,
-  PencilIcon,
 } from '@heroicons/react/solid'
 import { Menu, Transition } from '@headlessui/react'
 
@@ -90,7 +86,7 @@ export default function StatsBar() {
         <span className="sm:ml-3">
           <button
             type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
           >
             <CheckIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
             Publish
