@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const userSchema = new Schema({
+const mageSchema = new Schema({
   username: {
     type: String,
     required: true,
@@ -19,15 +19,36 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought',
-    },
-  ],
+  cloak:{
+      type: Number,
+  },
+  ring:{
+    type: Number,
+  },
+  health:{
+    type: Number,
+    required: true,
+    default: 20,
+  },
+  attackPower:{
+      type: Number,
+  },
+  //boss drop
+ soulEssence:{
+    type: Number,
+ },
+ //gathering drop
+ arcana:{
+    type: Number,
+ },
+ //minion drop
+ gobbledyGook:{
+    type: Number,
+ }
+
 });
 
-userSchema.pre('save', async function (next) {
+mageSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -36,10 +57,10 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.methods.isCorrectPassword = async function (password) {
+mageSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = model('User', userSchema);
+const User = model('User', mageSchema);
 
 module.exports = User;
