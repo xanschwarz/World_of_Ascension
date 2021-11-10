@@ -9,6 +9,19 @@ const typeDefs = gql`
     thoughts: [Thought]!
   }
 
+  type Mage {
+    _id: ID
+    username: String
+    cloak: Int
+    ring: Int
+    health: Int
+    attackPower: Int
+    soulEssence: Int
+    arcana: Int
+    gobbledyGook: Int
+
+  }
+
   type Thought {
     _id: ID
     thoughtText: String
@@ -32,6 +45,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
+    mage: [Mage]
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     me: User
