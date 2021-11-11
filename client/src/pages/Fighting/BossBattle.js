@@ -9,6 +9,31 @@ const tieSenetences = [
   "Your spell didn't even cause a scratch",
   "The Boss Laughs at you",
 ];
+function userHpDamaged() {
+  let health = document.getElementById("userHealthBar");
+  health.value -= 20;
+}
+
+function bossHpDamagedFull() {
+  let health = document.getElementById("bossHealthBar");
+  health.value -= 5;
+}
+
+function addbossDamagedAnimation() {
+  document.getElementById("bossIcon").classList.add("animate-wiggle");
+}
+
+function removebossDamagedAnimation() {
+  document.getElementById("bossIcon").classList.remove("animate-wiggle");
+}
+
+function addUserDamagedAnimation() {
+  document.getElementById("userIcon").classList.add("animate-wiggle");
+}
+
+function removeUserDamagedAnimation() {
+  document.getElementById("userIcon").classList.remove("animate-wiggle");
+}
 
 function showRandomTieSentence() {
   const randomNumber = Math.floor(Math.random() * tieSenetences.length);
@@ -34,6 +59,12 @@ const BossBattle = () => {
   const [gameOver, setGameOver] = useState(false);
   const choices = ["Bolt", "Blast", "Nova"];
 
+  function removebossAnimation() {
+    document.getElementById("bossIcon").classList.remove("animate-wiggle");
+  }
+  function removeUserAnimation() {
+    document.getElementById("bossIcon").classList.remove("animate-wiggle");
+  }
   const handleClick = (value) => {
     setUserAbility(value);
     generateBossAbility();
@@ -58,6 +89,7 @@ const BossBattle = () => {
         comboMoves === "BlastBolt"
       ) {
         const bossDamaged = bossHealth - 5;
+        bossHpDamagedFull();
         setBossHealth(bossDamaged);
         setTurnResult(showRandomSuccessSentence());
         if (bossDamaged === 0) {
@@ -73,6 +105,7 @@ const BossBattle = () => {
         comboMoves === "BoltBlast"
       ) {
         const userDamaged = userHealth - 20;
+        userHpDamaged();
         setUserHealth(userDamaged);
         setTurnResult(showRandomFailureSentence);
         if (userDamaged === 0) {
@@ -101,48 +134,11 @@ const BossBattle = () => {
     },
   ];
 
-  //   return (
-  //     <div className="App">
-  //       <h1 className='heading'>Dragon Battle</h1>
-  //       <div className='score'>
-  //         <h1>Health: {userHealth}</h1>
-  //         <h1>Dragon Health: {bossHealth}</h1>
-  //       </div>
-
-  //       <div className='choice'>
-  //         <div className='choice-user'>
-  //           <img className='user-choice' src={`../images/${userAbility}.png`} alt=''></img>
-  //         </div>
-  //         <div className='choice-computer'>
-  //           <img className='computer-choice' src={`../images/${bossAbility}.png`} alt=''></img>
-  //         </div>
-  //       </div>
-
-  //       <div className='button-div'>
-  //         {choices.map((choice, index) =>
-  //           <button className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' key={index} onClick={() => handleClick(choice)} disabled={gameOver}>
-  //             {choice}
-  //           </button>
-  //         )}
-  //       </div>
-
-  //       <div className='result'>
-  //         <h1>{turnResult}</h1>
-  //         <h1>{result}</h1>
-  //       </div>
-
-  //       <div className='button-div'>
-  //         {gameOver &&
-  //           <button className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' onClick={() => reset()}>Restart Game?</button>
-  //         }
-  //       </div>
-  //     </div>
-  //   )
-  // }
+  //
 
   return (
     <div className="bg-gray-900">
-      <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto py-6 px-4 max-w-7xl sm:px-6 ">
         <div className="space-y-12">
           <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
             <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
@@ -150,57 +146,86 @@ const BossBattle = () => {
             </h2>
             <p className="text-xl text-gray-300"></p>
           </div>
-          <ul
-            role="list"
-            className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8"
-          >
+          <ul className="space-y-4 ">
             {enemies.map((enemy) => (
               <li
                 key={enemy.name}
-                className="py-10 px-6 bg-gray-800 text-center rounded-lg xl:px-10 xl:text-left"
+                className="py-10 px-6 bg-gray-800 text-center align-center rounded-lg "
               >
                 <div className="space-y-6 xl:space-y-10">
-                  <p className="text-indigo-400 flex justify-center">
-                    Boss Health: {bossHealth}
-                  </p>
-                  <img
-                    className="mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
-                    src={enemy.imageUrl}
-                    alt=""
-                  />
-                  <p className="text-indigo-400 flex justify-center">
-                    Health: {userHealth}
-                  </p>
-                  {/* ${userAbility} */}
+                  <div className="result">
+                    <p className="text-white">{result}</p>
+                  </div>
 
-                  <img
-                    className="mx-auto w-1/4"
-                    src={`../../images/${userAbility}.png`}
-                    alt=""
-                  />
+                  <div className="inline-flex mx-auto">
+                    <div>
+                      <progress
+                        className="h-10 "
+                        id="userHealthBar"
+                        value="20"
+                        max="20"
+                      ></progress>
+                      <p className="-mt-9 mb-5 text-white flex justify-center">
+                        Health: {userHealth}
+                      </p>
+                      <img
+                        id="userIcon"
+                        className=" mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
+                        src="https://bn1303files.storage.live.com/y4mJyU2GJmDnv5nmFVwhxScRBNDB9WJgZMMC3Wbqi8Fi7JZfbkiOFJRi1aZZTRaTOf4EnmkFfnJjBDytJRwv9NW5fAwJxJtKzne9Dm3tfzpFnUuS0xRmGG3NCmUcvuQeJt--_iYvli6aCx6TaF_jhJIxLgtCRNrH92uWPSqtpnHxG2UY9Vgpxn6P1FEhFqLE8XU0tBcqlZXnHQs4Wa7E0Tj2A/Male_18_R.png?psid=1&width=188&height=188&cropMode=center"
+                        alt=""
+                      />
+                    </div>
+                    <span className="text-white align-center px-4 mt-2">
+                      VS
+                    </span>
+                    <div>
+                      <progress
+                        className="h-10 "
+                        id="bossHealthBar"
+                        value="100"
+                        max="100"
+                      ></progress>
+                      <p className="-mt-9 mb-5 text-white flex justify-center">
+                        Health: {bossHealth}
+                      </p>
+
+                      <img
+                        id="bossIcon"
+                        className="mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
+                        src={enemy.imageUrl}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+
+                  {/* <img
+                  className="mx-auto w-1/4"
+                  src={`../../images/${userAbility}.png`}
+                  alt=""
+                /> */}
 
                   <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
-                    <div className="font-medium text-lg leading-6 space-y-1">
+                    <div className="font-medium  break-words text-lg leading-6 space-y-1">
                       <h3 className="text-white">{turnResult}</h3>
 
                       <div className="button-div">
                         {choices.map((choice, index) => (
                           <button
-                            className="inline-flex items-center border w-1/4  mx-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="inline-flex text-wrap items-center justify-center border w-1/4  mx-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             key={index}
                             onClick={() => handleClick(choice)}
                             disabled={gameOver}
                           >
                             <div>
-                              <img src={`../../images/${choice}.png`} />
+                              <img
+                                className="flex justify-center mx-auto"
+                                src={`../../images/${choice}.png`}
+                                alt=""
+                              />
                               {choice}
                             </div>
                           </button>
                         ))}
-                      </div>
-
-                      <div className="result">
-                        <p className="text-white">{result}</p>
                       </div>
 
                       <div className="button-div">
@@ -209,7 +234,7 @@ const BossBattle = () => {
                             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             onClick={() => reset()}
                           >
-                            Restart Game?
+                            Fight Another boss?
                           </button>
                         )}
                       </div>
