@@ -1,0 +1,470 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/pages/Fighting/MinionBattle.js":
+/*!********************************************!*\
+  !*** ./src/pages/Fighting/MinionBattle.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+var _jsxFileName = "C:\\Users\\aabaz\\BootCamp\\project_3\\client\\src\\pages\\Fighting\\MinionBattle.js",
+    _s = __webpack_require__.$Refresh$.signature();
+
+
+
+const successSentences = ["Your Spell has Landed, and it was Supper Effective!", "A Remarkable shot, The minion has been hurt greatly"];
+const failureSentences = ["Your Spell Missed, The minion attacks you!", "Concentrate, your poor choice has hurt you"];
+const tieSentences = ["Your spell slightly landed, dealing reduced damage ", "Your spell was slightly effective"];
+
+function userHpDamaged() {
+  let health = document.getElementById("userHealthBar");
+  health.value -= 5;
+}
+
+function minionHpDamagedFull() {
+  let health = document.getElementById("minionHealthBar");
+  health.value -= 5;
+}
+
+function minionHpDamagedHalf() {
+  let health = document.getElementById("minionHealthBar");
+  health.value -= 2.5;
+}
+
+function addMinionDamagedAnimation() {
+  document.getElementById("minionIcon").classList.add("animate-wiggle");
+}
+
+function removeMinionDamagedAnimation() {
+  document.getElementById("minionIcon").classList.remove("animate-wiggle");
+}
+
+function addUserDamagedAnimation() {
+  document.getElementById("userIcon").classList.add("animate-wiggle");
+}
+
+function removeUserDamagedAnimation() {
+  document.getElementById("userIcon").classList.remove("animate-wiggle");
+}
+
+function showRandomTieSentence() {
+  const randomNumber = Math.floor(Math.random() * tieSentences.length);
+  return tieSentences[randomNumber];
+}
+
+function showRandomSuccessSentence() {
+  const randomNumber = Math.floor(Math.random() * successSentences.length);
+  return successSentences[randomNumber];
+}
+
+function showRandomFailureSentence() {
+  const randomNumber = Math.floor(Math.random() * failureSentences.length);
+  return failureSentences[randomNumber];
+}
+
+const MinionBattle = () => {
+  _s();
+
+  const [userAbility, setUserAbility] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [minionAbility, setMinionAbility] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [userHealth, setUserHealth] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(20);
+  const [minionHealth, setMinionHealth] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(10);
+  const [turnResult, setTurnResult] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [result, setResult] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Battle In Progress");
+  const [gameOver, setGameOver] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const choices = ["Bolt", "Blast", "Nova"];
+
+  const handleClick = value => {
+    setUserAbility(value);
+    generateMinionAbility();
+  };
+
+  const generateMinionAbility = () => {
+    const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+    setMinionAbility(randomChoice);
+  };
+
+  const reset = () => {
+    window.location.reload();
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const comboMoves = userAbility + minionAbility; //If the User chooses correctly
+
+    if (userHealth > 0 && minionHealth > 0) {
+      if (comboMoves === "NovaBlast" || comboMoves === "BoltNova" || comboMoves === "BlastBolt") {
+        const minionDamaged = minionHealth - 5;
+        minionHpDamagedFull();
+        setMinionHealth(minionDamaged);
+        setTurnResult(showRandomSuccessSentence());
+        addMinionDamagedAnimation();
+        setTimeout(() => {
+          removeMinionDamagedAnimation();
+        }, 1000);
+
+        if (minionDamaged <= 0) {
+          setResult("You have Defeated the Minion!");
+          const gameOff = true;
+          setGameOver(gameOff);
+        }
+      } //If the User chooses incorrectly
+
+
+      if (comboMoves === "BlastNova" || comboMoves === "NovaBolt" || comboMoves === "BoltBlast") {
+        const userDamaged = userHealth - 5;
+        userHpDamaged();
+        setUserHealth(userDamaged);
+        setTurnResult(showRandomFailureSentence());
+        addUserDamagedAnimation();
+        setTimeout(() => {
+          removeUserDamagedAnimation();
+        }, 1000);
+
+        if (userDamaged <= 0) {
+          setResult("You have been Defeated");
+          const gameOff = true;
+          setGameOver(gameOff);
+        }
+      } //If its a tie
+
+
+      if (comboMoves === "BlastBlast" || comboMoves === "BoltBolt" || comboMoves === "NovaNova") {
+        const minionDamaged = minionHealth - 2.5;
+        minionHpDamagedHalf();
+        setMinionHealth(minionDamaged);
+        setTurnResult(showRandomTieSentence());
+        addMinionDamagedAnimation();
+        setTimeout(() => {
+          removeMinionDamagedAnimation();
+        }, 1000);
+
+        if (minionDamaged <= 0) {
+          setResult("You have Defeated the Minion!");
+          const gameOff = true;
+          setGameOver(gameOff);
+        }
+      }
+    }
+  }, [minionAbility, userAbility]);
+  const enemies = [{
+    name: "Pyro's Hatchlings ",
+    pathName: "MinionBattle",
+    link: "Battle Minnions",
+    imageUrl: "https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center"
+  }];
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+    className: "bg-gray-900",
+    children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+      className: "mx-auto py-6 px-4 max-w-7xl sm:px-6 ",
+      children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+        className: "space-y-12",
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+          className: "space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none",
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("h2", {
+            className: "text-3xl font-extrabold text-white tracking-tight sm:text-4xl",
+            children: "Battle Pyro's Hatchling"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 163,
+            columnNumber: 13
+          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("p", {
+            className: "text-xl text-gray-300"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 166,
+            columnNumber: 13
+          }, undefined)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 162,
+          columnNumber: 11
+        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("ul", {
+          className: "space-y-4 ",
+          children: enemies.map(enemy => /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("li", {
+            className: "py-10 px-6 bg-gray-800 text-center align-center rounded-lg ",
+            children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+              className: "space-y-6 xl:space-y-10",
+              children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                className: "result",
+                children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("p", {
+                  className: "text-white",
+                  children: result
+                }, void 0, false, {
+                  fileName: _jsxFileName,
+                  lineNumber: 176,
+                  columnNumber: 21
+                }, undefined)
+              }, void 0, false, {
+                fileName: _jsxFileName,
+                lineNumber: 175,
+                columnNumber: 19
+              }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                className: "inline-flex mx-auto",
+                children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                  children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("progress", {
+                    id: "userHealthBar",
+                    value: "20",
+                    max: "20"
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 181,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("p", {
+                    className: "text-indigo-400 flex justify-center",
+                    children: ["Health: ", userHealth]
+                  }, void 0, true, {
+                    fileName: _jsxFileName,
+                    lineNumber: 186,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("img", {
+                    id: "userIcon",
+                    className: " mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56",
+                    src: "https://bn1303files.storage.live.com/y4mJyU2GJmDnv5nmFVwhxScRBNDB9WJgZMMC3Wbqi8Fi7JZfbkiOFJRi1aZZTRaTOf4EnmkFfnJjBDytJRwv9NW5fAwJxJtKzne9Dm3tfzpFnUuS0xRmGG3NCmUcvuQeJt--_iYvli6aCx6TaF_jhJIxLgtCRNrH92uWPSqtpnHxG2UY9Vgpxn6P1FEhFqLE8XU0tBcqlZXnHQs4Wa7E0Tj2A/Male_18_R.png?psid=1&width=188&height=188&cropMode=center",
+                    alt: ""
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 189,
+                    columnNumber: 23
+                  }, undefined)]
+                }, void 0, true, {
+                  fileName: _jsxFileName,
+                  lineNumber: 180,
+                  columnNumber: 21
+                }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("a", {
+                  className: "text-white align-center mt-20",
+                  children: "VS"
+                }, void 0, false, {
+                  fileName: _jsxFileName,
+                  lineNumber: 196,
+                  columnNumber: 21
+                }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                  children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("progress", {
+                    id: "minionHealthBar",
+                    value: "10",
+                    max: "10"
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 198,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("p", {
+                    className: "text-indigo-400 flex justify-center",
+                    children: ["Health: ", minionHealth]
+                  }, void 0, true, {
+                    fileName: _jsxFileName,
+                    lineNumber: 203,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("img", {
+                    id: "minionIcon",
+                    className: "mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56",
+                    src: enemy.imageUrl,
+                    alt: ""
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 207,
+                    columnNumber: 23
+                  }, undefined)]
+                }, void 0, true, {
+                  fileName: _jsxFileName,
+                  lineNumber: 197,
+                  columnNumber: 21
+                }, undefined)]
+              }, void 0, true, {
+                fileName: _jsxFileName,
+                lineNumber: 179,
+                columnNumber: 19
+              }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                className: "space-y-2 xl:flex xl:items-center xl:justify-between",
+                children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                  className: "font-medium  break-words text-lg leading-6 space-y-1",
+                  children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("h3", {
+                    className: "text-white",
+                    children: turnResult
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 224,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                    className: "button-div",
+                    children: choices.map((choice, index) => /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("button", {
+                      className: "inline-flex text-wrap items-center justify-center border w-1/4  mx-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                      onClick: () => handleClick(choice),
+                      disabled: gameOver,
+                      children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("img", {
+                          className: "flex justify-center mx-auto",
+                          src: `../../images/${choice}.png`,
+                          alt: ""
+                        }, void 0, false, {
+                          fileName: _jsxFileName,
+                          lineNumber: 235,
+                          columnNumber: 31
+                        }, undefined), choice]
+                      }, void 0, true, {
+                        fileName: _jsxFileName,
+                        lineNumber: 234,
+                        columnNumber: 29
+                      }, undefined)
+                    }, index, false, {
+                      fileName: _jsxFileName,
+                      lineNumber: 228,
+                      columnNumber: 27
+                    }, undefined))
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 226,
+                    columnNumber: 23
+                  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("div", {
+                    className: "button-div",
+                    children: gameOver && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__["jsxDEV"])("button", {
+                      className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                      onClick: () => reset(),
+                      children: "Fight Another Minion?"
+                    }, void 0, false, {
+                      fileName: _jsxFileName,
+                      lineNumber: 248,
+                      columnNumber: 27
+                    }, undefined)
+                  }, void 0, false, {
+                    fileName: _jsxFileName,
+                    lineNumber: 246,
+                    columnNumber: 23
+                  }, undefined)]
+                }, void 0, true, {
+                  fileName: _jsxFileName,
+                  lineNumber: 223,
+                  columnNumber: 21
+                }, undefined)
+              }, void 0, false, {
+                fileName: _jsxFileName,
+                lineNumber: 222,
+                columnNumber: 19
+              }, undefined)]
+            }, void 0, true, {
+              fileName: _jsxFileName,
+              lineNumber: 174,
+              columnNumber: 17
+            }, undefined)
+          }, enemy.name, false, {
+            fileName: _jsxFileName,
+            lineNumber: 170,
+            columnNumber: 15
+          }, undefined))
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 168,
+          columnNumber: 11
+        }, undefined)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 161,
+        columnNumber: 9
+      }, undefined)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 160,
+      columnNumber: 7
+    }, undefined)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 159,
+    columnNumber: 5
+  }, undefined);
+};
+
+_s(MinionBattle, "FpYbjy+WMzk/NavDFwvGd0v2TW8=");
+
+_c = MinionBattle;
+/* harmony default export */ __webpack_exports__["default"] = (MinionBattle);
+
+var _c;
+
+__webpack_require__.$Refresh$.register(_c, "MinionBattle");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ })
+
+})
+//# sourceMappingURL=main.573f34e7376470b2df14.hot-update.js.map
