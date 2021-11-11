@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { BeakerIcon, FireIcon, HomeIcon, ShoppingCartIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
+import { HandIcon, FireIcon, HomeIcon, ShoppingCartIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 
 
 const user = {
@@ -12,7 +12,7 @@ const user = {
 }
 const navigation = [
   { name: 'Home', href: '/Home', icon: HomeIcon },
-  { name: 'Gather', href: '/Gathering', icon: BeakerIcon },
+  { name: 'Gather', href: '/Gathering', icon: HandIcon },
   { name: 'Fight', href: '/Fighting', icon: FireIcon },
   { name: 'Store', href: '/Store', icon: ShoppingCartIcon },
   { name: 'Profile', href: '#', icon: UserIcon },
