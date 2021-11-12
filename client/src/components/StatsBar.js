@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Auth from '../utils/auth';
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 /* This example requires Tailwind CSS v2.0+ */
@@ -22,7 +23,9 @@ export default function StatsBar() {
     <div className="lg:flex lg:items-center lg:justify-between bg-gray-800">
       <div className="flex-1 min-w-0">
         <h2 className="mt-2 text-2xl font-bold leading-7 text-white sm:text-3xl sm:truncate">
-          Username
+        <div>
+        {Auth.getProfile().data.username}
+        </div>
         </h2>
         <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
           <div className="mt-2 flex items-center text-sm text-gray-300">
