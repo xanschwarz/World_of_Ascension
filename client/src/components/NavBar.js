@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Gather', href: '/Gathering', icon: HandIcon },
   { name: 'Fight', href: '/Fighting', icon: FireIcon },
   { name: 'Store', href: '/Store', icon: ShoppingCartIcon },
-  { name: 'Profile', href: '#', icon: UserIcon },
+  { name: 'Profile', href: '/Profile', icon: UserIcon },
 ]
 
 export default function NavBar() {
@@ -163,7 +163,7 @@ export default function NavBar() {
         <div className="flex-1 min-w-0 flex flex-col ">
           {/* Mobile top navigation */}
           <div className="lg:hidden">
-            <div className="bg-purple-900 py-2 px-4 flex w-screen items-center justify-between sm:px-6 lg:px-8">
+            <div className="bg-purple-900 py-2 px-4 flex max-w-screen items-center justify-between sm:px-6 lg:px-8">
               <div>
                 <img
                   className="h-8 w-auto"

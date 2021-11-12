@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^12.8.3",
     "graphql": "^15.4.0",
     "jwt-decode": "^3.1.2",
+    "kaboom": "^2000.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
