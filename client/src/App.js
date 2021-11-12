@@ -14,6 +14,10 @@ import Footer from "./components/Footer.js";
 import NavBar from "./components/NavBar.js";
 import StatsBar from "./components/StatsBar.js";
 import GameContainer from "./components/GameContainer";
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -53,9 +57,23 @@ function App() {
           </div>
           <div className="lg:flex">
             <NavBar />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/me">
+              <Profile />
+            </Route>
+            <Route exact path="/profiles/:username">
+              <Profile />
+            </Route>
             <GameContainer />
           </div>
-
           <Footer />
         </div>
       </Router>
