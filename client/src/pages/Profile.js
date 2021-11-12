@@ -59,7 +59,7 @@ const Profile = () => {
               </div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Magius Maximus</h1>
+              <h1 className="text-2xl font-bold text-white">{Auth.getProfile().data.username}</h1>
             </div>
           </div>
           <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
