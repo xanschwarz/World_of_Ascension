@@ -5,11 +5,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { HandIcon, FireIcon, HomeIcon, ShoppingCartIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 
 
-const user = {
-  name: 'Emily Selman',
-  imageUrl:
-    'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
   { name: 'Home', href: '/Home', icon: HomeIcon },
   { name: 'Gather', href: '/Gathering', icon: HandIcon },
