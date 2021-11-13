@@ -5,7 +5,6 @@ import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import {
   BeakerIcon,
