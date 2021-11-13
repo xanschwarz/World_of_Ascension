@@ -35,15 +35,15 @@ export const ADD_ARCANA = gql`
 export const ADD_ESSENCE = gql`
   mutation addEssence($id: ID!) {
     addEssence(_id: $id) {
-      soulEssence
+      essence
     }
   }
 `;
 
 export const ADD_GOBBLE = gql`
-  mutation addGobbledyGook($id: ID!) {
-    addGobbledyGook(_id: $id) {
-      gobbledyGook
+  mutation addScale($id: ID!) {
+    addScale(_id: $id) {
+      scale
     }
   }
 `;

@@ -57,18 +57,18 @@ const resolvers = {
     addEssence: async (parent, { _id }) => {
       const updatedEssence = await User.findOneAndUpdate(
         { _id },
-        { $inc: { [`soulEssence`]: 1 } },
+        { $inc: { [`essence`]: 1 } },
         { new: true }
       );
       return updatedEssence;
     },
-    addGobbledyGook: async (parent, { _id }) => {
-      const updatedGobbledyGook = await User.findOneAndUpdate(
+    addScale: async (parent, { _id }) => {
+      const updatedScale = await User.findOneAndUpdate(
         { _id },
-        { $inc: { [`gobbledyGook`]: 1 } },
+        { $inc: { [`scale`]: 1 } },
         { new: true }
       );
-      return updatedGobbledyGook;
+      return updatedScale;
     },
   },
 };

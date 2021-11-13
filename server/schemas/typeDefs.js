@@ -10,9 +10,9 @@ const typeDefs = gql`
     ring: Int
     health: Int
     attackPower: Int
-    soulEssence: Int
+    essence: Int
     arcana: Int
-    gobbledyGook: Int
+    scale: Int
   }
 
   type Comment {
@@ -37,7 +37,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addGobbledyGook(_id: ID!): User
+    addScale(_id: ID!): User
     addArcana(_id: ID!): User
     addEssence(_id: ID!): User
   }

@@ -15,9 +15,9 @@ export const QUERY_MAGE_ATTRIBUTES = gql`
     mage {
       _id
       username
-      soulEssence
+      essence
       arcana
-      gobbledyGook
+      scale
       cloak
       ring
       health

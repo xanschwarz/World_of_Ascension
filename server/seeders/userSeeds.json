@@ -7,8 +7,8 @@
     "ring": 1,
     "health": 100,
     "attackPower": 5,
-    "soulEssence": 0,
+    "essence": 0,
     "arcana": 5,
-    "gobbledyGook": 7
+    "scale": 7
   }
 ]
