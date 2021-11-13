@@ -5,8 +5,7 @@ import React from "react";
 // import StatsBar from '../components/StatsBar.js';
 // import GameContainer from '../components/GameContainer.js';
 
-// import { QUERY_THOUGHTS } from '../utils/queries';
-/* This example requires Tailwind CSS v2.0+ */
+
 import {
   HandIcon,
   SparklesIcon,
@@ -59,9 +58,7 @@ const currencies = [
 ];
 
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_THOUGHTS);
-  // const thoughts = data?.thoughts || [];
-
+ 
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
