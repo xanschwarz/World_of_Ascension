@@ -24,21 +24,6 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
-  }
-`;
-
 export const ADD_ARCANA = gql`
   mutation addArcana($id: ID!) {
     addArcana(_id: $id) {
@@ -59,22 +44,6 @@ export const ADD_GOBBLE = gql`
   mutation addGobbledyGook($id: ID!) {
     addGobbledyGook(_id: $id) {
       gobbledyGook
-    }
-  }
-`;
-
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
     }
   }
 `;
