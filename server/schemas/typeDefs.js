@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -6,7 +6,13 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    cloak: Int
+    ring: Int
+    health: Int
+    attackPower: Int
+    soulEssence: Int
+    arcana: Int
+    gobbledyGook: Int
   }
 
   type Mage {
@@ -19,7 +25,6 @@ const typeDefs = gql`
     soulEssence: Int
     arcana: Int
     gobbledyGook: Int
-
   }
 
   type Thought {
@@ -58,6 +63,9 @@ const typeDefs = gql`
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addGobbledyGook(_id: ID!): Mage
+    addArcana(_id: ID!): Mage
+    addEssence(_id: ID!): Mage
   }
 `;
 
