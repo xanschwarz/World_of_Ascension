@@ -19,7 +19,7 @@ const features = [
   {
     name: "Gathering",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Gathering Arcana is just a matter of time—and patience. The World of Ascension is shrouded with unknown particles called Arcana. No one knows exactly what it is, but it is highly sought after by the inhabitants of our world.",
     icon: HandIcon,
   },
   {
@@ -29,9 +29,9 @@ const features = [
     icon: FireIcon,
   },
   {
-    name: "Gear Shop",
+    name: "The Darth Trader",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "The mysterious Darth Trader is a travelling merchant from an unknown land, who appears every two months in the Southwest section of the World of Ascension. He has a small stock of rings and cloaks that sell for astronomic prices. It is in your best interest to collect valuable reagents throughout the realm to upgrade your gear.",
     icon: ShoppingCartIcon,
     title: "Currency",
   },
@@ -40,19 +40,19 @@ const currencies = [
   {
     name: "Arcana",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Arcana appears to be a type of energy, similar to electricity. Some theorize that it's a type of energy from another dimension. It has been shown to have a lot of different, unique properties. Gather Arcana to barter with vendors, upgrade your gear, and increase your attack power!",
     icon: BeakerIcon,
   },
   {
     name: "Essence",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Essence is a very rare element containing high concentrations of magical energy. The only way to obtain this element is by slaying a powerful enemy. The use of Essence in the World of Ascension is so fundamental that inhabitants will trade nearly anything to acquire it.",
     icon: SparklesIcon,
   },
   {
-    name: "Gobbldeygook",
+    name: "Scales",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "The creatures of the Ascension realm grow scales as they mature. Slay dragon whelps to obtain scales and prove yourself to those you meet.",
     icon: ChipIcon,
   },
 ];
