@@ -16,19 +16,26 @@ import Auth from '../utils/auth';
 
 export default function GameContainer() {
   const { username: userParam } = useParams();
-
+ 
 
   // Query for mageAttributes
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME , {
     variables: { username: userParam },
   });
 
+  if (!Auth.loggedIn()) {
+    return <Redirect to="/"/>;
+  }
+
+  
+
   const user = data?.me || data?.user || {};
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Redirect to="/home" />;
+    return <Redirect to= "/Home" />;
   }
   console.log(data);
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -40,6 +47,7 @@ export default function GameContainer() {
         sign up or log in!
       </h4>
     );
+    
   }
 
   return (
