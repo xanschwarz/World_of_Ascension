@@ -46,7 +46,7 @@ const currencies = [
   {
     name: "Essence",
     description:
-      "Essence is an extraordinarily rare element containing high concentrations of magical energy. The only way to obtain this element is by slaying a powerful enemy. The use of Essence in the World of Ascension is so fundamental that inhabitants will trade nearly anything to acquire it.",
+      "Essence is an extraordinarily rare element containing high concentrations of magical energy. The only way to obtain this element is by slaying a very powerful enemy. The use of Essence in the World of Ascension is so fundamental that inhabitants will trade nearly anything to acquire it.",
     icon: SparklesIcon,
   },
   {
