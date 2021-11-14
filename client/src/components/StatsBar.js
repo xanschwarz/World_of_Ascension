@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_MAGE_ATTRIBUTES, QUERY_ME, QUERY_USER } from "../utils/queries";
+import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { Fragment } from "react";
@@ -46,7 +46,7 @@ export default function StatsBar() {
               aria-hidden="true"
             />
 
-            Arcana: {data.me.arcana}
+           Arcana: {data.me.arcana}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <SparklesIcon
