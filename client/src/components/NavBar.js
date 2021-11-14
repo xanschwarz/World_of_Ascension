@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Home', href: '/Home', icon: HomeIcon },
   { name: 'Gather', href: '/Gathering', icon: HandIcon },
   { name: 'Fight', href: '/Fighting', icon: FireIcon },
-  { name: 'Store', href: '/Store', icon: ShoppingCartIcon },
+  { name: 'The Darth Trader', href: '/Store', icon: ShoppingCartIcon },
   { name: 'Profile', href: '/Profile', icon: UserIcon },
 ]
 

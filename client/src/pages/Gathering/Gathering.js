@@ -6,6 +6,10 @@ import { useQuery, useMutation } from "@apollo/client";
 
 
 
+  
+
+
+
 const Gathering = () => {
   const [arcana, setArcana] = useState();
   const { username: userParam } = useParams();
