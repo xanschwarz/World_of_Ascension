@@ -22,9 +22,9 @@ function classNames(...classes) {
 
 export default function StatsBar() {
   const { username: userParam } = useParams();
-  const { data } = useQuery(QUERY_ME, {
-    // pass URL parameter
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME , {
     variables: { username: userParam },
+    // pass URL parameter
   });
   
   // const { data } = useQuery(userParam ? QUERY_USER : QUERY_MAGE_ATTRIBUTES, {
@@ -46,7 +46,7 @@ export default function StatsBar() {
               aria-hidden="true"
             />
 
-            {/* Arcana: {data.me.arcana} */}
+            Arcana: {data.me.arcana}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <SparklesIcon
