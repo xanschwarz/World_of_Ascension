@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { QUERY_MAGE_ATTRIBUTES, QUERY_ME, QUERY_USER } from "../utils/queries";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { Fragment } from "react";
@@ -22,14 +22,20 @@ function classNames(...classes) {
 
 export default function StatsBar() {
   const { username: userParam } = useParams();
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  const { data } = useQuery(QUERY_ME, {
+    // pass URL parameter
     variables: { username: userParam },
   });
+  
+  // const { data } = useQuery(userParam ? QUERY_USER : QUERY_MAGE_ATTRIBUTES, {
+  //   variables: { username: userParam },
+  // });
+  console.log(data);
   return (
     <div className="lg:flex lg:items-center lg:justify-between bg-gray-800">
       <div className="flex-1 min-w-0">
         <h2 className="mt-2 text-2xl font-bold leading-7 text-white sm:text-3xl sm:truncate">
-        {/* <div>
+          {/* <div>
         {Auth.getProfile().data.username}
         </div> */}
         </h2>
@@ -39,35 +45,36 @@ export default function StatsBar() {
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Arcana:
+
+            {/* Arcana: {data.me.arcana} */}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <SparklesIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Essence:
+            {/* Essence:{data.me.essence} */}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <ChipIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Gobbldeygook:
+            {/* Scale: {data.me.scale} */}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <HeartIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Health:
+            {/* Health: {data.me.health} */}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <LightningBoltIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Power:
+            {/* Power: {data.me.attackPower} */}
           </div>
         </div>
       </div>

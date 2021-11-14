@@ -1,12 +1,12 @@
 const db = require("../config/connection");
-const { Mage } = require("../models");
+const { User } = require("../models");
 const userSeeds = require("./userSeeds.json");
 
 db.once("open", async () => {
   try {
-    await Mage.deleteMany({});
+    await User.deleteMany({});
 
-    await Mage.create(userSeeds);
+    await User.create(userSeeds);
 
     // for (let i = 0; i < thoughtSeeds.length; i++) {
     //   const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);

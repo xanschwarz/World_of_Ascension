@@ -10,11 +10,12 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_MAGE_ATTRIBUTES = gql`
-  query mage {
-    mage {
+export const QUERY_ME = gql`
+  query me {
+    me {
       _id
       username
+      email
       essence
       arcana
       scale
@@ -22,16 +23,6 @@ export const QUERY_MAGE_ATTRIBUTES = gql`
       ring
       health
       attackPower
-    }
-  }
-`;
-
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      email
     }
   }
 `;
