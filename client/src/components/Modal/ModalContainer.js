@@ -1,4 +1,4 @@
-// Home shows regardless of logged in/out, but for everything else this modal will appear.
+// Home shows regardless of logged in/out, but for everything else this modal will appear. Tested on Minion and Boss Battle as well as Fighting.
 
 import React, { useState } from 'react';
 import LoginModal from './LoginModal';

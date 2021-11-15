@@ -1,5 +1,3 @@
-// Restyle. "Do you need to login or signup?" With buttons for each.
-
 import React from 'react';
 
 export default function ModalSwitcher({ currentModal, handleModalChange }) {
@@ -14,7 +12,6 @@ export default function ModalSwitcher({ currentModal, handleModalChange }) {
           name="tabs"
           className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
         >
-          {/* <option selected>Login</option> */}
           <option>Login</option>
           <option>Signup</option>
         </select>
