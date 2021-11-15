@@ -40,7 +40,7 @@ export const ADD_ESSENCE = gql`
   }
 `;
 
-export const ADD_GOBBLE = gql`
+export const ADD_SCALE = gql`
   mutation addScale($id: ID!) {
     addScale(_id: $id) {
       scale
