@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { HandIcon, FireIcon, HomeIcon, ShoppingCartIcon, MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline'
-
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import {
+  HandIcon,
+  FireIcon,
+  HomeIcon,
+  ShoppingCartIcon,
+  MenuIcon,
+  UserIcon,
+  XIcon,
+} from '@heroicons/react/outline';
 
 const navigation = [
   { name: 'Home', href: '/Home', icon: HomeIcon },
@@ -14,14 +21,18 @@ const navigation = [
 ]
 
 export default function NavBar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
       
       <div className="h-full flex">
         <Transition.Root show={mobileMenuOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setMobileMenuOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 lg:hidden"
+            onClose={setMobileMenuOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -59,7 +70,10 @@ export default function NavBar() {
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
@@ -122,7 +136,10 @@ export default function NavBar() {
                     alt="Workflow"
                   />
                 </div>
-                <nav aria-label="Sidebar" className="py-6 flex flex-col items-center space-y-3">
+                <nav
+                  aria-label="Sidebar"
+                  className="py-6 flex flex-col items-center space-y-3"
+                >
                   {navigation.map((item) => (
                     <a
                       key={item.name}
@@ -187,13 +204,12 @@ export default function NavBar() {
             {/* Secondary column (hidden on smaller screens) */}
             {/* <aside className="hidden lg:block lg:flex-shrink-0 lg:order-first">
               <div className="h-full relative flex flex-col w-96 border-r border-gray-200 bg-white overflow-y-auto"> */}
-                {/* Your content */}
-              {/* </div>
+            {/* Your content */}
+            {/* </div>
             </aside> */}
           </main>
         </div>
       </div>
     </>
-  )
+  );
 }
-

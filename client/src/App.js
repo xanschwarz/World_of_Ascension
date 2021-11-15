@@ -1,13 +1,13 @@
-import React from "react";
-import "tailwindcss/tailwind.css";
+import React from 'react';
+import 'tailwindcss/tailwind.css';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
@@ -21,18 +21,18 @@ import Home from "./pages/Home";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -51,7 +51,7 @@ function App() {
           <Header />
           <div
             className=" max-w-screen  bg-gray-800 p-3"
-            style={{ border: "1px dotted #1a1a1a" }}
+            style={{ border: '1px dotted #1a1a1a' }}
           >
             <StatsBar />
           </div>
