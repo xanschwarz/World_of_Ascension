@@ -18,7 +18,7 @@ export default function ModalSwitcher({ currentModal, handleModalChange }) {
       </div>
       <div className="hidden sm:block">
         <p className="w-full flex justify-center mb-4 text-sm font-medium text-gray-700">
-          Do you need to login or signup?
+          You need to log in to an account to access that!
         </p>
         <nav
           className="w-full flex justify-center mb-4 space-x-4"

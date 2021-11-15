@@ -1,32 +1,17 @@
-// from login_signup_modal branch
-// import React from 'react';
+import React from 'react';
 // import BossBattle from './BossBattle';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import MinionBattle from './MinionBattle';
-// import {
-  // BeakerIcon,
-  // HeartIcon,
-  // ChevronDownIcon,
-  // ChipIcon,
-  // LightningBoltIcon,
-  // SparklesIcon,
-// } from '@heroicons/react/solid';
-// import Auth from '../../utils/auth';
-// import ModalContainer from '../../components/Modal/ModalContainer';
-
-// from main branch pre-merge
-import React from "react";
-// import BossBattle from './BossBattle';
-import { Link } from "react-router-dom";
-// import MinionBattle from './MinionBattle';
-import { ChipIcon, SparklesIcon } from "@heroicons/react/solid";
+import { ChipIcon, SparklesIcon } from '@heroicons/react/solid';
+import Auth from '../../utils/auth';
+import ModalContainer from '../../components/Modal/ModalContainer';
 
 /* This example requires Tailwind CSS v2.0+ */
 const enemies = [
   {
-    name: "Pyro",
-    pathName: "BossBattle",
-    link: "Battle Boss",
+    name: 'Pyro',
+    pathName: 'BossBattle',
+    link: 'Battle Boss',
     icon: (
       <SparklesIcon
         className=" ml-2 justify-center h-5 w-5 text-gray-500"
@@ -34,12 +19,12 @@ const enemies = [
       />
     ),
     imageUrl:
-      "https://bn1303files.storage.live.com/y4mxeAMRBLm8sIvOgs7s6oWJ0zml7dFL4eJQG2jRhxdswUihA1Ame46qR58SC4GKWghq9HA5zGz1eVZY_tS9bw5I4rztRPyUyIVALVt7ptZzvO06CmTA98-DmWCtfOxVFRW1cRVM-6oX2YTBcg2PcChw7OHfm9sSCIQOGOPMMrz9HXGGVx5YcaxlDywUxZ01hsAslsETGpp_yYEWOsWyo4b1A/SpellBook03_64.png?psid=1&width=256&height=256&cropMode=center",
+      'https://bn1303files.storage.live.com/y4mxeAMRBLm8sIvOgs7s6oWJ0zml7dFL4eJQG2jRhxdswUihA1Ame46qR58SC4GKWghq9HA5zGz1eVZY_tS9bw5I4rztRPyUyIVALVt7ptZzvO06CmTA98-DmWCtfOxVFRW1cRVM-6oX2YTBcg2PcChw7OHfm9sSCIQOGOPMMrz9HXGGVx5YcaxlDywUxZ01hsAslsETGpp_yYEWOsWyo4b1A/SpellBook03_64.png?psid=1&width=256&height=256&cropMode=center',
   },
   {
     name: "Pyro's Hatchlings ",
-    pathName: "MinionBattle",
-    link: "Battle Minnions",
+    pathName: 'MinionBattle',
+    link: 'Battle Minnions',
     icon: (
       <ChipIcon
         className=" ml-2 justify-center h-5 w-5 text-gray-500"
@@ -47,7 +32,7 @@ const enemies = [
       />
     ),
     imageUrl:
-      "https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center",
+      'https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center',
   },
 ];
 

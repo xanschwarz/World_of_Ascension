@@ -9,15 +9,15 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Header from "./components/Header.js";
-import Footer from "./components/Footer.js";
-import NavBar from "./components/NavBar.js";
-import StatsBar from "./components/StatsBar.js";
-import GameContainer from "./components/GameContainer";
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
+import NavBar from './components/NavBar.js';
+import StatsBar from './components/StatsBar.js';
+import GameContainer from './components/GameContainer';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Profile from "./pages/Profile";
-import Home from "./pages/Home";
+import Profile from './pages/Profile';
+import Home from './pages/Home';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -48,7 +48,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column bg-gray-900 justify-flex-start min-100-vh">
-          <Header />
+          {/* <Header /> */}
           <div
             className=" max-w-screen  bg-gray-800 p-3"
             style={{ border: '1px dotted #1a1a1a' }}
