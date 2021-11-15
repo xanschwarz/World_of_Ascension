@@ -7,6 +7,11 @@ import MinionBattle from '../pages/Fighting/MinionBattle';
 import Store from '../pages/Store/Store';
 import Profile from '../pages/Profile';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Profile from '../pages/Profile';
+import { Redirect, useParams } from 'react-router-dom';
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+import Auth from '../utils/auth';
 
 export default function GameContainer() {
   return (

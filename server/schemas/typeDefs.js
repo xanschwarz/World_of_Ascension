@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -6,28 +6,13 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
-  }
-
-  type Mage {
-    _id: ID
-    username: String
     cloak: Int
     ring: Int
     health: Int
     attackPower: Int
-    soulEssence: Int
+    essence: Int
     arcana: Int
-    gobbledyGook: Int
-
-  }
-
-  type Thought {
-    _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    scale: Int
   }
 
   type Comment {
@@ -45,19 +30,16 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    mage: [Mage]
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    mage: [User]
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addScale(_id: ID!): User
+    addArcana(_id: ID!): User
+    addEssence(_id: ID!): User
   }
 `;
 
