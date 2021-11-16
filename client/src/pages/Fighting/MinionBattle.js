@@ -66,14 +66,20 @@ const MinionBattle = () => {
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
-    onCompleted: (data) => setScale(data.me.scale),
+    // onCompleted: (data) => setScale(data.me.scale),
   });
 
-  const healthCoefficient = 20 * Math.pow(5, data?.me.cloak);
+  const cloak = data?.me.cloak;
+  const ring = data?.me.ring;
+
+  const healthCoefficient = 20 * Math.pow(5, cloak);
   // const healthCoefficient = 20;
+  console.log(data);
+  console.log(cloak);
   console.log(healthCoefficient);
-  const aPCoefficient = 20 * (Math.pow(5, data?.me.ring) / 5);
+  const aPCoefficient = 20 * (Math.pow(5, ring) / 5);
   // const aPCoefficient = 4;
+  console.log(ring);
   console.log(aPCoefficient);
 
   const [userAbility, setUserAbility] = useState(null);
