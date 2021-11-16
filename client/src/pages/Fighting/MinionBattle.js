@@ -72,13 +72,13 @@ const MinionBattle = () => {
   const cloak = data?.me.cloak;
   const ring = data?.me.ring;
 
-  const healthCoefficient = 20 * Math.pow(5, cloak);
-  // const healthCoefficient = 20;
+  // const healthCoefficient = 20 * Math.pow(5, cloak);
+  const healthCoefficient = 20;
   console.log(data);
   console.log(cloak);
   console.log(healthCoefficient);
-  const aPCoefficient = 20 * (Math.pow(5, ring) / 5);
-  // const aPCoefficient = 4;
+  // const aPCoefficient = 20 * (Math.pow(5, ring) / 5);
+  const aPCoefficient = 4;
   console.log(ring);
   console.log(aPCoefficient);
 
@@ -221,7 +221,7 @@ const MinionBattle = () => {
         }
       }
     }
-  }, [minionAbility, userAbility]);
+  }, [minionAbility, userAbility, userHealth, attackPower, minionHealth]);
   const enemies = [
     {
       name: "Pyro's Hatchlings ",
