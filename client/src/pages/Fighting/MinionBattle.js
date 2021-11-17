@@ -5,16 +5,6 @@ import { ADD_SCALE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-// //placeholder for the values, need to change each to be able to take in the value to start but not update
-// // initialHealth = (20 * Math.pow(5, data?.me.cloak));
-// const initialHealth = 20;
-// console.log(initialHealth);
-// console.log(data?.me.cloak);
-// //   initial aP =(4* (Math.pow(5, data?.me.ring) / 5));
-// const aP = 4;
-// console.log(initialHealth);
-// console.log(data?.me.cloak);
-
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = [
   "Your Spell has Landed, and it was Supper Effective!",
@@ -67,48 +57,22 @@ const MinionBattle = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
     onCompleted: (data) => {
-      setCloak(data?.me.cloak);
-      setRing(data?.me.ring);
       setAPCoefficient(20 * (Math.pow(5, data?.me.ring) / 5));
       setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
-      setUserHealth(data.me.health);
-      setAttackPower(data.me.attackPower);
-      setMinionHealth();
-      console.log("cloak", data?.me.cloak);
-      console.log("ring", data?.me.ring);
-      console.log("APCoefficient", 20 * (Math.pow(5, data?.me.ring) / 5));
-      console.log("healthCoefficient", 20 * Math.pow(5, data?.me.cloak));
-      console.log("userHealth", data.me.health);
-      console.log("attackPower", data.me.attackPower);
+      setUserHealth(data.me.health * Math.pow(5, data?.me.cloak));
     },
   });
 
-  // const cloak = null;
-  // const ring = data?.me.ring;
-
-  // const healthCoefficient = 20 * Math.pow(5, cloak);
-  // // const healthCoefficient = 20;
-  // console.log(data);
-  // console.log(cloak);
-  // console.log(healthCoefficient);
-  // const aPCoefficient = 20 * (Math.pow(5, ring) / 5);
-  // // const aPCoefficient = 4;
-  // console.log(ring);
-  // console.log(aPCoefficient);
-
   const [userAbility, setUserAbility] = useState(null);
   const [minionAbility, setMinionAbility] = useState(null);
-  const [cloak, setCloak] = useState(null);
-  const [ring, setRing] = useState(null);
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   const [aPCoefficient, setAPCoefficient] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [attackPower, setAttackPower] = useState(null);
   const [minionHealth, setMinionHealth] = useState(10);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
-  const [scale, setScale] = useState(null);
+  const [scale, setScale] = useState();
   const choices = ["Bolt", "Blast", "Nova"];
 
   const [addScale, { error }] = useMutation(ADD_SCALE);
@@ -145,15 +109,6 @@ const MinionBattle = () => {
   useEffect(() => {
     const comboMoves = userAbility + minionAbility;
     //If the User chooses correctly
-    // setScale(data?.me.scale || 0);
-
-    // setUserHealth(20 * Math.pow(5, data?.me.cloak));
-    // setUserHealth(20);
-
-    // setAttackPower(
-    //   data?.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
-    // setAttackPower(10);
-    // setUserHealth(userHealth);
     if (userHealth > 0 && minionHealth > 0) {
       if (
         comboMoves === "NovaBlast" ||
@@ -163,7 +118,9 @@ const MinionBattle = () => {
         const minionDamaged = minionHealth - aPCoefficient;
         console.log("minionDamaged", minionDamaged);
         minionHpDamagedFull();
+        console.log("minionHpDamagedFull", minionHpDamagedFull);
         setMinionHealth(minionDamaged);
+        console.log("setMinionHealth", setMinionHealth);
         setTurnResult(showRandomSuccessSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
@@ -197,6 +154,7 @@ const MinionBattle = () => {
         console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
+        console.log("userHealth", userHealth);
         setTurnResult(showRandomFailureSentence());
         addUserDamagedAnimation();
         setTimeout(() => {
@@ -205,7 +163,7 @@ const MinionBattle = () => {
         if (userDamaged <= 0) {
           setResult("You have been Defeated");
           const gameOff = true;
-          console.log("scales", data.me.scale);
+          console.log("data", data.me.scale);
           setGameOver(gameOff);
         }
       }
@@ -216,9 +174,10 @@ const MinionBattle = () => {
         comboMoves === "NovaNova"
       ) {
         const minionDamaged = minionHealth - aPCoefficient / 2;
-        console.log("minionDamagedtie", minionDamaged);
+        console.log("minionDamaged", minionDamaged);
         minionHpDamagedHalf();
         setMinionHealth(minionDamaged);
+        console.log("MinionHealth", minionHealth);
         setTurnResult(showRandomTieSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
@@ -242,7 +201,7 @@ const MinionBattle = () => {
         }
       }
     }
-  }, [minionAbility, userAbility, userHealth, attackPower, minionHealth]);
+  }, [minionAbility, userAbility]);
   const enemies = [
     {
       name: "Pyro's Hatchlings ",
@@ -312,13 +271,6 @@ const MinionBattle = () => {
                       />
                     </div>
                   </div>
-
-                  {/* <img
-                    className="mx-auto w-1/4"
-                    src={`../../images/${userAbility}.png`}
-                    alt=""
-                  /> */}
-
                   <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                     <div className="font-medium  break-words text-lg leading-6 space-y-1">
                       <h3 className="text-white">{turnResult}</h3>
@@ -349,7 +301,7 @@ const MinionBattle = () => {
                             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             onClick={() => reset()}
                           >
-                            Fight Another Minion?
+                            Gather Scale
                           </button>
                         )}
                       </div>
