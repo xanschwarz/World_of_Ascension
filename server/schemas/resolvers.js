@@ -62,10 +62,74 @@ const resolvers = {
       );
       return updatedEssence;
     },
+    add5Essence: async (parent, { _id }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: 5 } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
+    add25Essence: async (parent, { _id }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: 25 } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
+    add125Essence: async (parent, { _id }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: 125 } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
+    add1KEssence: async (parent, { _id }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: 1000 } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
     addScale: async (parent, { _id }) => {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`scale`]: 1 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    add5Scale: async (parent, { _id }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: 5 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    add25Scale: async (parent, { _id }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: 25 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    add125Scale: async (parent, { _id }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: 125 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    add1KScale: async (parent, { _id }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: 1000 } },
         { new: true }
       );
       return updatedScale;

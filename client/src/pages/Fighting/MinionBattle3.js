@@ -68,7 +68,7 @@ const MinionBattle = () => {
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   const [attackPower, setAttackPower] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [minionHealth, setMinionHealth] = useState(10);
+  const [minionHealth, setMinionHealth] = useState(250);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
@@ -150,7 +150,7 @@ const MinionBattle = () => {
         comboMoves === "NovaBolt" ||
         comboMoves === "BoltBlast"
       ) {
-        const userDamaged = userHealth - 5;
+        const userDamaged = userHealth - 125;
         console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
@@ -204,11 +204,12 @@ const MinionBattle = () => {
   }, [minionAbility, userAbility]);
   const enemies = [
     {
-      name: "Pyro's Hatchlings ",
-      pathName: "MinionBattle",
-      link: "Battle Minnions",
+      name: "Demio's Harpie",
+      pathName: "MinionBattle3",
+      link: "Battle Demio's Harpie",
+      drop: "25",
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center",
+        "https://bn1303files.storage.live.com/y4m5UWVxwPkA_jz7TeNtBSj4ZR5NMMymiQ8na3uXp4b8Spvx4gMXPJU5QidnKyf3O-AvxaVUZwpFHoSI-iKSTVCEWWU9Qw6aR2Ur4WbsrohI_9qaG4eLYwkhT_44bngv3zbLFui5OAKQOpx9KXUrJN0m1DhgEn9fo6Q9iH4O6fE5rjNvLLcDiuWQG5jgDgr7DlnKAl6QRyvPmKkyaP6ai6Lrg/SpellBook07_02.png?psid=1&width=256&height=256&cropMode=center",
     },
   ];
 
@@ -256,8 +257,8 @@ const MinionBattle = () => {
                       <progress
                         className="h-10 "
                         id="minionHealthBar"
-                        value="10"
-                        max="10"
+                        value="250"
+                        max="250"
                       ></progress>
                       <p className="-mt-9 mb-5 text-white flex justify-center">
                         Health: {minionHealth}

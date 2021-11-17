@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ESSENCE } from "../../utils/mutations";
+import { ADD_125_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { Redirect, useParams } from "react-router-dom";
 
@@ -57,7 +57,7 @@ function removeUserDamagedAnimation() {
   document.getElementById("userIcon").classList.remove("animate-wiggle");
 }
 
-const BossBattle = () => {
+const BossBattle4 = () => {
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -67,7 +67,6 @@ const BossBattle = () => {
       setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
       setUserHealth(20 * Math.pow(5, data?.me.cloak));
       setAttackPower(20 * (Math.pow(5, data?.me.ring) / 5));
-      // setAttackPower(data.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
     },
   });
 
@@ -76,7 +75,7 @@ const BossBattle = () => {
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   // const [aPCoefficient, setAPCoefficient] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [bossHealth, setBossHealth] = useState(100);
+  const [bossHealth, setBossHealth] = useState(12500);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
@@ -84,17 +83,18 @@ const BossBattle = () => {
   const [attackPower, setAttackPower] = useState(null);
   const choices = ["Bolt", "Blast", "Nova"];
 
-  const [addEssence, { error }] = useMutation(ADD_ESSENCE);
+  const [addEssence, { error }] = useMutation(ADD_125_ESSENCE);
 
   //visual change of user health bar
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
-    health.value -= 20;
+    health.value -= 2500;
   }
   //visual change of boss health bar
   function bossHpDamagedFull() {
     let health = document.getElementById("bossHealthBar");
     health.value -= attackPower;
+    console.log(health.value);
   }
 
   const handleClick = (value) => {
@@ -151,7 +151,7 @@ const BossBattle = () => {
         comboMoves === "NovaBolt" ||
         comboMoves === "BoltBlast"
       ) {
-        const userDamaged = userHealth - 20;
+        const userDamaged = userHealth - 2500;
         userHpDamaged();
         setUserHealth(userDamaged);
         setTurnResult(showRandomFailureSentence);
@@ -181,11 +181,12 @@ const BossBattle = () => {
   }, [bossAbility, userAbility]);
   const enemies = [
     {
-      name: "Pyro",
-      pathName: "BossBattle",
-      link: "Battle Boss",
+      name: "Ghastly",
+      pathName: "BossBattle4",
+      link: "Battle Ghastly",
+      drop: "125",
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mxeAMRBLm8sIvOgs7s6oWJ0zml7dFL4eJQG2jRhxdswUihA1Ame46qR58SC4GKWghq9HA5zGz1eVZY_tS9bw5I4rztRPyUyIVALVt7ptZzvO06CmTA98-DmWCtfOxVFRW1cRVM-6oX2YTBcg2PcChw7OHfm9sSCIQOGOPMMrz9HXGGVx5YcaxlDywUxZ01hsAslsETGpp_yYEWOsWyo4b1A/SpellBook03_64.png?psid=1&width=256&height=256&cropMode=center",
+        "https://bn1303files.storage.live.com/y4mGamsWSdQY-dzQkqnVwhZ_wyImMiNc1PbFHJGNGX9TEfyfFCrCa0VlM0f6tzFl0UztdR5meZOgkb3isZtuWV7WyApeF_C_K8Vguy1akOZRHU5l7tmOj4fb1XbPJhyzmusUyb9_fOafNo7tAedM6j1udzfxNnRNbTV7AAabVdXIslxxPV0sVVLV4uiQtvu98c8UFQ0jVf9YdkPWwme_G27Cg/SpellBook07_56.png?psid=1&width=205&height=205&cropMode=center",
     },
   ];
 
@@ -199,7 +200,7 @@ const BossBattle = () => {
             <div className="space-y-12">
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                  Battle Pyro's Hatchling
+                  Battle {enemies[0].name}
                 </h2>
                 <p className="text-xl text-gray-300"></p>
               </div>
@@ -239,8 +240,8 @@ const BossBattle = () => {
                           <progress
                             className="h-10 "
                             id="bossHealthBar"
-                            value="100"
-                            max="100"
+                            value="12500"
+                            max="12500"
                           ></progress>
                           <p className="-mt-9 mb-5 text-white flex justify-center">
                             Health: {bossHealth}
@@ -313,4 +314,4 @@ const BossBattle = () => {
   );
 };
 
-export default BossBattle;
+export default BossBattle4;
