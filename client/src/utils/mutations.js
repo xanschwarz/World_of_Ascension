@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -44,6 +44,22 @@ export const ADD_SCALE = gql`
   mutation addScale($id: ID!) {
     addScale(_id: $id) {
       scale
+    }
+  }
+`;
+
+export const UPGRADE_RING_TIER = gql`
+  mutation upgradeRingTier($id: ID!) {
+    upgradeRingTier(_id: $id) {
+      ring
+    }
+  }
+`;
+
+export const UPGRADE_CLOAK_TIER = gql`
+  mutation upgradeCloakTier($id: ID!) {
+    upgradeCloakTier(_id: $id) {
+      cloak
     }
   }
 `;

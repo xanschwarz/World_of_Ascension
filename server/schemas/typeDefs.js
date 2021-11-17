@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
@@ -40,6 +40,8 @@ const typeDefs = gql`
     addScale(_id: ID!): User
     addArcana(_id: ID!): User
     addEssence(_id: ID!): User
+    upgradeRingTier(_id: ID!): User
+    upgradeCloakTier(_id: ID!): User
   }
 `;
 

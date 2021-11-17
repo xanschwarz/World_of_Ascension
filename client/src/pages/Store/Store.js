@@ -1,8 +1,13 @@
 // Once the buttons are working, make it so once you buy an item the buy button changes to an upgrade button.
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import ModalContainer from '../../components/Modal/ModalContainer';
+import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPGRADE_RING_TIER } from '../../utils/mutations';
+// import { UPGRADE_CLOAK_TIER } from '../../utils/mutations';
 
 const ringSRCTier1 =
   'https://bn1303files.storage.live.com/y4mW_O9K00YJzIbF-y8GckCr7qpnqZ6-TlPWhfXNDX1pWrpEcNkEI1jiMdTq1gTeg8mmZWFgmezdGVnV4tyJiMk-0ojBNSYOSx9_SyKxqbMWMqdHLezvj1DO0NlRMEjKFDjS2gHElyD3iQReigcPbeZuyz5qMSSfuklfVBnjYgHiFBEjiRWjDuQA4Yubs5AP0753zYdEBYaREhn08zQNXRt4Q/10_t.PNG?psid=1&width=175&height=175&cropMode=center';
@@ -16,14 +21,6 @@ const cloakSRCTier2 =
 
 const Store = () => {
   let riches = 0;
-  let ringTier = 0;
-  let cloakTier = 0;
-  // const richesBtn = document.getElementById('addRiches');
-  // const macguffinsBtn = document.getElementById('MacGuffins');
-  // const buyRingBtn = document.getElementById('buyRing');
-  // const upgradeRingBtn = document.getElementById('upgradeRing');
-  // const buyCloakBtn = document.getElementById('buyCloak');
-  // const upgradeCloakBtn = document.getElementById('upgradeCloak');
 
   function addCurrency() {
     riches += 100;
@@ -31,32 +28,50 @@ const Store = () => {
     console.log('Your amount of currency is ' + riches);
   }
 
+  const { username: userParam } = useParams();
+  const [upgradeRingTier, { error }] = useMutation(UPGRADE_RING_TIER);
+  const [ringTier, setRingTier] = useState();
+
+  const { loadingRing, dataRing } = useQuery(
+    userParam ? QUERY_USER : QUERY_ME,
+    {
+      variables: { username: userParam },
+      onCompleted: (dataRing) => setRingTier(dataRing.me.ring),
+    }
+  );
+
   function buyRing() {
     riches -= 100;
     document.getElementById('MacGuffins').innerHTML = riches;
     console.log('You bought a ring!');
-  }
 
-  function upgradeRing() {
-    riches -= 10;
-    ringTier += 1;
-    document.getElementById('MacGuffins').innerHTML = riches;
-    document.getElementById('ringTierDisplay').innerHTML = ringTier;
-    console.log('You upgraded your ring! It is now tier ' + ringTier);
+    const currentRingId = dataRing.me._id;
+    try {
+      const { data } = upgradeRingTier({
+        variables: {
+          id: currentRingId,
+        },
+      });
+      setRingTier(data.upgradeRingTier.ring);
+      console.log(dataRing.me.ring);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function buyCloak() {
     riches -= 200;
     document.getElementById('MacGuffins').innerHTML = riches;
     console.log('You bought a cloak!');
-  }
 
-  function upgradeCloak() {
-    riches -= 20;
-    cloakTier += 1;
-    document.getElementById('MacGuffins').innerHTML = riches;
-    document.getElementById('cloakTierDisplay').innerHTML = cloakTier;
-    console.log('You upgraded your cloak! It is now tier ' + cloakTier);
+    // const [upgradeCloakTier, { error }] = useMutation(UPGRADE_CLOAK_TIER);
+
+    // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    //   variables: { username: userParam },
+    //   onCompleted: (data) => setCloakTier(data.me.cloak),
+    // });
+
+    // const [cloakTier, setCloakTier] = useState();
   }
 
   return (

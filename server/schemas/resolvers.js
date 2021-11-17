@@ -1,14 +1,14 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
-const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("home");
+      return User.find().populate('home');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("home");
+      return User.findOne({ username }).populate('home');
     },
     mage: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -16,9 +16,9 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("home");
+        return User.findOne({ _id: context.user._id }).populate('home');
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
@@ -32,13 +32,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("No user found with this email address");
+        throw new AuthenticationError('No user found with this email address');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
@@ -46,7 +46,7 @@ const resolvers = {
       return { token, user };
     },
     addArcana: async (parent, { _id }) => {
-      console.log("addArcana");
+      console.log('addArcana');
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 1 } },
@@ -69,6 +69,22 @@ const resolvers = {
         { new: true }
       );
       return updatedScale;
+    },
+    upgradeRingTier: async (parent, { _id }) => {
+      const upgradedRingTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`ring`]: 1 } },
+        { new: true }
+      );
+      return upgradedRingTier;
+    },
+    upgradeCloakTier: async (parent, { _id }) => {
+      const upgradedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`Cloak`]: 1 } },
+        { new: true }
+      );
+      return upgradedCloakTier;
     },
   },
 };
