@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Auth from "../utils/auth";
+// import Auth from "../utils/auth";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
@@ -7,12 +7,11 @@ import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import {
   BeakerIcon,
   HeartIcon,
-  ChevronDownIcon,
   ChipIcon,
   LightningBoltIcon,
   SparklesIcon,
 } from "@heroicons/react/solid";
-import { Menu, Transition } from "@headlessui/react";
+// import { Menu, Transition } from "@headlessui/react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -26,11 +25,12 @@ export default function StatsBar() {
   });
 
   const statBarData = data?.me || {};
-  const [arcana, setArcana] = useState(null);
+  const [arcana, setArcana] = useState(statBarData.arcana);
   useEffect(() => {
     setArcana(statBarData.arcana);
     console.log(statBarData.arcana);
   }, [statBarData]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -55,7 +55,7 @@ export default function StatsBar() {
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Essence:{statBarData.essence}
+            Essence: {statBarData.essence}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <ChipIcon

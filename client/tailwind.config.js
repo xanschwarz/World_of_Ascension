@@ -29,6 +29,8 @@ module.exports = {
           to: {
             transform: "rotate(360deg)",
           },
+          // "0%, 100%": { opacity: "1" },
+          // "50%": { opacity: ".5" },
         },
         reverseSpin: {
           // from: {
@@ -37,6 +39,9 @@ module.exports = {
           // to: {
           //   transform: "rotate(-360deg)",
           // },
+          "75%, 100%": {
+            transform: "scale(.9)",
+          },
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: ".5" },
         },

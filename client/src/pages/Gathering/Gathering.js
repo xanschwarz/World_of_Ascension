@@ -5,6 +5,7 @@ import { ADD_ARCANA } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
+import { setArcana } from "../../components/StatsBar";
 
 function addGatherAnimation() {
   document.getElementById("arcanaImage").classList.add("animate-spin");
@@ -46,20 +47,21 @@ const Gathering = () => {
 
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
-  }, []);
+  }, [data]);
   console.log(data);
   // Create handler for button
   const handleClick = async (event) => {
     const currentArcanaId = data.me._id;
-
     event.preventDefault();
 
     try {
-      const { data } = await addArcana({
-        variables: {
-          id: currentArcanaId,
-        },
-      });
+      const { data } = await setTimeout(() => {
+        addArcana({
+          variables: {
+            id: currentArcanaId,
+          },
+        });
+      }, 5000);
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
@@ -73,11 +75,8 @@ const Gathering = () => {
         removeButtonAnimation();
       }, 5000);
       setTimeout(() => {
-        setArcana(data.addArcana.arcana);
+        reset();
       }, 5000);
-      // setTimeout(() => {
-      //   reset();
-      // }, 5000);
     } catch (error) {
       console.log(error);
     }
