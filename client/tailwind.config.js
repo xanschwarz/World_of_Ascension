@@ -29,19 +29,24 @@ module.exports = {
           to: {
             transform: "rotate(360deg)",
           },
+        },
+        reverseSpin: {
+          // from: {
+          //   transform: "rotate(0deg)",
+          // },
+          // to: {
+          //   transform: "rotate(-360deg)",
+          // },
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: ".5" },
         },
-        // pulse: {
-        //   "0%, 100%": { opacity: "1" },
-        //   "50%": { opacity: ".5" },
-        // },
       },
 
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         bounce: "bounce 1s ease-in-out infinite",
         spin: "spin 1s ease-in-out infinite",
+        reverseSpin: "reverseSpin 1s ease-in-out infinite",
         // pulse: "pulse 1s ease-in-out infinite",
       },
     },
