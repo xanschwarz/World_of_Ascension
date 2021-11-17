@@ -7,6 +7,7 @@ import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import { setArcana } from "../../components/StatsBar";
 
+//animation section
 function addGatherAnimation() {
   document.getElementById("arcanaImage").classList.add("animate-spin");
 }
