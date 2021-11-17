@@ -66,31 +66,49 @@ const MinionBattle = () => {
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
-    // onCompleted: (data) => setScale(data.me.scale),
+    onCompleted: (data) => {
+      setCloak(data?.me.cloak);
+      setRing(data?.me.ring);
+      setAPCoefficient(20 * (Math.pow(5, data?.me.ring) / 5));
+      setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
+      setUserHealth(data.me.health);
+      setAttackPower(data.me.attackPower);
+      setMinionHealth();
+      console.log("cloak", data?.me.cloak);
+      console.log("ring", data?.me.ring);
+      console.log("APCoefficient", 20 * (Math.pow(5, data?.me.ring) / 5));
+      console.log("healthCoefficient", 20 * Math.pow(5, data?.me.cloak));
+      console.log("userHealth", data.me.health);
+      console.log("attackPower", data.me.attackPower);
+    },
   });
 
-  const cloak = data?.me.cloak;
-  const ring = data?.me.ring;
+  // const cloak = null;
+  // const ring = data?.me.ring;
 
   // const healthCoefficient = 20 * Math.pow(5, cloak);
-  const healthCoefficient = 20;
-  console.log(data);
-  console.log(cloak);
-  console.log(healthCoefficient);
+  // // const healthCoefficient = 20;
+  // console.log(data);
+  // console.log(cloak);
+  // console.log(healthCoefficient);
   // const aPCoefficient = 20 * (Math.pow(5, ring) / 5);
-  const aPCoefficient = 4;
-  console.log(ring);
-  console.log(aPCoefficient);
+  // // const aPCoefficient = 4;
+  // console.log(ring);
+  // console.log(aPCoefficient);
 
   const [userAbility, setUserAbility] = useState(null);
   const [minionAbility, setMinionAbility] = useState(null);
-  const [userHealth, setUserHealth] = useState(healthCoefficient);
-  const [attackPower, setAttackPower] = useState(aPCoefficient);
+  const [cloak, setCloak] = useState(null);
+  const [ring, setRing] = useState(null);
+  const [healthCoefficient, setHealthCoefficient] = useState(null);
+  const [aPCoefficient, setAPCoefficient] = useState(null);
+  const [userHealth, setUserHealth] = useState(null);
+  const [attackPower, setAttackPower] = useState(null);
   const [minionHealth, setMinionHealth] = useState(10);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
-  const [scale, setScale] = useState();
+  const [scale, setScale] = useState(null);
   const choices = ["Bolt", "Blast", "Nova"];
 
   const [addScale, { error }] = useMutation(ADD_SCALE);
@@ -103,11 +121,11 @@ const MinionBattle = () => {
   //visual change of minion health bar
   function minionHpDamagedFull() {
     let health = document.getElementById("minionHealthBar");
-    health.value -= attackPower;
+    health.value -= aPCoefficient;
   }
   function minionHpDamagedHalf() {
     let health = document.getElementById("minionHealthBar");
-    health.value -= attackPower / 2;
+    health.value -= aPCoefficient / 2;
   }
 
   const handleClick = (value) => {
@@ -142,7 +160,8 @@ const MinionBattle = () => {
         comboMoves === "BoltNova" ||
         comboMoves === "BlastBolt"
       ) {
-        const minionDamaged = minionHealth - attackPower;
+        const minionDamaged = minionHealth - aPCoefficient;
+        console.log("minionDamaged", minionDamaged);
         minionHpDamagedFull();
         setMinionHealth(minionDamaged);
         setTurnResult(showRandomSuccessSentence());
@@ -175,6 +194,7 @@ const MinionBattle = () => {
         comboMoves === "BoltBlast"
       ) {
         const userDamaged = userHealth - 5;
+        console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
         setTurnResult(showRandomFailureSentence());
@@ -185,7 +205,7 @@ const MinionBattle = () => {
         if (userDamaged <= 0) {
           setResult("You have been Defeated");
           const gameOff = true;
-          console.log("data", data.me.scale);
+          console.log("scales", data.me.scale);
           setGameOver(gameOff);
         }
       }
@@ -195,7 +215,8 @@ const MinionBattle = () => {
         comboMoves === "BoltBolt" ||
         comboMoves === "NovaNova"
       ) {
-        const minionDamaged = minionHealth - attackPower / 2;
+        const minionDamaged = minionHealth - aPCoefficient / 2;
+        console.log("minionDamagedtie", minionDamaged);
         minionHpDamagedHalf();
         setMinionHealth(minionDamaged);
         setTurnResult(showRandomTieSentence());
