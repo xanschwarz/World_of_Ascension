@@ -6,12 +6,6 @@ import { ADD_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { Redirect, useParams } from "react-router-dom";
 
-//placeholder for the values, need to change each to be able to take in the value to start but not update
-// initialHealth = (20 * Math.pow(5, data?.me.cloak));
-const initialHealth = 100;
-//   initial aP =(20* (Math.pow(5, data?.me.ring) / 5));
-const aP = 20;
-
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];
 const failureSentences = [
@@ -36,17 +30,6 @@ function showRandomSuccessSentence() {
 function showRandomFailureSentence() {
   const randomNumber = Math.floor(Math.random() * failureSentences.length);
   return failureSentences[randomNumber];
-}
-
-//visual change of user health bar
-function userHpDamaged() {
-  let health = document.getElementById("userHealthBar");
-  health.value -= 20;
-}
-//visual change of boss health bar
-function bossHpDamagedFull() {
-  let health = document.getElementById("bossHealthBar");
-  health.value -= aP;
 }
 
 //animations for the user and boss
@@ -79,27 +62,40 @@ const BossBattle = () => {
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
-    onCompleted: (data) => setEssence(data.me.essence),
+    onCompleted: (data) => {
+      setAPCoefficient(20 * (Math.pow(5, data?.me.ring) / 5));
+      setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
+      setUserHealth(data.me.health * Math.pow(5, data?.me.cloak));
+      setAttackPower(data.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
+    },
   });
 
   const [userAbility, setUserAbility] = useState(null);
   const [bossAbility, setBossAbility] = useState(null);
-  const [userHealth, setUserHealth] = useState(initialHealth);
+  const [healthCoefficient, setHealthCoefficient] = useState(null);
+  const [aPCoefficient, setAPCoefficient] = useState(null);
+  const [userHealth, setUserHealth] = useState(null);
   const [bossHealth, setBossHealth] = useState(100);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
   const [essence, setEssence] = useState();
+  const [attackPower, setAttackPower] = useState(null);
   const choices = ["Bolt", "Blast", "Nova"];
 
   const [addEssence, { error }] = useMutation(ADD_ESSENCE);
 
-  // function removebossAnimation() {
-  //   document.getElementById("bossIcon").classList.remove("animate-wiggle");
-  // }
-  // function removeUserAnimation() {
-  //   document.getElementById("bossIcon").classList.remove("animate-wiggle");
-  // }
+  //visual change of user health bar
+  function userHpDamaged() {
+    let health = document.getElementById("userHealthBar");
+    health.value -= 20;
+  }
+  //visual change of boss health bar
+  function bossHpDamagedFull() {
+    let health = document.getElementById("bossHealthBar");
+    health.value -= aPCoefficient;
+  }
+
   const handleClick = (value) => {
     setUserAbility(value);
     generateBossAbility();
@@ -123,7 +119,7 @@ const BossBattle = () => {
         comboMoves === "BoltNova" ||
         comboMoves === "BlastBolt"
       ) {
-        const bossDamaged = bossHealth - aP;
+        const bossDamaged = bossHealth - aPCoefficient;
         bossHpDamagedFull();
         setBossHealth(bossDamaged);
         setTurnResult(showRandomSuccessSentence());
@@ -222,8 +218,8 @@ const BossBattle = () => {
                           <progress
                             className="h-10 "
                             id="userHealthBar"
-                            value={initialHealth}
-                            max={initialHealth}
+                            value={userHealth}
+                            max={healthCoefficient}
                           ></progress>
                           <p className="-mt-9 mb-5 text-white flex justify-center">
                             Health: {userHealth}
@@ -294,7 +290,7 @@ const BossBattle = () => {
                                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 onClick={() => reset()}
                               >
-                                Fight Another boss?
+                                Gather Essence
                               </button>
                             )}
                           </div>

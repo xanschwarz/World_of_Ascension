@@ -5,12 +5,6 @@ import { ADD_SCALE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-//placeholder for the values, need to change each to be able to take in the value to start but not update
-// initialHealth = (20 * Math.pow(5, data?.me.cloak));
-const initialHealth = 20;
-//   initial aP =(4* (Math.pow(5, data?.me.ring) / 5));
-const aP = 4;
-
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = [
   "Your Spell has Landed, and it was Supper Effective!",
@@ -40,22 +34,6 @@ function showRandomFailureSentence() {
   return failureSentences[randomNumber];
 }
 
-//visual change of user health bar
-function userHpDamaged() {
-  let health = document.getElementById("userHealthBar");
-  health.value -= 5;
-}
-
-//visual change of minion health bar
-function minionHpDamagedFull() {
-  let health = document.getElementById("minionHealthBar");
-  health.value -= aP;
-}
-function minionHpDamagedHalf() {
-  let health = document.getElementById("minionHealthBar");
-  health.value -= aP / 2;
-}
-
 //animations for the user and minion
 function addMinionDamagedAnimation() {
   document.getElementById("minionIcon").classList.add("animate-wiggle");
@@ -78,14 +56,18 @@ const MinionBattle = () => {
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
-    onCompleted: (data) => setScale(data.me.scale),
+    onCompleted: (data) => {
+      setAPCoefficient(20 * (Math.pow(5, data?.me.ring) / 5));
+      setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
+      setUserHealth(data.me.health * Math.pow(5, data?.me.cloak));
+    },
   });
 
-  // const healthCoefficient = data?.me.maxHealth * Math.pow(5, data?.me.cloak);
   const [userAbility, setUserAbility] = useState(null);
   const [minionAbility, setMinionAbility] = useState(null);
-  const [userHealth, setUserHealth] = useState(initialHealth);
-  const [attackPower, setAttackPower] = useState();
+  const [healthCoefficient, setHealthCoefficient] = useState(null);
+  const [aPCoefficient, setAPCoefficient] = useState(null);
+  const [userHealth, setUserHealth] = useState(null);
   const [minionHealth, setMinionHealth] = useState(10);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
@@ -94,6 +76,21 @@ const MinionBattle = () => {
   const choices = ["Bolt", "Blast", "Nova"];
 
   const [addScale, { error }] = useMutation(ADD_SCALE);
+  //visual change of user health bar
+  function userHpDamaged() {
+    let health = document.getElementById("userHealthBar");
+    health.value -= 5;
+  }
+
+  //visual change of minion health bar
+  function minionHpDamagedFull() {
+    let health = document.getElementById("minionHealthBar");
+    health.value -= aPCoefficient;
+  }
+  function minionHpDamagedHalf() {
+    let health = document.getElementById("minionHealthBar");
+    health.value -= aPCoefficient / 2;
+  }
 
   const handleClick = (value) => {
     setUserAbility(value);
@@ -112,24 +109,18 @@ const MinionBattle = () => {
   useEffect(() => {
     const comboMoves = userAbility + minionAbility;
     //If the User chooses correctly
-    // setScale(data?.me.scale || 0);
-
-    // setUserHealth(20 * Math.pow(5, data?.me.cloak));
-    // setUserHealth(20);
-
-    // setAttackPower(
-    //   data?.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
-    // setAttackPower(10);
-
     if (userHealth > 0 && minionHealth > 0) {
       if (
         comboMoves === "NovaBlast" ||
         comboMoves === "BoltNova" ||
         comboMoves === "BlastBolt"
       ) {
-        const minionDamaged = minionHealth - aP;
+        const minionDamaged = minionHealth - aPCoefficient;
+        console.log("minionDamaged", minionDamaged);
         minionHpDamagedFull();
+        console.log("minionHpDamagedFull", minionHpDamagedFull);
         setMinionHealth(minionDamaged);
+        console.log("setMinionHealth", setMinionHealth);
         setTurnResult(showRandomSuccessSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
@@ -160,8 +151,10 @@ const MinionBattle = () => {
         comboMoves === "BoltBlast"
       ) {
         const userDamaged = userHealth - 5;
+        console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
+        console.log("userHealth", userHealth);
         setTurnResult(showRandomFailureSentence());
         addUserDamagedAnimation();
         setTimeout(() => {
@@ -180,9 +173,11 @@ const MinionBattle = () => {
         comboMoves === "BoltBolt" ||
         comboMoves === "NovaNova"
       ) {
-        const minionDamaged = minionHealth - aP / 2;
+        const minionDamaged = minionHealth - aPCoefficient / 2;
+        console.log("minionDamaged", minionDamaged);
         minionHpDamagedHalf();
         setMinionHealth(minionDamaged);
+        console.log("MinionHealth", minionHealth);
         setTurnResult(showRandomTieSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
@@ -244,7 +239,7 @@ const MinionBattle = () => {
                         className="h-10 "
                         id="userHealthBar"
                         value={userHealth}
-                        max={initialHealth}
+                        max={healthCoefficient}
                       ></progress>
                       <p className="-mt-9 mb-5 text-white flex justify-center">
                         Health: {userHealth}
@@ -276,13 +271,6 @@ const MinionBattle = () => {
                       />
                     </div>
                   </div>
-
-                  {/* <img
-                    className="mx-auto w-1/4"
-                    src={`../../images/${userAbility}.png`}
-                    alt=""
-                  /> */}
-
                   <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                     <div className="font-medium  break-words text-lg leading-6 space-y-1">
                       <h3 className="text-white">{turnResult}</h3>
@@ -313,7 +301,7 @@ const MinionBattle = () => {
                             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             onClick={() => reset()}
                           >
-                            Fight Another Minion?
+                            Gather Scale
                           </button>
                         )}
                       </div>
