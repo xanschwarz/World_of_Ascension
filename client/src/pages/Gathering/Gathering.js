@@ -44,7 +44,6 @@ const Gathering = () => {
   });
 
   const [addArcana, { error }] = useMutation(ADD_ARCANA);
-
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
   }, [data]);
@@ -61,7 +60,7 @@ const Gathering = () => {
             id: currentArcanaId,
           },
         });
-      }, 5000);
+      }, 4500);
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
@@ -76,7 +75,7 @@ const Gathering = () => {
       }, 5000);
       setTimeout(() => {
         reset();
-      }, 5000);
+      }, 4500);
     } catch (error) {
       console.log(error);
     }
