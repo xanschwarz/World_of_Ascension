@@ -10,41 +10,6 @@
     "essence": 0,
     "arcana": 5,
     "scale": 7
-  },
-  {
-    "username": "Test1",
-    "email": "test1@test.com",
-    "password": "12345",
-    "cloak": 1,
-    "ring": 1
-  },
-  {
-    "username": "Test2",
-    "email": "test2@test.com",
-    "password": "12345",
-    "cloak": 2,
-    "ring": 2
-  },
-  {
-    "username": "Test3",
-    "email": "test3@test.com",
-    "password": "12345",
-    "cloak": 3,
-    "ring": 3
-  },
-  {
-    "username": "Test4",
-    "email": "test4@test.com",
-    "password": "12345",
-    "cloak": 4,
-    "ring": 4
-  },
-  {
-    "username": "Test5",
-    "email": "test5@test.com",
-    "password": "12345",
-    "cloak": 5,
-    "ring": 5
   }
-
+ 
 ]
