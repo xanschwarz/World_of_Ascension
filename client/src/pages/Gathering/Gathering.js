@@ -6,6 +6,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import { setArcana } from "../../components/StatsBar";
+import {useTimer} from 'use-timer';
 
 //animation section
 function addGatherAnimation() {
@@ -30,11 +31,23 @@ function addButtonAnimation() {
 function removeButtonAnimation() {
   document.getElementById("gatherButton").classList.remove("hidden");
 }
+function removeTimer() {
+  document.getElementById("timer").classList.add("hidden");
+}
+
+function addTimer() {
+  document.getElementById("timer").classList.remove("hidden");
+}
 const reset = () => {
   window.location.reload();
 };
 
 const Gathering = () => {
+  const { time, start } = useTimer({
+    initialTime: 5,
+    timerType: 'DECREMENTAL',
+    endTime:0,
+  });
   const [arcana, setArcana] = useState();
   const { username: userParam } = useParams();
 
@@ -55,28 +68,35 @@ const Gathering = () => {
     event.preventDefault();
 
     try {
+    
       const { data } = await setTimeout(() => {
         addArcana({
           variables: {
             id: currentArcanaId,
           },
         });
-      }, 4500);
+      }, 5500);
+      addTimer();
+      setTimeout(() => {
+        removeTimer();
+      }, 6000);
+      start();
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
-      }, 5000);
+      }, 6000);
       addSunAnimation();
       setTimeout(() => {
         removeSunAnimation();
-      }, 5000);
+      }, 6000);
       addButtonAnimation();
       setTimeout(() => {
         removeButtonAnimation();
-      }, 5000);
+      }, 6000);
       setTimeout(() => {
         reset();
-      }, 4500);
+      }, 5500);
+      
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +106,7 @@ const Gathering = () => {
     <div>
       {Auth.loggedIn() ? (
         <div className="gathering">
-          <div class="relative mb-20">
+          <div className="relative mb-20">
             <img
               id="sunImage"
               className="relative mx-auto mt-5 h-41 w-41 rounded-full"
@@ -101,15 +121,21 @@ const Gathering = () => {
             />
           </div>
 
-          <div id="gatherButton" className="button-div flex justify-center">
+          <div id="gatherButton" className="mb-5 button-div flex justify-center">
             <button
               type="button"
-              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               onClick={handleClick}
+            
             >
               Gather Arcana
+
             </button>
           </div>
+          <div className="flex justify-center">
+          <span id="timer" className="text-center flex align-center justify-center  px-6 mb-5 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600  hidden
+          "> {time}</span>
+        </div>
         </div>
       ) : (
         <div>
