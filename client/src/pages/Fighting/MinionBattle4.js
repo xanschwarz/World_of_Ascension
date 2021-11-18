@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_SCALE } from "../../utils/mutations";
+import { ADD_125_SCALE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 
@@ -75,7 +75,7 @@ const MinionBattle = () => {
   const [scale, setScale] = useState();
   const choices = ["Bolt", "Blast", "Nova"];
 
-  const [addScale, { error }] = useMutation(ADD_SCALE);
+  const [addScale, { error }] = useMutation(ADD_125_SCALE);
   //visual change of user health bar
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
