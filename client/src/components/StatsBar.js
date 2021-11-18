@@ -69,14 +69,14 @@ export default function StatsBar() {
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Health: {statBarData.health}
+            Health: {20 * Math.pow(5,statBarData.cloak)}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <LightningBoltIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Power: {statBarData.attackPower}
+            Power: {20 * (Math.pow(5, statBarData.ring)/5)}
           </div>
         </div>
       </div>

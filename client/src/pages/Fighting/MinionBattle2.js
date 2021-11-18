@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_SCALE } from "../../utils/mutations";
+import { ADD_5_SCALE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 
@@ -68,14 +68,14 @@ const MinionBattle = () => {
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   const [attackPower, setAttackPower] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [minionHealth, setMinionHealth] = useState(10);
+  const [minionHealth, setMinionHealth] = useState(50);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
   const [scale, setScale] = useState();
   const choices = ["Bolt", "Blast", "Nova"];
 
-  const [addScale, { error }] = useMutation(ADD_SCALE);
+  const [addScale, { error }] = useMutation(ADD_5_SCALE);
   //visual change of user health bar
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
@@ -150,7 +150,7 @@ const MinionBattle = () => {
         comboMoves === "NovaBolt" ||
         comboMoves === "BoltBlast"
       ) {
-        const userDamaged = userHealth - 5;
+        const userDamaged = userHealth - 25;
         console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
@@ -204,11 +204,12 @@ const MinionBattle = () => {
   }, [minionAbility, userAbility]);
   const enemies = [
     {
-      name: "Pyro's Hatchlings ",
-      pathName: "MinionBattle",
-      link: "Battle Minnions",
+      name: "Lich's Minion",
+      pathName: "MinionBattle2",
+      link: "Battle Lich's Minion",
+      drop: "5",
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center",
+        "https://bn1303files.storage.live.com/y4mJbEIP_pW0wVVrMCLzDevi5oGPyhH4GgCaDixmuHzRjejbEqERa_JFRBGE9YvktReihEAmF9YG3d6VFklTboPPEi5QiB7GV0uPMQ552YRfgo7fvi7gQ-r8mWzOSoDZ1HrpwgHqDbOG_gNHsonOEs6GQ9FpfGHYhdceBgTvOVXuOItj-zs8R9h6_NXiHrVMcvhkjpAeSAyXtaXzd2Xt9mpSA/SpellBook07_60.png?psid=1&width=205&height=205&cropMode=center",
     },
   ];
 
@@ -256,8 +257,8 @@ const MinionBattle = () => {
                       <progress
                         className="h-10 "
                         id="minionHealthBar"
-                        value="10"
-                        max="10"
+                        value="50"
+                        max="50"
                       ></progress>
                       <p className="-mt-9 mb-5 text-white flex justify-center">
                         Health: {minionHealth}
