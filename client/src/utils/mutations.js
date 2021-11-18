@@ -32,6 +32,14 @@ export const ADD_ARCANA = gql`
   }
 `;
 
+export const SUBTRACT_ARCANA = gql`
+  mutation subtractArcana($id: ID!, $amount: Int!) {
+    subtractArcana(_id: $id, amount: $amount) {
+      arcana
+    }
+  }
+`;
+
 export const ADD_ESSENCE = gql`
   mutation addEssence($id: ID!) {
     addEssence(_id: $id) {
@@ -40,9 +48,25 @@ export const ADD_ESSENCE = gql`
   }
 `;
 
+export const SUBTRACT_ESSENCE = gql`
+  mutation subtractEssence($id: ID!, $amount: Int!) {
+    subtractEssence(_id: $id, amount: $amount) {
+      essence
+    }
+  }
+`;
+
 export const ADD_SCALE = gql`
   mutation addScale($id: ID!) {
     addScale(_id: $id) {
+      scale
+    }
+  }
+`;
+
+export const SUBTRACT_SCALE = gql`
+  mutation subtractScale($id: ID!, $amount: Int!) {
+    subtractScale(_id: $id, amount: $amount) {
       scale
     }
   }

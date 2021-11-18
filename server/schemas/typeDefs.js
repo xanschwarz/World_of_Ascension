@@ -38,8 +38,11 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addScale(_id: ID!): User
+    subtractScale(_id: ID!, amount: Int!): User
     addArcana(_id: ID!): User
+    subtractArcana(_id: ID!, amount: Int!): User
     addEssence(_id: ID!): User
+    subtractEssence(_id: ID!, amount: Int!): User
     upgradeRingTier(_id: ID!): User
     resetRingTier(_id: ID!): User
     upgradeCloakTier(_id: ID!): User

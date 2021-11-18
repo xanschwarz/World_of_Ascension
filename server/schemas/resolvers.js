@@ -46,10 +46,17 @@ const resolvers = {
       return { token, user };
     },
     addArcana: async (parent, { _id }) => {
-      console.log('addArcana');
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 1 } },
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    subtractArcana: async (parent, { _id, amount }) => {
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: -amount } },
         { new: true }
       );
       return updatedArcana;
@@ -62,10 +69,26 @@ const resolvers = {
       );
       return updatedEssence;
     },
+    subtractEssence: async (parent, { _id, amount }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: -amount } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
     addScale: async (parent, { _id }) => {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`scale`]: 1 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    subtractScale: async (parent, { _id, amount }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: -amount } },
         { new: true }
       );
       return updatedScale;
