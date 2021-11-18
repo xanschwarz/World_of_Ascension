@@ -56,10 +56,26 @@ export const UPGRADE_RING_TIER = gql`
   }
 `;
 
+export const RESET_RING_TIER = gql`
+  mutation resetRingTier($id: ID!) {
+    resetRingTier(_id: $id) {
+      ring
+    }
+  }
+`;
+
 export const UPGRADE_CLOAK_TIER = gql`
   mutation upgradeCloakTier($id: ID!) {
     upgradeCloakTier(_id: $id) {
       cloak
+    }
+  }
+`;
+
+export const RESET_CLOAK_TIER = gql`
+  mutation resetCloakTier($id: ID!) {
+    resetCloakTier(_id: $id) {
+      ring
     }
   }
 `;

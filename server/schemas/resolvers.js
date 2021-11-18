@@ -71,20 +71,36 @@ const resolvers = {
       return updatedScale;
     },
     upgradeRingTier: async (parent, { _id }) => {
-      const upgradedRingTier = await User.findOneAndUpdate(
+      const updatedRingTier = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`ring`]: 1 } },
         { new: true }
       );
-      return upgradedRingTier;
+      return updatedRingTier;
     },
-    upgradeCloakTier: async (parent, { _id }) => {
-      const upgradedCloakTier = await User.findOneAndUpdate(
+    resetRingTier: async (parent, { _id }) => {
+      const updatedRingTier = await User.findOneAndUpdate(
         { _id },
-        { $inc: { [`Cloak`]: 1 } },
+        { ring: 0 },
         { new: true }
       );
-      return upgradedCloakTier;
+      return updatedRingTier;
+    },
+    upgradeCloakTier: async (parent, { _id }) => {
+      const updatedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`cloak`]: 1 } },
+        { new: true }
+      );
+      return updatedCloakTier;
+    },
+    resetCloakTier: async (parent, { _id }) => {
+      const updatedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { cloak: 0 },
+        { new: true }
+      );
+      return updatedCloakTier;
     },
   },
 };

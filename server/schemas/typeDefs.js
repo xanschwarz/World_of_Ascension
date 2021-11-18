@@ -41,7 +41,9 @@ const typeDefs = gql`
     addArcana(_id: ID!): User
     addEssence(_id: ID!): User
     upgradeRingTier(_id: ID!): User
+    resetRingTier(_id: ID!): User
     upgradeCloakTier(_id: ID!): User
+    resetCloakTier(_id: ID!): User
   }
 `;
 

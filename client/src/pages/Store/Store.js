@@ -1,13 +1,17 @@
-// Once the buttons are working, make it so once you buy an item the buy button changes to an upgrade button.
+// Style disabled buttons to be more obvious. Maybe an actual call out that they already own that.
 
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import ModalContainer from '../../components/Modal/ModalContainer';
-import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
-import { UPGRADE_RING_TIER } from '../../utils/mutations';
-// import { UPGRADE_CLOAK_TIER } from '../../utils/mutations';
+import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import {
+  UPGRADE_RING_TIER,
+  RESET_RING_TIER,
+  UPGRADE_CLOAK_TIER,
+  RESET_CLOAK_TIER,
+} from '../../utils/mutations';
 
 const ringSRCTier1 =
   'https://bn1303files.storage.live.com/y4mW_O9K00YJzIbF-y8GckCr7qpnqZ6-TlPWhfXNDX1pWrpEcNkEI1jiMdTq1gTeg8mmZWFgmezdGVnV4tyJiMk-0ojBNSYOSx9_SyKxqbMWMqdHLezvj1DO0NlRMEjKFDjS2gHElyD3iQReigcPbeZuyz5qMSSfuklfVBnjYgHiFBEjiRWjDuQA4Yubs5AP0753zYdEBYaREhn08zQNXRt4Q/10_t.PNG?psid=1&width=175&height=175&cropMode=center';
@@ -20,78 +24,92 @@ const cloakSRCTier2 =
   'https://bn1303files.storage.live.com/y4mY-GHuM_KNjzq5qsL0LV1UVYgvUTwk7sbG7jhxhA0f0J-4wll8IekvlTxW8ws9Oh2K0QUg3_7CvtXC0MhPGI-ymCXB7oIYL-VjqKSeVO0e9GQO8euEDJIDKYPwItIZlXtR-YaeVXC9T5rJ99xxllTT6KCBBgslToQnRa_HJZGK7lc-n3SUUXePB-3NKkM7Rs3lUuGeA5kQWo27lGJA1_RpQ/cloaks_14.png?psid=1&width=256&height=256&cropMode=center';
 
 const Store = () => {
-  let riches = 0;
-
-  function addCurrency() {
-    riches += 100;
-    document.getElementById('MacGuffins').innerHTML = riches;
-    console.log('Your amount of currency is ' + riches);
-  }
-
   const { username: userParam } = useParams();
-  const [upgradeRingTier, { error }] = useMutation(UPGRADE_RING_TIER);
-  const [ringTier, setRingTier] = useState();
+  const { data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
+  console.log(data);
+  const storeData = data?.me || {};
 
-  const { loadingRing, dataRing } = useQuery(
-    userParam ? QUERY_USER : QUERY_ME,
-    {
-      variables: { username: userParam },
-      onCompleted: (dataRing) => setRingTier(dataRing.me.ring),
-    }
-  );
+  const [upgradeRingTier, { errUpgradeRing }] = useMutation(UPGRADE_RING_TIER);
+  const [upgradeCloakTier, { errUpgradeCloak }] =
+    useMutation(UPGRADE_CLOAK_TIER);
+  const [resetRingTier, { errResetRing }] = useMutation(RESET_RING_TIER);
+  const [resetCloakTier, { errResetCloak }] = useMutation(RESET_CLOAK_TIER);
 
-  function buyRing() {
-    riches -= 100;
-    document.getElementById('MacGuffins').innerHTML = riches;
+  const buyRing = async () => {
     console.log('You bought a ring!');
 
-    const currentRingId = dataRing.me._id;
+    const currentRingId = data.me._id;
+
     try {
-      const { data } = upgradeRingTier({
+      const { data } = await upgradeRingTier({
         variables: {
           id: currentRingId,
         },
       });
-      setRingTier(data.upgradeRingTier.ring);
-      console.log(dataRing.me.ring);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
-  }
+    console.log(data.me.ring);
+    window.location.reload();
+  };
 
-  function buyCloak() {
-    riches -= 200;
-    document.getElementById('MacGuffins').innerHTML = riches;
+  const resetRing = async () => {
+    const currentRingId = data.me._id;
+
+    try {
+      const { data } = await resetRingTier({
+        variables: {
+          id: currentRingId,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    console.log(data.me.ring);
+    window.location.reload();
+  };
+
+  const buyCloak = async () => {
     console.log('You bought a cloak!');
 
-    // const [upgradeCloakTier, { error }] = useMutation(UPGRADE_CLOAK_TIER);
+    const currentCloakId = data.me._id;
 
-    // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    //   variables: { username: userParam },
-    //   onCompleted: (data) => setCloakTier(data.me.cloak),
-    // });
+    try {
+      const { data } = await upgradeCloakTier({
+        variables: {
+          id: currentCloakId,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    console.log(data.me.cloak);
+    window.location.reload();
+  };
 
-    // const [cloakTier, setCloakTier] = useState();
-  }
+  const resetCloak = async () => {
+    const currentCloakId = data.me._id;
+
+    try {
+      const { data } = await resetCloakTier({
+        variables: {
+          id: currentCloakId,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    console.log(data.me.cloak);
+    window.location.reload();
+  };
 
   return (
     <div>
       {Auth.loggedIn() ? (
         <div className="bg-gray-900">
-          <button
-            type="button"
-            id="addRiches"
-            className="inline-flex items-center m-4 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            onClick={() => addCurrency()}
-          >
-            Endless riches!!!!
-          </button>
-          <div className="flex">
-            <h4 className="text-white m-4">
-              You have <span id="MacGuffins">{riches}</span> magic MacGuffins!
-            </h4>
-          </div>
-          <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+          <div className="mx-auto px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-12">
             <div className="space-y-12">
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
@@ -112,13 +130,35 @@ const Store = () => {
                     ></img>
                     <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                       <div className="font-medium text-lg leading-6 space-y-1">
+                        {storeData.ring === 0 ? (
+                          <button
+                            type="button"
+                            id="buyRingT1"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => {
+                              buyRing();
+                            }}
+                          >
+                            Buy for 2 Arcana, 2 Scales.
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            id="buyRingT1"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                            onClick={() => buyRing()}
+                            disabled
+                          >
+                            Buy for 2 Arcana, 2 Scales.
+                          </button>
+                        )}
                         <button
                           type="button"
-                          id="buyRing"
+                          id="resetRing"
                           className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          onClick={() => buyRing()}
+                          onClick={() => resetRing()}
                         >
-                          Buy for 2 Arcana, 2 Scales.
+                          Reset ring
                         </button>
                       </div>
                     </div>
@@ -138,14 +178,26 @@ const Store = () => {
                     ></img>
                     <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                       <div className="font-medium text-lg leading-6 space-y-1">
-                        <button
-                          type="button"
-                          id="buyRing"
-                          className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          onClick={() => buyRing()}
-                        >
-                          Buy for 4 Arcana, 4 Scales, 2 Essence.
-                        </button>
+                        {storeData.ring === 1 ? (
+                          <button
+                            type="button"
+                            id="buyRingT2"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => buyRing()}
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            id="buyRingT2"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                            onClick={() => buyRing()}
+                            disabled
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -164,13 +216,33 @@ const Store = () => {
                     ></img>
                     <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                       <div className="font-medium text-lg leading-6 space-y-1">
+                        {storeData.cloak === 0 ? (
+                          <button
+                            type="button"
+                            id="buyCloakT1"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => buyCloak()}
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            id="buyCloakT1"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                            onClick={() => buyCloak()}
+                            disabled
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        )}
                         <button
                           type="button"
-                          id="buyCloak"
+                          id="resetCloak"
                           className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          onClick={() => buyCloak()}
+                          onClick={() => resetCloak()}
                         >
-                          Buy for 2 Arcana, 2 Scales.
+                          Reset cloak
                         </button>
                       </div>
                     </div>
@@ -190,14 +262,26 @@ const Store = () => {
                     ></img>
                     <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                       <div className="font-medium text-lg leading-6 space-y-1">
-                        <button
-                          type="button"
-                          id="buyCloak"
-                          className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          onClick={() => buyCloak()}
-                        >
-                          Buy for 4 Arcana, 4 Scales, 2 Essence.
-                        </button>
+                        {storeData.cloak === 1 ? (
+                          <button
+                            type="button"
+                            id="buyCloakT2"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => buyCloak()}
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            id="buyCloakT2"
+                            className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                            onClick={() => buyCloak()}
+                            disabled
+                          >
+                            Buy for 4 Arcana, 4 Scales, 2 Essence.
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

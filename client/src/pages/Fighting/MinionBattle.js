@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, useParams } from "react-router-dom";
-import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_SCALE } from "../../utils/mutations";
-import { useQuery, useMutation } from "@apollo/client";
-import Auth from "../../utils/auth";
+import React, { useEffect, useState } from 'react';
+import { Redirect, useParams } from 'react-router-dom';
+import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import { ADD_SCALE } from '../../utils/mutations';
+import { useQuery, useMutation } from '@apollo/client';
+import Auth from '../../utils/auth';
 
 //placeholder for the values, need to change each to be able to take in the value to start but not update
 // initialHealth = (20 * Math.pow(5, data?.me.cloak));
@@ -13,16 +13,16 @@ const aP = 4;
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = [
-  "Your Spell has Landed, and it was Supper Effective!",
-  "A Remarkable shot, The minion has been hurt greatly",
+  'Your Spell has Landed, and it was Supper Effective!',
+  'A Remarkable shot, The minion has been hurt greatly',
 ];
 const failureSentences = [
-  "Your Spell Missed, The minion attacks you!",
-  "Concentrate, your poor choice has hurt you",
+  'Your Spell Missed, The minion attacks you!',
+  'Concentrate, your poor choice has hurt you',
 ];
 const tieSentences = [
-  "Your spell slightly landed, dealing reduced damage ",
-  "Your spell was slightly effective",
+  'Your spell slightly landed, dealing reduced damage ',
+  'Your spell was slightly effective',
 ];
 
 //functions to call the sentences
@@ -42,35 +42,35 @@ function showRandomFailureSentence() {
 
 //visual change of user health bar
 function userHpDamaged() {
-  let health = document.getElementById("userHealthBar");
+  let health = document.getElementById('userHealthBar');
   health.value -= 5;
 }
 
 //visual change of minion health bar
 function minionHpDamagedFull() {
-  let health = document.getElementById("minionHealthBar");
+  let health = document.getElementById('minionHealthBar');
   health.value -= aP;
 }
 function minionHpDamagedHalf() {
-  let health = document.getElementById("minionHealthBar");
+  let health = document.getElementById('minionHealthBar');
   health.value -= aP / 2;
 }
 
 //animations for the user and minion
 function addMinionDamagedAnimation() {
-  document.getElementById("minionIcon").classList.add("animate-wiggle");
+  document.getElementById('minionIcon').classList.add('animate-wiggle');
 }
 
 function removeMinionDamagedAnimation() {
-  document.getElementById("minionIcon").classList.remove("animate-wiggle");
+  document.getElementById('minionIcon').classList.remove('animate-wiggle');
 }
 
 function addUserDamagedAnimation() {
-  document.getElementById("userIcon").classList.add("animate-wiggle");
+  document.getElementById('userIcon').classList.add('animate-wiggle');
 }
 
 function removeUserDamagedAnimation() {
-  document.getElementById("userIcon").classList.remove("animate-wiggle");
+  document.getElementById('userIcon').classList.remove('animate-wiggle');
 }
 
 const MinionBattle = () => {
@@ -78,7 +78,10 @@ const MinionBattle = () => {
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
-    onCompleted: (data) => setScale(data.me.scale),
+    onCompleted: (data) => {
+      setScale(data.me.scale);
+      console.log(scale);
+    },
   });
 
   // const healthCoefficient = data?.me.maxHealth * Math.pow(5, data?.me.cloak);
@@ -88,10 +91,10 @@ const MinionBattle = () => {
   const [attackPower, setAttackPower] = useState();
   const [minionHealth, setMinionHealth] = useState(10);
   const [turnResult, setTurnResult] = useState(null);
-  const [result, setResult] = useState("Battle In Progress");
+  const [result, setResult] = useState('Battle In Progress');
   const [gameOver, setGameOver] = useState(false);
   const [scale, setScale] = useState();
-  const choices = ["Bolt", "Blast", "Nova"];
+  const choices = ['Bolt', 'Blast', 'Nova'];
 
   const [addScale, { error }] = useMutation(ADD_SCALE);
 
@@ -123,9 +126,9 @@ const MinionBattle = () => {
 
     if (userHealth > 0 && minionHealth > 0) {
       if (
-        comboMoves === "NovaBlast" ||
-        comboMoves === "BoltNova" ||
-        comboMoves === "BlastBolt"
+        comboMoves === 'NovaBlast' ||
+        comboMoves === 'BoltNova' ||
+        comboMoves === 'BlastBolt'
       ) {
         const minionDamaged = minionHealth - aP;
         minionHpDamagedFull();
@@ -137,7 +140,7 @@ const MinionBattle = () => {
         }, 1000);
 
         if (minionDamaged <= 0) {
-          setResult("You have Defeated the Minion!");
+          setResult('You have Defeated the Minion!');
           const gameOff = true;
           const currentScaleId = data.me._id;
           try {
@@ -155,9 +158,9 @@ const MinionBattle = () => {
       }
       //If the User chooses incorrectly
       if (
-        comboMoves === "BlastNova" ||
-        comboMoves === "NovaBolt" ||
-        comboMoves === "BoltBlast"
+        comboMoves === 'BlastNova' ||
+        comboMoves === 'NovaBolt' ||
+        comboMoves === 'BoltBlast'
       ) {
         const userDamaged = userHealth - 5;
         userHpDamaged();
@@ -168,17 +171,17 @@ const MinionBattle = () => {
           removeUserDamagedAnimation();
         }, 1000);
         if (userDamaged <= 0) {
-          setResult("You have been Defeated");
+          setResult('You have been Defeated');
           const gameOff = true;
-          console.log("data", data.me.scale);
+          console.log('data', data.me.scale);
           setGameOver(gameOff);
         }
       }
       //If its a tie
       if (
-        comboMoves === "BlastBlast" ||
-        comboMoves === "BoltBolt" ||
-        comboMoves === "NovaNova"
+        comboMoves === 'BlastBlast' ||
+        comboMoves === 'BoltBolt' ||
+        comboMoves === 'NovaNova'
       ) {
         const minionDamaged = minionHealth - aP / 2;
         minionHpDamagedHalf();
@@ -189,7 +192,7 @@ const MinionBattle = () => {
           removeMinionDamagedAnimation();
         }, 1000);
         if (minionDamaged <= 0) {
-          setResult("You have Defeated the Minion!");
+          setResult('You have Defeated the Minion!');
           const gameOff = true;
           const currentScaleId = data.me._id;
           try {
@@ -210,10 +213,10 @@ const MinionBattle = () => {
   const enemies = [
     {
       name: "Pyro's Hatchlings ",
-      pathName: "MinionBattle",
-      link: "Battle Minnions",
+      pathName: 'MinionBattle',
+      link: 'Battle Minnions',
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center",
+        'https://bn1303files.storage.live.com/y4mbYENwrUcn-6FQDA5igqNOixmNCG3sjVSRWV24I0c_zD6ORnaOL3s3X7b4hg7-kKQwV76s4c85PObcRDCWhhqq73VjDMkXghzVszkXABYQnU17apgTyphn7PwJlG6mbORxvEwa8aWrdvNTjv0-QA_e1wMATtTi-1hFZHWJx4wF4DdshvazJAmZ-JEtX0EK3Kild4b465b2quiJqVMTJ5D8g/SpellBook03_20.png?psid=1&width=256&height=256&cropMode=center',
     },
   ];
 
