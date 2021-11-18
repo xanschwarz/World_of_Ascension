@@ -12,15 +12,15 @@ const failureSentences = [
   "Pyro Counter attacks",
   "Pyro dodges, and Swiftly attacks you",
 ];
-const tieSenetences = [
+const tieSentences = [
   "Your spell didn't even cause a scratch",
   "The Boss Laughs at you",
 ];
 
 //functions to call the sentences
 function showRandomTieSentence() {
-  const randomNumber = Math.floor(Math.random() * tieSenetences.length);
-  return tieSenetences[randomNumber];
+  const randomNumber = Math.floor(Math.random() * tieSentences.length);
+  return tieSentences[randomNumber];
 }
 
 function showRandomSuccessSentence() {

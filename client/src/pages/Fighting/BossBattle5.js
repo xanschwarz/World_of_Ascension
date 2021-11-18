@@ -9,18 +9,18 @@ import { Redirect, useParams } from "react-router-dom";
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];
 const failureSentences = [
-  "Pyro Counter attacks",
-  "Pyro dodges, and Swiftly attacks you",
+  "Master Counter attacks",
+  "Master dodges, and Swiftly attacks you",
 ];
-const tieSenetences = [
+const tieSentences = [
   "Your spell didn't even cause a scratch",
   "The Boss Laughs at you",
 ];
 
 //functions to call the sentences
 function showRandomTieSentence() {
-  const randomNumber = Math.floor(Math.random() * tieSenetences.length);
-  return tieSenetences[randomNumber];
+  const randomNumber = Math.floor(Math.random() * tieSentences.length);
+  return tieSentences[randomNumber];
 }
 
 function showRandomSuccessSentence() {
@@ -128,7 +128,7 @@ const BossBattle = () => {
           removeBossDamagedAnimation();
         }, 1000);
         if (bossDamaged === 0) {
-          setResult("You have Defeated Pyro!");
+          setResult("You have Defeated Master!");
           const gameOff = true;
           const currentEssenceId = data.me._id;
           try {
