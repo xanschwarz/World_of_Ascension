@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ESSENCE } from "../../utils/mutations";
+import { ADD_25_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { Redirect, useParams } from "react-router-dom";
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];
 const failureSentences = [
-  "Pyro Counter attacks",
-  "Pyro dodges, and Swiftly attacks you",
+  "Demio Counter attacks",
+  "Demio dodges, and Swiftly attacks you",
 ];
 const tieSentences = [
   "Your spell didn't even cause a scratch",
@@ -57,7 +57,7 @@ function removeUserDamagedAnimation() {
   document.getElementById("userIcon").classList.remove("animate-wiggle");
 }
 
-const BossBattle = () => {
+const BossBattle3 = () => {
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -67,7 +67,8 @@ const BossBattle = () => {
       setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
       setUserHealth(20 * Math.pow(5, data?.me.cloak));
       setAttackPower(20 * (Math.pow(5, data?.me.ring) / 5));
-      // setAttackPower(data.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
+      // console.log("health", 20 * Math.pow(5, data?.me.cloak));
+      // console.log("cloak", data?.me.cloak);
     },
   });
 
@@ -76,7 +77,7 @@ const BossBattle = () => {
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   // const [aPCoefficient, setAPCoefficient] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [bossHealth, setBossHealth] = useState(100);
+  const [bossHealth, setBossHealth] = useState(2500);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
@@ -84,12 +85,14 @@ const BossBattle = () => {
   const [attackPower, setAttackPower] = useState(null);
   const choices = ["Bolt", "Blast", "Nova"];
 
-  const [addEssence, { error }] = useMutation(ADD_ESSENCE);
+  const [addEssence, { error }] = useMutation(ADD_25_ESSENCE);
 
   //visual change of user health bar
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
-    health.value -= 20;
+    health.value -= 500;
+    console.log(health.value);
+    console.log(userHealth);
   }
   //visual change of boss health bar
   function bossHpDamagedFull() {
@@ -129,7 +132,7 @@ const BossBattle = () => {
           removeBossDamagedAnimation();
         }, 1000);
         if (bossDamaged === 0) {
-          setResult("You have Defeated Pyro!");
+          setResult("You have Defeated Demio!");
           const gameOff = true;
           const currentEssenceId = data.me._id;
           try {
@@ -151,7 +154,7 @@ const BossBattle = () => {
         comboMoves === "NovaBolt" ||
         comboMoves === "BoltBlast"
       ) {
-        const userDamaged = userHealth - 20;
+        const userDamaged = userHealth - 500;
         userHpDamaged();
         setUserHealth(userDamaged);
         setTurnResult(showRandomFailureSentence);
@@ -181,11 +184,12 @@ const BossBattle = () => {
   }, [bossAbility, userAbility]);
   const enemies = [
     {
-      name: "Pyro",
-      pathName: "BossBattle",
-      link: "Battle Boss",
+      name: "Demio",
+      pathName: "BossBattle3",
+      link: "Battle Demio",
+      drop: "5",
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mxeAMRBLm8sIvOgs7s6oWJ0zml7dFL4eJQG2jRhxdswUihA1Ame46qR58SC4GKWghq9HA5zGz1eVZY_tS9bw5I4rztRPyUyIVALVt7ptZzvO06CmTA98-DmWCtfOxVFRW1cRVM-6oX2YTBcg2PcChw7OHfm9sSCIQOGOPMMrz9HXGGVx5YcaxlDywUxZ01hsAslsETGpp_yYEWOsWyo4b1A/SpellBook03_64.png?psid=1&width=256&height=256&cropMode=center",
+        "https://bn1303files.storage.live.com/y4mGQjPiuuRVVhWzb9OEu7xLkF1iROyAI2IseY2cU-aeem0LsvIEYaeTVJhrryhPMrBD5RaV0GA5jVaO503waHv_oMMrC1o3bdjVjgggBTc-hv5M9KirVcZj7zxf-hZeAN6z1M_D8wj4lye-u7tgJqygX44v234LRKoQVAx81IEjrDj9uZbR-zMn1ZRKGgOsGnMtttoYK7HdcUofmnCyYoRrQ/SpellBook07_58.png?psid=1&width=256&height=256&cropMode=center",
     },
   ];
 
@@ -199,7 +203,7 @@ const BossBattle = () => {
             <div className="space-y-12">
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                  Battle Pyro's Hatchling
+                  Battle {enemies[0].name}
                 </h2>
                 <p className="text-xl text-gray-300"></p>
               </div>
@@ -239,8 +243,8 @@ const BossBattle = () => {
                           <progress
                             className="h-10 "
                             id="bossHealthBar"
-                            value="100"
-                            max="100"
+                            value="2500"
+                            max="2500"
                           ></progress>
                           <p className="-mt-9 mb-5 text-white flex justify-center">
                             Health: {bossHealth}
@@ -313,4 +317,4 @@ const BossBattle = () => {
   );
 };
 
-export default BossBattle;
+export default BossBattle3;

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ESSENCE } from "../../utils/mutations";
+import { ADD_5_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { Redirect, useParams } from "react-router-dom";
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];
 const failureSentences = [
-  "Pyro Counter attacks",
-  "Pyro dodges, and Swiftly attacks you",
+  "Lich Counter attacks",
+  "Lich dodges, and Swiftly attacks you",
 ];
 const tieSentences = [
   "Your spell didn't even cause a scratch",
@@ -57,7 +57,7 @@ function removeUserDamagedAnimation() {
   document.getElementById("userIcon").classList.remove("animate-wiggle");
 }
 
-const BossBattle = () => {
+const BossBattle2 = () => {
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -67,7 +67,6 @@ const BossBattle = () => {
       setHealthCoefficient(20 * Math.pow(5, data?.me.cloak));
       setUserHealth(20 * Math.pow(5, data?.me.cloak));
       setAttackPower(20 * (Math.pow(5, data?.me.ring) / 5));
-      // setAttackPower(data.me.attackPower * (Math.pow(5, data?.me.ring) / 5));
     },
   });
 
@@ -76,7 +75,7 @@ const BossBattle = () => {
   const [healthCoefficient, setHealthCoefficient] = useState(null);
   // const [aPCoefficient, setAPCoefficient] = useState(null);
   const [userHealth, setUserHealth] = useState(null);
-  const [bossHealth, setBossHealth] = useState(100);
+  const [bossHealth, setBossHealth] = useState(500);
   const [turnResult, setTurnResult] = useState(null);
   const [result, setResult] = useState("Battle In Progress");
   const [gameOver, setGameOver] = useState(false);
@@ -84,12 +83,12 @@ const BossBattle = () => {
   const [attackPower, setAttackPower] = useState(null);
   const choices = ["Bolt", "Blast", "Nova"];
 
-  const [addEssence, { error }] = useMutation(ADD_ESSENCE);
+  const [addEssence, { error }] = useMutation(ADD_5_ESSENCE);
 
   //visual change of user health bar
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
-    health.value -= 20;
+    health.value -= 100;
   }
   //visual change of boss health bar
   function bossHpDamagedFull() {
@@ -129,7 +128,7 @@ const BossBattle = () => {
           removeBossDamagedAnimation();
         }, 1000);
         if (bossDamaged === 0) {
-          setResult("You have Defeated Pyro!");
+          setResult("You have Defeated Lich!");
           const gameOff = true;
           const currentEssenceId = data.me._id;
           try {
@@ -151,7 +150,7 @@ const BossBattle = () => {
         comboMoves === "NovaBolt" ||
         comboMoves === "BoltBlast"
       ) {
-        const userDamaged = userHealth - 20;
+        const userDamaged = userHealth - 100;
         userHpDamaged();
         setUserHealth(userDamaged);
         setTurnResult(showRandomFailureSentence);
@@ -181,11 +180,12 @@ const BossBattle = () => {
   }, [bossAbility, userAbility]);
   const enemies = [
     {
-      name: "Pyro",
-      pathName: "BossBattle",
-      link: "Battle Boss",
+      name: "Lich",
+      pathName: "BossBattle2",
+      link: "Battle Lich",
+      drop: "5",
       imageUrl:
-        "https://bn1303files.storage.live.com/y4mxeAMRBLm8sIvOgs7s6oWJ0zml7dFL4eJQG2jRhxdswUihA1Ame46qR58SC4GKWghq9HA5zGz1eVZY_tS9bw5I4rztRPyUyIVALVt7ptZzvO06CmTA98-DmWCtfOxVFRW1cRVM-6oX2YTBcg2PcChw7OHfm9sSCIQOGOPMMrz9HXGGVx5YcaxlDywUxZ01hsAslsETGpp_yYEWOsWyo4b1A/SpellBook03_64.png?psid=1&width=256&height=256&cropMode=center",
+        "https://bn1303files.storage.live.com/y4mtqs9PaGm_1GFXe8y4oN3os0A5aIXO28KEXWt1g-mR5yu3wxW_jGeosyqFIz6Q9BduOE_UsePzHFH1wX0kU4GwVPETa82t17I8_h3YqlsD68hFLcogi_zACNzHqnIqyC_KwX09dh8Y4LFHett-VB9CSltaAhWkxIxAOP-fez8Efw1xdZcBhLGKWpJ56Es0WR4nI5fsHAA0pvcUa8hCqAYPw/SpellBook07_59.png?psid=1&width=256&height=256&cropMode=center",
     },
   ];
 
@@ -199,7 +199,7 @@ const BossBattle = () => {
             <div className="space-y-12">
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                  Battle Pyro's Hatchling
+                  Battle {enemies[0].name}
                 </h2>
                 <p className="text-xl text-gray-300"></p>
               </div>
@@ -239,8 +239,8 @@ const BossBattle = () => {
                           <progress
                             className="h-10 "
                             id="bossHealthBar"
-                            value="100"
-                            max="100"
+                            value={bossHealth}
+                            max="500"
                           ></progress>
                           <p className="-mt-9 mb-5 text-white flex justify-center">
                             Health: {bossHealth}
@@ -313,4 +313,4 @@ const BossBattle = () => {
   );
 };
 
-export default BossBattle;
+export default BossBattle2;

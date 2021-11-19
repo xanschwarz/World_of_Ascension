@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   HandIcon,
   FireIcon,
@@ -10,22 +10,21 @@ import {
   MenuIcon,
   UserIcon,
   XIcon,
-} from '@heroicons/react/outline';
+} from "@heroicons/react/outline";
 
 const navigation = [
-  { name: 'Home', href: '/Home', icon: HomeIcon },
-  { name: 'Gather', href: '/Gathering', icon: HandIcon },
-  { name: 'Fight', href: '/Fighting', icon: FireIcon },
-  { name: 'The Darth Trader', href: '/Store', icon: ShoppingCartIcon },
-  { name: 'Profile', href: '/Profile', icon: UserIcon },
-]
+  { name: "Home", href: "/Home", icon: HomeIcon },
+  { name: "Gather", href: "/Gathering", icon: HandIcon },
+  { name: "Fight", href: "/Fighting", icon: FireIcon },
+  { name: "The Darth Trader", href: "/Store", icon: ShoppingCartIcon },
+  { name: "Profile", href: "/Profile", icon: UserIcon },
+];
 
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
-      
       <div className="h-full flex">
         <Transition.Root show={mobileMenuOpen} as={Fragment}>
           <Dialog

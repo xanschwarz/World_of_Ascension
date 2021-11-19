@@ -39,6 +39,10 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addScale(_id: ID!): User
     subtractScale(_id: ID!, amount: Int!): User
+    add5Scale(_id: ID!): User
+    add25Scale(_id: ID!): User
+    add125Scale(_id: ID!): User
+    add1KScale(_id: ID!): User
     addArcana(_id: ID!): User
     subtractArcana(_id: ID!, amount: Int!): User
     addEssence(_id: ID!): User
@@ -47,6 +51,10 @@ const typeDefs = gql`
     resetRingTier(_id: ID!): User
     upgradeCloakTier(_id: ID!): User
     resetCloakTier(_id: ID!): User
+    add5Essence(_id: ID!): User
+    add25Essence(_id: ID!): User
+    add125Essence(_id: ID!): User
+    add1KEssence(_id: ID!): User
   }
 `;
 
