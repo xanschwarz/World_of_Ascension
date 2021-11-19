@@ -217,7 +217,7 @@ const BossBattle3 = () => {
                       <div className="result">
                         <p className="text-white">{result}</p>
                       </div>
-
+                      <div className="flex justify-center mx-auto">
                       <div className="inline-flex mx-auto">
                         <div>
                           <progress
@@ -258,12 +258,7 @@ const BossBattle3 = () => {
                           />
                         </div>
                       </div>
-
-                      {/* <img
-                  className="mx-auto w-1/4"
-                  src={`../../images/${userAbility}.png`}
-                  alt=""
-                /> */}
+</div>
 
                       <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                         <div className="font-medium  break-words text-lg leading-6 space-y-1">

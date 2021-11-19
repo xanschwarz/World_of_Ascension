@@ -230,11 +230,11 @@ const MinionBattle = () => {
                 key={enemy.name}
                 className="py-10 px-6 bg-gray-800 text-center align-center rounded-lg "
               >
-                <div className="space-y-6 xl:space-y-10">
+                <div className="space-y-6 xl:space-y-10 ">
                   <div className="result">
                     <p className="text-white">{result}</p>
                   </div>
-
+        <div className="flex justify-center mx-auto">
                   <div className="inline-flex mx-auto">
                     <div>
                       <progress
@@ -272,6 +272,7 @@ const MinionBattle = () => {
                         alt=""
                       />
                     </div>
+                  </div>
                   </div>
                   <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                     <div className="font-medium  break-words text-lg leading-6 space-y-1">
