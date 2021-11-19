@@ -28,14 +28,14 @@ export default function StatsBar() {
   const [arcana, setArcana] = useState(statBarData.arcana);
   useEffect(() => {
     setArcana(statBarData.arcana);
-    console.log(statBarData.arcana);
+    // console.log(statBarData.arcana);
   }, [statBarData]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="lg:flex lg:items-center lg:justify-between bg-gray-800">
       <div className="flex-1 min-w-0">
@@ -69,14 +69,14 @@ export default function StatsBar() {
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Health: {20 * Math.pow(5,statBarData.cloak)}
+            Health: {20 * Math.pow(5, statBarData.cloak)}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <LightningBoltIcon
               className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
               aria-hidden="true"
             />
-            Power: {20 * (Math.pow(5, statBarData.ring)/5)}
+            Power: {20 * (Math.pow(5, statBarData.ring) / 5)}
           </div>
         </div>
       </div>

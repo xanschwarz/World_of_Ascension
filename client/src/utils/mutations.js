@@ -48,6 +48,35 @@ export const ADD_ARCANA = gql`
   }
 `;
 
+export const ADD_2_ARCANA = gql`
+  mutation add2Arcana($id: ID!) {
+    add2Arcana(_id: $id) {
+      arcana
+    }
+  }
+`;
+
+export const ADD_10_ARCANA = gql`
+  mutation add10Arcana($id: ID!) {
+    add10Arcana(_id: $id) {
+      arcana
+    }
+  }
+`;
+
+export const ADD_75_ARCANA = gql`
+  mutation add75Arcana($id: ID!) {
+    add75Arcana(_id: $id) {
+      arcana
+    }
+  }
+`;
+
+export const ADD_150_ARCANA = gql`
+  mutation add150Arcana($id: ID!) {
+    add150Arcana(_id: $id) {
+
+
 export const SUBTRACT_ARCANA = gql`
   mutation subtractArcana($id: ID!, $amount: Int!) {
     subtractArcana(_id: $id, amount: $amount) {

@@ -116,11 +116,11 @@ const MinionBattle = () => {
         comboMoves === "BlastBolt"
       ) {
         const minionDamaged = minionHealth - attackPower;
-        console.log("minionDamaged", minionDamaged);
+        // console.log("minionDamaged", minionDamaged);
         minionHpDamagedFull();
-        console.log("minionHpDamagedFull", minionHpDamagedFull);
+        // console.log("minionHpDamagedFull", minionHpDamagedFull);
         setMinionHealth(minionDamaged);
-        console.log("setMinionHealth", setMinionHealth);
+        // console.log("setMinionHealth", setMinionHealth);
         setTurnResult(showRandomSuccessSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
@@ -151,10 +151,10 @@ const MinionBattle = () => {
         comboMoves === "BoltBlast"
       ) {
         const userDamaged = userHealth - 125;
-        console.log("userDamaged", userDamaged);
+        // console.log("userDamaged", userDamaged);
         userHpDamaged();
         setUserHealth(userDamaged);
-        console.log("userHealth", userHealth);
+        // console.log("userHealth", userHealth);
         setTurnResult(showRandomFailureSentence());
         addUserDamagedAnimation();
         setTimeout(() => {
@@ -163,7 +163,7 @@ const MinionBattle = () => {
         if (userDamaged <= 0) {
           setResult("You have been Defeated");
           const gameOff = true;
-          console.log("data", data.me.scale);
+          // console.log("data", data.me.scale);
           setGameOver(gameOff);
         }
       }
@@ -174,10 +174,10 @@ const MinionBattle = () => {
         comboMoves === "NovaNova"
       ) {
         const minionDamaged = minionHealth - attackPower / 2;
-        console.log("minionDamaged", minionDamaged);
+        // console.log("minionDamaged", minionDamaged);
         minionHpDamagedHalf();
         setMinionHealth(minionDamaged);
-        console.log("MinionHealth", minionHealth);
+        // console.log("MinionHealth", minionHealth);
         setTurnResult(showRandomTieSentence());
         addMinionDamagedAnimation();
         setTimeout(() => {
