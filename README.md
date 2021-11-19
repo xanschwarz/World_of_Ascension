@@ -32,7 +32,7 @@ placeholder
 
 placeholder
 
-### [Check out my React Portfolio!](https://xboboyx.github.io/react-portfolio/#about)
+### 
 
 ## <ins>License</ins>
 

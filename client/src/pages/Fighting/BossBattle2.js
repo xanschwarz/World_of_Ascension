@@ -4,7 +4,7 @@ import ModalContainer from "../../components/Modal/ModalContainer";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import { ADD_5_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];
@@ -213,7 +213,7 @@ const BossBattle2 = () => {
                       <div className="result">
                         <p className="text-white">{result}</p>
                       </div>
-
+                      <div className="flex justify-center mx-auto">
                       <div className="inline-flex mx-auto">
                         <div>
                           <progress
@@ -254,12 +254,7 @@ const BossBattle2 = () => {
                           />
                         </div>
                       </div>
-
-                      {/* <img
-                  className="mx-auto w-1/4"
-                  src={`../../images/${userAbility}.png`}
-                  alt=""
-                /> */}
+</div>
 
                       <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                         <div className="font-medium  break-words text-lg leading-6 space-y-1">
