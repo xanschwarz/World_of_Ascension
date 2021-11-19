@@ -67,8 +67,7 @@ const Home = () => {
             Welcome to the World of Ascension
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-            voluptatum cupiditate veritatis in accusamus quisquam.
+            Many perished in the war of mages and necromancers. In a desperate move to defeat the surge of necromantic spells, a coven of arcane mages linked themselves together to cast a spell so powerful, it hid their souls from Death himself. Your journey back begins in the realm of lowest existence, guarded by Pyro, the fire-breathing dragon.
           </p>
         </div>
 
@@ -83,7 +82,7 @@ const Home = () => {
                 <div key={feature.name}>
                   <dt>
                     <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                      <feature.icon className="h-6 w-6" aria-hidden="true" />
+                      <feature.icon className="h-6 w-6" aria-hidden="true" /> 
                     </div>
                     <p className="mt-5 text-lg leading-6 font-medium text-gray-900">
                       {feature.name}

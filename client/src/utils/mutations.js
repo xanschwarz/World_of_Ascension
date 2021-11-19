@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -24,6 +24,22 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPGRADE_RING_TIER = gql`
+  mutation upgradeRingTier($id: ID!) {
+    upgradeRingTier(_id: $id) {
+      ring
+    }
+  }
+`;
+
+export const UPGRADE_CLOAK_TIER = gql`
+  mutation upgradeCloakTier($id: ID!) {
+    upgradeCloakTier(_id: $id) {
+      cloak
+    }
+  }
+`;
+
 export const ADD_ARCANA = gql`
   mutation addArcana($id: ID!) {
     addArcana(_id: $id) {
@@ -31,6 +47,7 @@ export const ADD_ARCANA = gql`
     }
   }
 `;
+
 export const ADD_2_ARCANA = gql`
   mutation add2Arcana($id: ID!) {
     add2Arcana(_id: $id) {
@@ -58,6 +75,11 @@ export const ADD_75_ARCANA = gql`
 export const ADD_150_ARCANA = gql`
   mutation add150Arcana($id: ID!) {
     add150Arcana(_id: $id) {
+
+
+export const SUBTRACT_ARCANA = gql`
+  mutation subtractArcana($id: ID!, $amount: Int!) {
+    subtractArcana(_id: $id, amount: $amount) {
       arcana
     }
   }
@@ -70,6 +92,7 @@ export const ADD_ESSENCE = gql`
     }
   }
 `;
+
 export const ADD_5_ESSENCE = gql`
   mutation add5Essence($id: ID!) {
     add5Essence(_id: $id) {
@@ -77,6 +100,7 @@ export const ADD_5_ESSENCE = gql`
     }
   }
 `;
+
 export const ADD_25_ESSENCE = gql`
   mutation add25Essence($id: ID!) {
     add25Essence(_id: $id) {
@@ -84,6 +108,7 @@ export const ADD_25_ESSENCE = gql`
     }
   }
 `;
+
 export const ADD_125_ESSENCE = gql`
   mutation add125Essence($id: ID!) {
     add125Essence(_id: $id) {
@@ -91,9 +116,18 @@ export const ADD_125_ESSENCE = gql`
     }
   }
 `;
+
 export const ADD_1K_ESSENCE = gql`
   mutation add1KEssence($id: ID!) {
     add1KEssence(_id: $id) {
+      essence
+    }
+  }
+`;
+
+export const SUBTRACT_ESSENCE = gql`
+  mutation subtractEssence($id: ID!, $amount: Int!) {
+    subtractEssence(_id: $id, amount: $amount) {
       essence
     }
   }
@@ -134,6 +168,14 @@ export const ADD_125_SCALE = gql`
 export const ADD_1K_SCALE = gql`
   mutation add1KScale($id: ID!) {
     add1KScale(_id: $id) {
+      scale
+    }
+  }
+`;
+
+export const SUBTRACT_SCALE = gql`
+  mutation subtractScale($id: ID!, $amount: Int!) {
+    subtractScale(_id: $id, amount: $amount) {
       scale
     }
   }

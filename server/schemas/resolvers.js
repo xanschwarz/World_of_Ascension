@@ -1,14 +1,14 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
-const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("home");
+      return User.find().populate('home');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("home");
+      return User.findOne({ username }).populate('home');
     },
     mage: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -16,9 +16,9 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("home");
+        return User.findOne({ _id: context.user._id }).populate('home');
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
@@ -32,21 +32,39 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("No user found with this email address");
+        throw new AuthenticationError('No user found with this email address');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
 
       return { token, user };
     },
+    upgradeRingTier: async (parent, { _id }) => {
+      const updatedRingTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`ring`]: 1 } },
+        { new: true }
+      );
+      return updatedRingTier;
+    },
+    upgradeCloakTier: async (parent, { _id }) => {
+      const updatedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`cloak`]: 1 } },
+        { new: true }
+      );
+      return updatedCloakTier;
+    },
     addArcana: async (parent, { _id }) => {
+
       // console.log("addArcana");
+
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 1 } },
@@ -54,6 +72,7 @@ const resolvers = {
       );
       return updatedArcana;
     },
+
     add2Arcana: async (parent, { _id }) => {
       // console.log("addArcana");
       const updatedArcana = await User.findOneAndUpdate(
@@ -86,6 +105,12 @@ const resolvers = {
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 150 } },
+
+    subtractArcana: async (parent, { _id, amount }) => {
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: -amount } },
+
         { new: true }
       );
       return updatedArcana;
@@ -130,6 +155,14 @@ const resolvers = {
       );
       return updatedEssence;
     },
+    subtractEssence: async (parent, { _id, amount }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: -amount } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
     addScale: async (parent, { _id }) => {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
@@ -166,6 +199,14 @@ const resolvers = {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`scale`]: 1000 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    subtractScale: async (parent, { _id, amount }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: -amount } },
         { new: true }
       );
       return updatedScale;
