@@ -107,14 +107,14 @@ const Gathering = () => {
           <div className="relative mb-20">
             <img
               id="sunImage"
-              className="relative mx-auto mt-5 h-41 w-41 rounded-full"
-              src="https://bn1303files.storage.live.com/y4pq8X5LqtFHD10_eJH_4a65nOmqkuHePgxfFTF0672ugKjJXu3Xu7urMeVh4SZtUXV3eb089mEeBSm2MuSvYZSN5dsRy4f77JCdP_lz8TWKd839qvlfNi8KDoDW7T_ZryaSeBK-26erqtUlb5UuM9G77sWFJSmw4KznmmIEpICoyrWkkvHaqkzLvsErH2QiNKaZYR1Y7WZ6aN24jWxEZoUScYxyPwfxao1t6fdEUfm7p4/b_39.PNG?psid=1&width=256&height=256&cropMode=center"
+              className="relative mx-auto mt-5 h-64 w-64 rounded-full"
+              src="https://bn1303files.storage.live.com/y4pv0nX1QaRDNFblh6DkPH4opBOK_Cmq-vCIHRmrptEvfOs_mOyon1jR-bSAX3DL4e4yvfz3x5EZXp9R8Wjg8myQUbW_xyOSfshRh9CVR7X82XkxnxglqPc5f99H-tP6-vsx-PIYGi5DkDaGHCUkT6PnkcnQy5Gix6wLVqdZR9JAwsYTZyg4uo7LsSuApkvsSa8YJ4I2SV45Q_EZq66ZpExKg07dYGxFgczkz27dtByAow/SpellBookPage09_43.PNG?psid=1&width=181&height=181&cropMode=center"
               alt="Arcana"
             />
             <img
               id="arcanaImage"
               className="relative mx-auto -mt-52 h-40 w-40  rounded-full "
-              src="https://bn1303files.storage.live.com/y4m4aC5V7U5xCwrRaNBavZfxa6Mj8RxliXU5q4PpIGkjoaMWQzTjE98mbOHnOJLl3FhOJqhzI-DFN5iwbb_ALGRZHJ3lZlQ0xVDCb-EGFSbjZ9yH4osWC3No5dAO2iGFv3ACrhAZLli4VPR3cm1tk6K0UaqPlGOP9a3xSV1CSmFRhzBMqb7P-X6gFoFo6faXgrJmqEXRnk3qUNaqrb_sqMiwQ/SpellBook07_18.png?psid=1&width=152&height=152&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4pYwuTWNor9QaMWCIqG39e9dLunr1_CXyqInhqh2VxHuV2GzKLJk-SrpsSE3AFws2F76xhaLABMYHuyDsefp1IP6cP1Us2Y1BMDqgwt86chuv9jH9LFnXsKdZ9SY83NWPWItIaL6gfEqeXw895D1sly8Enqj3wupGqoIulJyub3jFhZdjQBhGQ0X4DhK9BUFNwm0P0T_8nHM99Py65fF-LVSJOluPdWrJfDeCb6k1XFak/SpellBookPage09_10.PNG?psid=1&width=181&height=181&cropMode=center"
               alt=""
             />
           </div>
