@@ -4,7 +4,7 @@ import ModalContainer from "../../components/Modal/ModalContainer";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import { ADD_1K_ESSENCE } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = ["You have damaged the Boss", "A Remarkable shot"];

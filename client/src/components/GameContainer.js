@@ -18,7 +18,7 @@ import MinionBattle4 from "../pages/Fighting/MinionBattle4";
 import MinionBattle5 from "../pages/Fighting/MinionBattle5";
 import Store from "../pages/Store/Store";
 import Profile from "../pages/Profile";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 export default function GameContainer() {
   return (

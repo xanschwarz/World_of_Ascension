@@ -75,6 +75,10 @@ export const ADD_75_ARCANA = gql`
 export const ADD_150_ARCANA = gql`
   mutation add150Arcana($id: ID!) {
     add150Arcana(_id: $id) {
+      arcana
+    }
+  }
+`;
 
 
 export const SUBTRACT_ARCANA = gql`

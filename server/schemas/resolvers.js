@@ -105,7 +105,11 @@ const resolvers = {
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 150 } },
-
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    
     subtractArcana: async (parent, { _id, amount }) => {
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
