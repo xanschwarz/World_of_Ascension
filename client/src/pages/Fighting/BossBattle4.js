@@ -94,7 +94,7 @@ const BossBattle4 = () => {
   function bossHpDamagedFull() {
     let health = document.getElementById("bossHealthBar");
     health.value -= attackPower;
-    console.log(health.value);
+    // console.log(health.value);
   }
 
   const handleClick = (value) => {

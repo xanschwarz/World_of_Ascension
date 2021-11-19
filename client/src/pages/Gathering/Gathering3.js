@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ARCANA } from "../../utils/mutations";
+import { ADD_75_ARCANA } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
@@ -44,7 +44,7 @@ const reset = () => {
 
 const Gathering = () => {
   const { time, start } = useTimer({
-    initialTime: 5,
+    initialTime: 900,
     timerType: "DECREMENTAL",
     endTime: 0,
   });
@@ -57,11 +57,11 @@ const Gathering = () => {
     onCompleted: (data) => setArcana(data.me.arcana),
   });
 
-  const [addArcana, { error }] = useMutation(ADD_ARCANA);
+  const [addArcana, { error }] = useMutation(ADD_75_ARCANA);
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
   }, [data]);
-  console.log(data);
+  // console.log(data);
   // Create handler for button
   const handleClick = async (event) => {
     const currentArcanaId = data.me._id;
@@ -74,27 +74,27 @@ const Gathering = () => {
             id: currentArcanaId,
           },
         });
-      }, 5500);
+      }, 895000);
       addTimer();
       setTimeout(() => {
         removeTimer();
-      }, 6000);
+      }, 900000);
       start();
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
-      }, 6000);
+      }, 900000);
       addSunAnimation();
       setTimeout(() => {
         removeSunAnimation();
-      }, 6000);
+      }, 900000);
       addButtonAnimation();
       setTimeout(() => {
         removeButtonAnimation();
-      }, 6000);
+      }, 900000);
       setTimeout(() => {
         reset();
-      }, 5500);
+      }, 895000);
     } catch (error) {
       console.log(error);
     }
@@ -108,13 +108,13 @@ const Gathering = () => {
             <img
               id="sunImage"
               className="relative mx-auto mt-5 h-64 w-64 rounded-full"
-              src="https://bn1303files.storage.live.com/y4pv0nX1QaRDNFblh6DkPH4opBOK_Cmq-vCIHRmrptEvfOs_mOyon1jR-bSAX3DL4e4yvfz3x5EZXp9R8Wjg8myQUbW_xyOSfshRh9CVR7X82XkxnxglqPc5f99H-tP6-vsx-PIYGi5DkDaGHCUkT6PnkcnQy5Gix6wLVqdZR9JAwsYTZyg4uo7LsSuApkvsSa8YJ4I2SV45Q_EZq66ZpExKg07dYGxFgczkz27dtByAow/SpellBookPage09_43.PNG?psid=1&width=181&height=181&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mjQTiRRZsr_O5w8dmzO38NtmU5NTg0t9tW8gFdmXqOExmxqDn2-WOb-XCHutU0NHrCMZYbe0MovwRce0IAlDjmNhyOI8zHD1CNuouUc9gpLSatgibda4DaqAGxscI8mu4-84ZI8fvPBVVxQyIA4ASnpMDnudIccnyFdpczRns7IWnd8H0tvtve4vHRIZSH93z38UAhNP5HjAz6y7EEqmBRw/SpellBook06_80.png?psid=1&width=140&height=140&cropMode=center"
               alt="Arcana"
             />
             <img
               id="arcanaImage"
               className="relative mx-auto -mt-52 h-40 w-40  rounded-full "
-              src="https://bn1303files.storage.live.com/y4pYwuTWNor9QaMWCIqG39e9dLunr1_CXyqInhqh2VxHuV2GzKLJk-SrpsSE3AFws2F76xhaLABMYHuyDsefp1IP6cP1Us2Y1BMDqgwt86chuv9jH9LFnXsKdZ9SY83NWPWItIaL6gfEqeXw895D1sly8Enqj3wupGqoIulJyub3jFhZdjQBhGQ0X4DhK9BUFNwm0P0T_8nHM99Py65fF-LVSJOluPdWrJfDeCb6k1XFak/SpellBookPage09_10.PNG?psid=1&width=181&height=181&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mpEkUg_IgL0IQHIWL9k1h9MrIErk-3mGdoFMh0rlvxISZs7BYHE4NTQx_0TmVKyUagNWeTyS9KRxZogPxSkHHROFOVJfQFvuWcMjiFybcuxVFffyYBR1eP2lmAy_Tt9k3NfKT5OW5Y1PCkJtBAwlxts14BnGWV8MO_5pCLxjv0M4oUaOiKAhJK_jMaj71nDfN1xM7L-DAwV3kJfobEg5fwg/SpellBookPage09_01.PNG?psid=1&width=140&height=140&cropMode=center"
               alt=""
             />
           </div>

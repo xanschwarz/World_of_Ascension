@@ -91,8 +91,8 @@ const BossBattle3 = () => {
   function userHpDamaged() {
     let health = document.getElementById("userHealthBar");
     health.value -= 500;
-    console.log(health.value);
-    console.log(userHealth);
+    // console.log(health.value);
+    // console.log(userHealth);
   }
   //visual change of boss health bar
   function bossHpDamagedFull() {

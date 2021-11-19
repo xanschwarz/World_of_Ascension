@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ARCANA } from "../../utils/mutations";
+import { ADD_2_ARCANA } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
@@ -57,11 +57,11 @@ const Gathering = () => {
     onCompleted: (data) => setArcana(data.me.arcana),
   });
 
-  const [addArcana, { error }] = useMutation(ADD_ARCANA);
+  const [addArcana, { error }] = useMutation(ADD_2_ARCANA);
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
   }, [data]);
-  console.log(data);
+  // console.log(data);
   // Create handler for button
   const handleClick = async (event) => {
     const currentArcanaId = data.me._id;

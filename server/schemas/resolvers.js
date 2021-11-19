@@ -46,10 +46,46 @@ const resolvers = {
       return { token, user };
     },
     addArcana: async (parent, { _id }) => {
-      console.log("addArcana");
+      // console.log("addArcana");
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`arcana`]: 1 } },
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    add2Arcana: async (parent, { _id }) => {
+      // console.log("addArcana");
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: 2 } },
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    add10Arcana: async (parent, { _id }) => {
+      // console.log("addArcana");
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: 10 } },
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    add75Arcana: async (parent, { _id }) => {
+      // console.log("addArcana");
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: 75 } },
+        { new: true }
+      );
+      return updatedArcana;
+    },
+    add150Arcana: async (parent, { _id }) => {
+      // console.log("addArcana");
+      const updatedArcana = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`arcana`]: 150 } },
         { new: true }
       );
       return updatedArcana;

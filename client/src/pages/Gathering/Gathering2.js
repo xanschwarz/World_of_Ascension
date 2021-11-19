@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ARCANA } from "../../utils/mutations";
+import { ADD_10_ARCANA } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
@@ -44,7 +44,7 @@ const reset = () => {
 
 const Gathering = () => {
   const { time, start } = useTimer({
-    initialTime: 5,
+    initialTime: 60,
     timerType: "DECREMENTAL",
     endTime: 0,
   });
@@ -57,11 +57,12 @@ const Gathering = () => {
     onCompleted: (data) => setArcana(data.me.arcana),
   });
 
-  const [addArcana, { error }] = useMutation(ADD_ARCANA);
+  const [addArcana, { error }] = useMutation(ADD_10_ARCANA);
+  // console.log(addArcana);
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
   }, [data]);
-  console.log(data);
+  // console.log(data);
   // Create handler for button
   const handleClick = async (event) => {
     const currentArcanaId = data.me._id;
@@ -74,27 +75,28 @@ const Gathering = () => {
             id: currentArcanaId,
           },
         });
-      }, 5500);
+        setArcana(data.addArcana.arcana);
+      }, 59500);
       addTimer();
       setTimeout(() => {
         removeTimer();
-      }, 6000);
+      }, 60000);
       start();
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
-      }, 6000);
+      }, 60000);
       addSunAnimation();
       setTimeout(() => {
         removeSunAnimation();
-      }, 6000);
+      }, 60000);
       addButtonAnimation();
       setTimeout(() => {
         removeButtonAnimation();
-      }, 6000);
+      }, 60000);
       setTimeout(() => {
         reset();
-      }, 5500);
+      }, 59500);
     } catch (error) {
       console.log(error);
     }

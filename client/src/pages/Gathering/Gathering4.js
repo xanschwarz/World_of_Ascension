@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import { ADD_ARCANA } from "../../utils/mutations";
+import { ADD_150_ARCANA } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import ModalContainer from "../../components/Modal/ModalContainer";
@@ -44,7 +44,7 @@ const reset = () => {
 
 const Gathering = () => {
   const { time, start } = useTimer({
-    initialTime: 5,
+    initialTime: 3600,
     timerType: "DECREMENTAL",
     endTime: 0,
   });
@@ -57,11 +57,11 @@ const Gathering = () => {
     onCompleted: (data) => setArcana(data.me.arcana),
   });
 
-  const [addArcana, { error }] = useMutation(ADD_ARCANA);
+  const [addArcana, { error }] = useMutation(ADD_150_ARCANA);
   useEffect(() => {
     setArcana(data?.me.arcana || 0);
   }, [data]);
-  console.log(data);
+  // console.log(data);
   // Create handler for button
   const handleClick = async (event) => {
     const currentArcanaId = data.me._id;
@@ -74,27 +74,27 @@ const Gathering = () => {
             id: currentArcanaId,
           },
         });
-      }, 5500);
+      }, 3599500);
       addTimer();
       setTimeout(() => {
         removeTimer();
-      }, 6000);
+      }, 3600000);
       start();
       addGatherAnimation();
       setTimeout(() => {
         removeGatherAnimation();
-      }, 6000);
+      }, 3600000);
       addSunAnimation();
       setTimeout(() => {
         removeSunAnimation();
-      }, 6000);
+      }, 3600000);
       addButtonAnimation();
       setTimeout(() => {
         removeButtonAnimation();
-      }, 6000);
+      }, 3600000);
       setTimeout(() => {
         reset();
-      }, 5500);
+      }, 3599500);
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +114,7 @@ const Gathering = () => {
             <img
               id="arcanaImage"
               className="relative mx-auto -mt-52 h-40 w-40  rounded-full "
-              src="https://bn1303files.storage.live.com/y4m4aC5V7U5xCwrRaNBavZfxa6Mj8RxliXU5q4PpIGkjoaMWQzTjE98mbOHnOJLl3FhOJqhzI-DFN5iwbb_ALGRZHJ3lZlQ0xVDCb-EGFSbjZ9yH4osWC3No5dAO2iGFv3ACrhAZLli4VPR3cm1tk6K0UaqPlGOP9a3xSV1CSmFRhzBMqb7P-X6gFoFo6faXgrJmqEXRnk3qUNaqrb_sqMiwQ/SpellBook07_18.png?psid=1&width=152&height=152&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mvA9MRWdbrZMyBUd-U538DDuM3XjQ8nSL8oWPftYP8C-MQ0PeqIbvzVcfyFD01JI_1OyCvr59LohLb8-SoYioychT9n7sgWUxcNaludYbLreonqWSTxc0cUnv7Z1msybroxSk_KGZtzTJUkxgf4yP6AUfY-KIXl56t9DiFGbjsJdUfVLX9w9UKPDKSyseYOXsM1ewhwwfhbTZtBJUxWYcxg/SpellBook06_58.png?psid=1&width=140&height=140&cropMode=center"
               alt=""
             />
           </div>

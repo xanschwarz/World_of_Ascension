@@ -43,6 +43,10 @@ const typeDefs = gql`
     add125Scale(_id: ID!): User
     add1KScale(_id: ID!): User
     addArcana(_id: ID!): User
+    add2Arcana(_id: ID!): User
+    add10Arcana(_id: ID!): User
+    add75Arcana(_id: ID!): User
+    add150Arcana(_id: ID!): User
     addEssence(_id: ID!): User
     add5Essence(_id: ID!): User
     add25Essence(_id: ID!): User
