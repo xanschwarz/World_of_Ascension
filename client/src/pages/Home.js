@@ -67,8 +67,7 @@ const Home = () => {
             Welcome to the World of Ascension
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-            voluptatum cupiditate veritatis in accusamus quisquam.
+            Many perished in the war of mages and necromancers. In a desperate move to defeat the surge of necromantic spells, a coven of arcane mages linked themselves together to cast a spell so powerful, it hid their souls from Death himself. Your journey back begins in the realm of lowest existence, guarded by Pyro, the fire-breathing dragon.
           </p>
         </div>
 
