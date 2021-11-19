@@ -1,6 +1,5 @@
+// Make it so you can't spend more than you have.
 // Style disabled buttons to be more obvious. Maybe an actual call out that they already own that. Match styling of buttons elsewhere in app?
-// Need a button to generate currencies to spend.
-// Also make sure can't spend more than you have.
 
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -24,38 +23,86 @@ import {
 const ring = [
   {
     title: 'Tier 1 Ring',
-    src: 'https://bn1303files.storage.live.com/y4mW_O9K00YJzIbF-y8GckCr7qpnqZ6-TlPWhfXNDX1pWrpEcNkEI1jiMdTq1gTeg8mmZWFgmezdGVnV4tyJiMk-0ojBNSYOSx9_SyKxqbMWMqdHLezvj1DO0NlRMEjKFDjS2gHElyD3iQReigcPbeZuyz5qMSSfuklfVBnjYgHiFBEjiRWjDuQA4Yubs5AP0753zYdEBYaREhn08zQNXRt4Q/10_t.PNG?psid=1&width=175&height=175&cropMode=center',
+    src: 'https://bn1303files.storage.live.com/y4m68m2lDqbAMi51c3m4AwTN0MMunsgFsew3HzLrqYUtR5u1SZEijajd8gzhTuRmr4j44X3_Cr2zf8RyflGQznKa1oXDdUa50-7FsKMA35hxshMO3-iJyFFbHvbUTsTd4iEKAtf4PZ9MS-0ERKnQUOEa3pHFVRGg-9MCoGKzfXOQUQ_TlJB0oDtyCrJYg8pAkMslzx4SZT2qnred5R3NOfppg/32_t.PNG?psid=1&width=256&height=256&cropMode=center',
     tierCheck: 0,
     htmlId: 'buyRing1',
-    cost: [2, 0, 2],
-    costText: '2 Arcana and 2 Scales',
+    cost: [10, 0, 10],
+    costText: '10 Arcana and 10 Scales',
   },
   {
     title: 'Tier 2 Ring',
-    src: 'https://bn1303files.storage.live.com/y4m_-cwHk39j7JYzYc8ma1mUhLw3MboUUwGEh0FJ5MHf1WSVGXcIFOa3-asJFtom5QYtW6fLNlX1GOx4px22WCvtDwz6fc7I-_Aj2FrrVqBJNxF2PeESK7vfF-GB5rvfc3JZbnN4VM0eVcHQTX5nEHsNUBeVHts_4bwXSn0wG6_FE3WQgMxzBvlKtKDW11XQu5MScd1b2WViTmfvSi8QkeP8w/77_t.PNG?psid=1&width=256&height=256&cropMode=center',
+    src: 'https://bn1303files.storage.live.com/y4mMzDECsxHZBP0wiOS7HPGp7YyYXBaQF6dBNoc7751bkkUMotJsMYq1qgQBxwMkktSXx4LOSSeL5RRlumBDFiAExtbBjGTR2wn35xEinqhqYJ_t1aJyXLC3eiSHJEcbE6VcTRwEpY-nA4jDhc7Wz5vuzW7ME0cBlm2kYzokj0G2Wt1Oc7hbT6lz9umRbSDib4VZ1x7xCsGNwLoydG8Qw1HuA/96_t.PNG?psid=1&width=256&height=256&cropMode=center',
     tierCheck: 1,
     htmlId: 'buyRing2',
-    cost: [4, 2, 4],
-    costText: '4 Arcana, 4 Scales, and 2 Essence',
+    cost: [25, 25, 50],
+    costText: '25 Arcana, 50 Essence, and 25 Scales',
+  },
+  {
+    title: 'Tier 3 Ring',
+    src: 'https://bn1303files.storage.live.com/y4mieKir4R3eLS6_iXVpYcsLHKPZhtTPVL1atmBB3PMbNuU3BC_XwM-ah1DHLLw1A7so4oI0umfBio_iSHqhG0NPsjItcd3eADYtPDf7_E1zdDb089mqhriMjOxHcKdg8d3agjxkV1p0UPECSRQrAqoRU1OVUVzjjGuC60RlJUjWbafahwdGVWCoXCgSZhPzVW9MMJ8I8p8VRF0UG-JpQdrsw/10_t.PNG?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 2,
+    htmlId: 'buyRing3',
+    cost: [50, 125, 250],
+    costText: '50 Arcana, 125 Essence, and 250 Scales',
+  },
+  {
+    title: 'Tier 4 Ring',
+    src: 'https://bn1303files.storage.live.com/y4mYJZoZBNJ2gyh6opC0IPdXuM7OnysF19Uhaswbn8jU_MS-9IWJlyK0i2-tO-Ht8_FNlKY_HdW3aPO8tvLZANQB23ApR99mkS8pnXzffa1W76vRD6XTYkRXGQUDJx5-zIvBx48wXCJXe3p01K9jV6Jmb8qO1wlSg5jhekG1QWwmwfhi83l1PXYqFhFllbZeHcVrv4vS7ihojIjoFHOZe9GaA/rng_04_t.png?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 3,
+    htmlId: 'buyRing4',
+    cost: [75, 625, 1250],
+    costText: '75 Arcana, 625 Essence, and 1250 Scales',
+  },
+  {
+    title: 'Tier 5 Ring',
+    src: 'https://bn1303files.storage.live.com/y4mGjdLoPr4mrjMJclv_J4H4WorIZubUy2nEh8TJAdDwDwXRy-3Cuf49y05eJbkOR2rPmqbJOR0ChzxxlV2CHLa6FwxKl2QwhNGd1yYh1j2aqvgaCmdX2ti2UDVVBskakPd0UurJiIldVX4b3godXWwdWSwpUDToH-rD9q63VvOK4MGe7_TtEQsCJpKkJHmSAyznUQ5qWM2e-vv_gBu-BkFKA/77_t.PNG?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 4,
+    htmlId: 'buyRing5',
+    cost: [100, 5000, 10000],
+    costText: '100 Arcana, 5000 Essence, and 10000 Scales',
   },
 ];
 
 const cloak = [
   {
     title: 'Tier 1 Cloak',
-    src: 'https://bn1303files.storage.live.com/y4m7NkuUdV2Afgv2gXJGVW3tsjT7FD6nxuz1bkGTaL4nGcQvPai_QjMqd0vcBBOkGNT7A5CPR4Vne_NDaCrBI507nSQydtxVY_oDA12LMHkn5kq5irODHAqgz0JfEJkjwkebhU98LOgaP6tm0yQEXgUtS0YkXlpeOK7aeUPhJtBR1iOqxrjMh2hit7PbR5l1nxUNxckKP4qDgDPf9a2OOMOlA/cloaks_4.png?psid=1&width=175&height=175&cropMode=center',
+    src: 'https://bn1303files.storage.live.com/y4mtN_nlP9FODKv-xSWIXzwLO328QL8R5zIRXtb7soDcQ7EiT9IUQrca5zD8GwJkexiPfKF4lkIVys-AIJ9qMSooczU0xN_KYtsTRAjdn7tUQ--aBO2NJHd9gHnQCA_g5VZ297_jJlVA2jV9laTkL3cr8Wvj_5ewpDODqFHayvEZozxKbJUyrb3pa9-KXGu1btUFHWxKGFqOQD2FWbY7ryhtA/cloaks_7.png?psid=1&width=256&height=256&cropMode=center',
     tierCheck: 0,
     htmlId: 'buyCloak1',
-    cost: [4, 0, 4],
-    costText: '4 Arcana and 4 Scales',
+    cost: [10, 0, 10],
+    costText: '10 Arcana and 10 Scales',
   },
   {
     title: 'Tier 2 Cloak',
-    src: 'https://bn1303files.storage.live.com/y4mY-GHuM_KNjzq5qsL0LV1UVYgvUTwk7sbG7jhxhA0f0J-4wll8IekvlTxW8ws9Oh2K0QUg3_7CvtXC0MhPGI-ymCXB7oIYL-VjqKSeVO0e9GQO8euEDJIDKYPwItIZlXtR-YaeVXC9T5rJ99xxllTT6KCBBgslToQnRa_HJZGK7lc-n3SUUXePB-3NKkM7Rs3lUuGeA5kQWo27lGJA1_RpQ/cloaks_14.png?psid=1&width=256&height=256&cropMode=center',
+    src: 'https://bn1303files.storage.live.com/y4mCx-I1n9bWK9KJzL46EGUe2UXFGgigMssv9-L_w1raW3PPUVk5nJjy70nLJ7CnX_4zGUThNwc1BJNCyl_ZIDRXz8FatVMYAsKekEze4tSsIoHguhYMFuo0u9rBJnnrsZhC1SrkvzyyRt43fi__yvqMm3rC0F1qgzQGl2ytenoZR4YLLITuawNLTDI3Mc6GVcbs52Ee6aj1dMkaL-onT712g/cloaks_18.png?psid=1&width=256&height=256&cropMode=center',
     tierCheck: 1,
     htmlId: 'buyCloak2',
-    cost: [8, 4, 8],
-    costText: '8 Arcana, 8 Scales, and 4 Essence',
+    cost: [25, 25, 50],
+    costText: '25 Arcana, 50 Essence, and 25 Scales',
+  },
+  {
+    title: 'Tier 3 Cloak',
+    src: 'https://bn1303files.storage.live.com/y4mv8jJZ7YgBx1Ao2b_MHikQ9A2MCk3xLpCaQuapUn1jIeX2dCssTrRFB0Q90r1DXi8pBiKALQd3lE-yAofVkiPKVrJdz8_8KxCpTt8eGo2jZceR6U-irhqs9fa0MLkwT4v7UR36sO7QeQhUTHaW3us9ApOm3VZ70JCOSqZPy4JsO3J3RiSeWhkJoQJZM8ZPE3kBK6kCrTNwlSX8BzCcC6miw/cloaks_1.PNG?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 2,
+    htmlId: 'buyCloak3',
+    cost: [50, 125, 250],
+    costText: '50 Arcana, 125 Essence, and 250 Scales',
+  },
+  {
+    title: 'Tier 4 Cloak',
+    src: 'https://bn1303files.storage.live.com/y4mpAvzvyUa6pAF2uVv-_CIqhyHfxNjeSOkqjo9KPHIcrm8AffAQmxigNAMLH76hpWVr5wU0ZMDmbxoFVgOZW4hCvwO73EiZchbt4a2K9eP_8nKbJFRX2U4HGaaotZ496t7PhAC2K6DhrlL8lM32eLrSCFXuzsP05dUhtLBLFG3m6DM29LUm29SoZrUQ47A25YWFWB4OdRjIUL13OQL69iCsw/cloaks_5.png?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 3,
+    htmlId: 'buyCloak4',
+    cost: [75, 625, 1250],
+    costText: '75 Arcana, 625 Essence, and 1250 Scales',
+  },
+  {
+    title: 'Tier 5 Cloak',
+    src: 'https://bn1303files.storage.live.com/y4m8mQOvFuL-UruEVd2c83LkIsDujIj0FdkqzB4zA4GDR1DkmYGahxwPezwJJ7_eRgu6YIYa7L6fwKEG2i1Y2UP1FaXsnI36TvtfwB_R5taxvhM6DOjzRKhEBBUR2F1rmbrCpn-CHetFSOHDOlAKBs2c7GiY7kL_uYlc8BfP-_ZQbQ3YXRPDuevgkaaGusRDMLLL0CgANcMnc4waXFDgRI7AQ/cloaks_14.png?psid=1&width=256&height=256&cropMode=center',
+    tierCheck: 4,
+    htmlId: 'buyCloak5',
+    cost: [100, 5000, 10000],
+    costText: '100 Arcana, 5000 Essence, and 10000 Scales',
   },
 ];
 
@@ -78,42 +125,49 @@ const Store = () => {
   const [resetRingTier, { errResRing }] = useMutation(RESET_RING_TIER);
   const [resetCloakTier, { errResCloak }] = useMutation(RESET_CLOAK_TIER);
 
-  const addCurrency = async () => {
+  const addCurrency = async (totals) => {
     console.log(
       "You've added X Arcana, Essence, and Scale for testing purposes."
     );
 
     const currentId = data.me._id;
 
-    try {
-      const { data } = await addArcana({
-        variables: {
-          id: currentId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
+    for (let i = 0; i < totals[0]; i++) {
+      try {
+        const { data } = await addArcana({
+          variables: {
+            id: currentId,
+          },
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
 
-    try {
-      const { data } = await addEssence({
-        variables: {
-          id: currentId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
+    for (let i = 0; i < totals[1]; i++) {
+      try {
+        const { data } = await addEssence({
+          variables: {
+            id: currentId,
+          },
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
 
-    try {
-      const { data } = await addScale({
-        variables: {
-          id: currentId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
+    for (let i = 0; i < totals[2]; i++) {
+      try {
+        const { data } = await addScale({
+          variables: {
+            id: currentId,
+          },
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
+    window.location.reload();
   };
 
   const buyRing = async (purchaseCost) => {
@@ -121,7 +175,6 @@ const Store = () => {
 
     const currentId = data.me._id;
 
-    // for (let i = 0; i < purchaseCost[0]; i++) {
     try {
       const { data } = await subtractArcana({
         variables: {
@@ -132,9 +185,7 @@ const Store = () => {
     } catch (err) {
       console.error(err);
     }
-    // }
 
-    // for (let i = 0; i < purchaseCost[1]; i++) {
     try {
       const { data } = await subtractEssence({
         variables: {
@@ -145,9 +196,7 @@ const Store = () => {
     } catch (err) {
       console.error(err);
     }
-    // }
 
-    // for (let i = 0; i < purchaseCost[2]; i++) {
     try {
       const { data } = await subtractScale({
         variables: {
@@ -158,7 +207,6 @@ const Store = () => {
     } catch (err) {
       console.error(err);
     }
-    // }
 
     try {
       const { data } = await upgradeRingTier({
@@ -192,40 +240,37 @@ const Store = () => {
 
     const currentId = data.me._id;
 
-    for (let i = 0; i < purchaseCost[0]; i++) {
-      try {
-        const { data } = await subtractArcana({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
+    try {
+      const { data } = await subtractArcana({
+        variables: {
+          id: currentId,
+          amount: purchaseCost[0],
+        },
+      });
+    } catch (err) {
+      console.error(err);
     }
 
-    for (let i = 0; i < purchaseCost[1]; i++) {
-      try {
-        const { data } = await subtractEssence({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
+    try {
+      const { data } = await subtractEssence({
+        variables: {
+          id: currentId,
+          amount: purchaseCost[1],
+        },
+      });
+    } catch (err) {
+      console.error(err);
     }
 
-    for (let i = 0; i < purchaseCost[2]; i++) {
-      try {
-        const { data } = await subtractScale({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
+    try {
+      const { data } = await subtractScale({
+        variables: {
+          id: currentId,
+          amount: purchaseCost[2],
+        },
+      });
+    } catch (err) {
+      console.error(err);
     }
 
     try {
@@ -265,10 +310,42 @@ const Store = () => {
                 type="button"
                 id="instantCurrency"
                 className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency()}
+                onClick={() => addCurrency([10, 0, 10])}
               >
-                Add currency to user.
+                Add 10 Arcana, Scales
               </button>
+              <button
+                type="button"
+                id="instantCurrency"
+                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => addCurrency([25, 25, 50])}
+              >
+                25 Arcana, 50 Essence, and 25 Scales
+              </button>
+              {/* <button
+                type="button"
+                id="instantCurrency"
+                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => addCurrency([50, 125, 250])}
+              >
+                50 Arcana, 125 Essence, and 250 Scales
+              </button>
+              <button
+                type="button"
+                id="instantCurrency"
+                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => addCurrency([75, 625, 1250])}
+              >
+                75 Arcana, 625 Essence, and 1250 Scales
+              </button>
+              <button
+                type="button"
+                id="instantCurrency"
+                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => addCurrency([100, 5000, 10000])}
+              >
+                100 Arcana, 5000 Essence, and 10000 Scales
+              </button> */}
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
                   Buy Rings and Cloaks to Upgrade Your Gear
