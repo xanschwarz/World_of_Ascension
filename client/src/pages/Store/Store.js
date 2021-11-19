@@ -1,6 +1,3 @@
-// Make it so you can't spend more than you have.
-// Style disabled buttons to be more obvious. Maybe an actual call out that they already own that. Match styling of buttons elsewhere in app?
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
@@ -322,30 +319,6 @@ const Store = () => {
               >
                 25 Arcana, 50 Essence, and 25 Scales
               </button>
-              {/* <button
-                type="button"
-                id="instantCurrency"
-                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency([50, 125, 250])}
-              >
-                50 Arcana, 125 Essence, and 250 Scales
-              </button>
-              <button
-                type="button"
-                id="instantCurrency"
-                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency([75, 625, 1250])}
-              >
-                75 Arcana, 625 Essence, and 1250 Scales
-              </button>
-              <button
-                type="button"
-                id="instantCurrency"
-                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency([100, 5000, 10000])}
-              >
-                100 Arcana, 5000 Essence, and 10000 Scales
-              </button> */}
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
                   Buy Rings and Cloaks to Upgrade Your Gear
@@ -366,7 +339,19 @@ const Store = () => {
                       ></img>
                       <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                         <div className="font-medium text-lg leading-6 space-y-1">
-                          {storeData.ring === item.tierCheck ? (
+                          {storeData.ring > item.tierCheck ? (
+                            <button
+                              type="button"
+                              id={item.htmlId}
+                              className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                              disabled
+                            >
+                              You already own this ring!
+                            </button>
+                          ) : storeData.ring === item.tierCheck &&
+                            storeData.arcana > item.cost[0] &&
+                            storeData.essence > item.cost[1] &&
+                            storeData.scale > item.cost[2] ? (
                             <button
                               type="button"
                               id={item.htmlId}
@@ -377,15 +362,35 @@ const Store = () => {
                             >
                               Buy for {item.costText}.
                             </button>
+                          ) : storeData.ring === item.tierCheck &&
+                            (storeData.arcana < item.cost[0] ||
+                              storeData.essence < item.cost[1] ||
+                              storeData.scale < item.cost[2]) ? (
+                            <div>
+                              <button
+                                type="button"
+                                id={item.htmlId}
+                                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                                onClick={() => {
+                                  buyRing(item.cost);
+                                }}
+                              >
+                                You need to earn more before you can buy this
+                                upgrade.
+                              </button>
+                              <p className="text-white text-center font-small text-base m-4">
+                                Item cost: {item.costText}.
+                              </p>
+                            </div>
                           ) : (
                             <button
                               type="button"
                               id={item.htmlId}
                               className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
-                              onClick={() => buyRing(item.cost)}
                               disabled
                             >
-                              Buy for {item.costText}.
+                              You need to gear up before you can buy this
+                              upgrade.
                             </button>
                           )}
                           <button
@@ -416,7 +421,19 @@ const Store = () => {
                       ></img>
                       <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                         <div className="font-medium text-lg leading-6 space-y-1">
-                          {storeData.cloak === item.tierCheck ? (
+                          {storeData.cloak > item.tierCheck ? (
+                            <button
+                              type="button"
+                              id={item.htmlId}
+                              className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                              disabled
+                            >
+                              You already own this cloak!
+                            </button>
+                          ) : storeData.cloak === item.tierCheck &&
+                            storeData.arcana > item.cost[0] &&
+                            storeData.essence > item.cost[1] &&
+                            storeData.scale > item.cost[2] ? (
                             <button
                               type="button"
                               id={item.htmlId}
@@ -427,15 +444,35 @@ const Store = () => {
                             >
                               Buy for {item.costText}.
                             </button>
+                          ) : storeData.cloak === item.tierCheck &&
+                            (storeData.arcana > item.cost[0] ||
+                              storeData.essence > item.cost[1] ||
+                              storeData.scale > item.cost[2]) ? (
+                            <div>
+                              <button
+                                type="button"
+                                id={item.htmlId}
+                                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
+                                onClick={() => {
+                                  buyCloak(item.cost);
+                                }}
+                              >
+                                You need to earn more before you can buy this
+                                upgrade.
+                              </button>
+                              <p className="text-white text-center font-small text-base m-4">
+                                Item cost: {item.costText}.
+                              </p>
+                            </div>
                           ) : (
                             <button
                               type="button"
                               id={item.htmlId}
                               className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
-                              onClick={() => buyCloak(item.cost)}
                               disabled
                             >
-                              Buy for {item.costText}.
+                              You need to gear up before you can buy this
+                              upgrade.
                             </button>
                           )}
                           <button
