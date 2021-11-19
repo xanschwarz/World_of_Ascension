@@ -45,6 +45,38 @@ const resolvers = {
 
       return { token, user };
     },
+    upgradeRingTier: async (parent, { _id }) => {
+      const updatedRingTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`ring`]: 1 } },
+        { new: true }
+      );
+      return updatedRingTier;
+    },
+    resetRingTier: async (parent, { _id }) => {
+      const updatedRingTier = await User.findOneAndUpdate(
+        { _id },
+        { ring: 0 },
+        { new: true }
+      );
+      return updatedRingTier;
+    },
+    upgradeCloakTier: async (parent, { _id }) => {
+      const updatedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`cloak`]: 1 } },
+        { new: true }
+      );
+      return updatedCloakTier;
+    },
+    resetCloakTier: async (parent, { _id }) => {
+      const updatedCloakTier = await User.findOneAndUpdate(
+        { _id },
+        { cloak: 0 },
+        { new: true }
+      );
+      return updatedCloakTier;
+    },
     addArcana: async (parent, { _id }) => {
       const updatedArcana = await User.findOneAndUpdate(
         { _id },
@@ -66,14 +98,6 @@ const resolvers = {
         { _id },
         { $inc: { [`essence`]: 1 } },
         { new: true }
-      );
-      return updatedEssence;
-    },
-    subtractEssence: async (parent, { _id, amount }) => {
-      const updatedEssence = await User.findOneAndUpdate(
-        { _id },
-        { $inc: { [`essence`]: -amount } },
-              { new: true }
       );
       return updatedEssence;
     },
@@ -109,19 +133,19 @@ const resolvers = {
       );
       return updatedEssence;
     },
+    subtractEssence: async (parent, { _id, amount }) => {
+      const updatedEssence = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`essence`]: -amount } },
+        { new: true }
+      );
+      return updatedEssence;
+    },
     addScale: async (parent, { _id }) => {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`scale`]: 1 } },
         { new: true }
-      );
-      return updatedScale;
-    },
-    subtractScale: async (parent, { _id, amount }) => {
-      const updatedScale = await User.findOneAndUpdate(
-        { _id },
-        { $inc: { [`scale`]: -amount } },
-              { new: true }
       );
       return updatedScale;
     },
@@ -133,38 +157,6 @@ const resolvers = {
       );
       return updatedScale;
     },
-    upgradeRingTier: async (parent, { _id }) => {
-      const updatedRingTier = await User.findOneAndUpdate(
-        { _id },
-        { $inc: { [`ring`]: 1 } },
-        { new: true }
-      );
-      return updatedRingTier;
-    },
-    resetRingTier: async (parent, { _id }) => {
-      const updatedRingTier = await User.findOneAndUpdate(
-        { _id },
-        { ring: 0 },
-        { new: true }
-      );
-      return updatedRingTier;
-    },
-    upgradeCloakTier: async (parent, { _id }) => {
-      const updatedCloakTier = await User.findOneAndUpdate(
-        { _id },
-        { $inc: { [`cloak`]: 1 } },
-        { new: true }
-      );
-      return updatedCloakTier;
-    },
-    resetCloakTier: async (parent, { _id }) => {
-      const updatedCloakTier = await User.findOneAndUpdate(
-        { _id },
-        { cloak: 0 },
-        { new: true }
-      );
-      return updatedCloakTier;
-          },
     add25Scale: async (parent, { _id }) => {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
@@ -185,6 +177,14 @@ const resolvers = {
       const updatedScale = await User.findOneAndUpdate(
         { _id },
         { $inc: { [`scale`]: 1000 } },
+        { new: true }
+      );
+      return updatedScale;
+    },
+    subtractScale: async (parent, { _id, amount }) => {
+      const updatedScale = await User.findOneAndUpdate(
+        { _id },
+        { $inc: { [`scale`]: -amount } },
         { new: true }
       );
       return updatedScale;
