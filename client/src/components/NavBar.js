@@ -80,7 +80,7 @@ export default function NavBar() {
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
+                      src="https://bn1303files.storage.live.com/y4pFy553ZS-fioHTRN1ksczDlCx1-3sOn_BGEAd8UuCW-o1Ak-aoQ6yH_YofvaswTxbqTacdkSd32zbMXA3-De_aicbwym5esw1riAdJix2CXeJ2eXNrfdt9WjiY4vJ9lGaM0Xz-GB0ffsgfkr2E-uP1NhyyCkZpPq7jB0gcI1oXExlhEHRSSHxBbQGzFFU4wzkwdFACIg2vyfyD5Gn0SmcM1-dIccMwDMGqYLiN4Xm3T4/Tex_skill_23.PNG?psid=1&width=172&height=172&cropMode=center"
                       alt="Workflow"
                     />
                   </div>
@@ -130,8 +130,8 @@ export default function NavBar() {
               <div className="flex-1">
                 <div className="bg-indigo-700 py-4 flex items-center justify-center">
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
+                    className="h-10 w-auto"
+                    src="https://bn1303files.storage.live.com/y4pFy553ZS-fioHTRN1ksczDlCx1-3sOn_BGEAd8UuCW-o1Ak-aoQ6yH_YofvaswTxbqTacdkSd32zbMXA3-De_aicbwym5esw1riAdJix2CXeJ2eXNrfdt9WjiY4vJ9lGaM0Xz-GB0ffsgfkr2E-uP1NhyyCkZpPq7jB0gcI1oXExlhEHRSSHxBbQGzFFU4wzkwdFACIg2vyfyD5Gn0SmcM1-dIccMwDMGqYLiN4Xm3T4/Tex_skill_23.PNG?psid=1&width=172&height=172&cropMode=center"
                     alt="Workflow"
                   />
                 </div>
@@ -170,8 +170,8 @@ export default function NavBar() {
             <div className="bg-purple-900 py-2 px-4 flex max-w-screen items-center justify-between sm:px-6 lg:px-8">
               <div>
                 <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
+                  className="h-10 w-auto"
+                  src="https://bn1303files.storage.live.com/y4pFy553ZS-fioHTRN1ksczDlCx1-3sOn_BGEAd8UuCW-o1Ak-aoQ6yH_YofvaswTxbqTacdkSd32zbMXA3-De_aicbwym5esw1riAdJix2CXeJ2eXNrfdt9WjiY4vJ9lGaM0Xz-GB0ffsgfkr2E-uP1NhyyCkZpPq7jB0gcI1oXExlhEHRSSHxBbQGzFFU4wzkwdFACIg2vyfyD5Gn0SmcM1-dIccMwDMGqYLiN4Xm3T4/Tex_skill_23.PNG?psid=1&width=172&height=172&cropMode=center"
                   alt="Workflow"
                 />
               </div>
