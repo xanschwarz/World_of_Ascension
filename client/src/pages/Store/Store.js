@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import ModalContainer from '../../components/Modal/ModalContainer';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import {
-  ADD_ARCANA,
-  ADD_ESSENCE,
-  ADD_SCALE,
   SUBTRACT_ARCANA,
   SUBTRACT_ESSENCE,
   SUBTRACT_SCALE,
   UPGRADE_RING_TIER,
-  RESET_RING_TIER,
   UPGRADE_CLOAK_TIER,
-  RESET_CLOAK_TIER,
 } from '../../utils/mutations';
 
 const gear = [
@@ -140,59 +135,9 @@ const Store = () => {
 
   const [upgradeRingTier, { errUpRing }] = useMutation(UPGRADE_RING_TIER);
   const [upgradeCloakTier, { errUpCloak }] = useMutation(UPGRADE_CLOAK_TIER);
-  const [addArcana, { errAddArcana }] = useMutation(ADD_ARCANA);
-  const [addEssence, { errAddEssence }] = useMutation(ADD_ESSENCE);
-  const [addScale, { errAddScale }] = useMutation(ADD_SCALE);
   const [subtractArcana, { errSubArcana }] = useMutation(SUBTRACT_ARCANA);
   const [subtractEssence, { errSubEssence }] = useMutation(SUBTRACT_ESSENCE);
   const [subtractScale, { errSubScale }] = useMutation(SUBTRACT_SCALE);
-  const [resetRingTier, { errResRing }] = useMutation(RESET_RING_TIER);
-  const [resetCloakTier, { errResCloak }] = useMutation(RESET_CLOAK_TIER);
-
-  const addCurrency = async (totals) => {
-    console.log(
-      "You've added X Arcana, Essence, and Scale for testing purposes."
-    );
-
-    const currentId = data.me._id;
-
-    for (let i = 0; i < totals[0]; i++) {
-      try {
-        const { data } = await addArcana({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    for (let i = 0; i < totals[1]; i++) {
-      try {
-        const { data } = await addEssence({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    for (let i = 0; i < totals[2]; i++) {
-      try {
-        const { data } = await addScale({
-          variables: {
-            id: currentId,
-          },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    window.location.reload();
-  };
 
   const buyRing = async (purchaseCost) => {
     console.log('You bought a ring!');
@@ -224,21 +169,6 @@ const Store = () => {
 
     try {
       const { data } = await upgradeRingTier({
-        variables: {
-          id: currentId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-    window.location.reload();
-  };
-
-  const resetRing = async () => {
-    const currentId = data.me._id;
-
-    try {
-      const { data } = await resetRingTier({
         variables: {
           id: currentId,
         },
@@ -289,43 +219,12 @@ const Store = () => {
     window.location.reload();
   };
 
-  const resetCloak = async () => {
-    const currentId = data.me._id;
-
-    try {
-      const { data } = await resetCloakTier({
-        variables: {
-          id: currentId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-    window.location.reload();
-  };
-
   return (
     <div>
       {Auth.loggedIn() ? (
         <div className="bg-gray-900">
           <div className="mx-auto px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-12">
             <div className="space-y-12">
-              <button
-                type="button"
-                id="instantCurrency"
-                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency([10, 0, 10])}
-              >
-                Add 10 Arcana, Scales
-              </button>
-              <button
-                type="button"
-                id="instantCurrency"
-                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addCurrency([25, 25, 50])}
-              >
-                25 Arcana, 50 Essence, and 25 Scales
-              </button>
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
                   Buy Rings and Cloaks to Upgrade Your Gear
@@ -404,14 +303,6 @@ const Store = () => {
                                   upgrade.
                                 </button>
                               )}
-                              <button
-                                type="button"
-                                id="resetRing"
-                                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onClick={() => resetRing()}
-                              >
-                                Reset ring
-                              </button>
                             </div>
                           </div>
                         </div>
@@ -488,14 +379,6 @@ const Store = () => {
                                   upgrade.
                                 </button>
                               )}
-                              <button
-                                type="button"
-                                id="resetCloak"
-                                className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onClick={() => resetCloak()}
-                              >
-                                Reset cloak
-                              </button>
                             </div>
                           </div>
                         </div>

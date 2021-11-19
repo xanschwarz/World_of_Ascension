@@ -38,9 +38,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     upgradeRingTier(_id: ID!): User
-    resetRingTier(_id: ID!): User
     upgradeCloakTier(_id: ID!): User
-    resetCloakTier(_id: ID!): User
     addScale(_id: ID!): User
     add5Scale(_id: ID!): User
     add25Scale(_id: ID!): User
