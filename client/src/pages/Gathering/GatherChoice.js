@@ -35,7 +35,7 @@ const enemies = [
       />
     ),
     imageUrl:
-      "https://bn1303files.storage.live.com/y4paIQWZtNeC6XpcQQv35fJN5WpCdxwrueLbfNZ7llbPof2kxxaAONdLRGsyQqLrdD0SxfnPvnGMtolDvAtrTiPsfhoiSV5fma8BfBCAMwLa7fTlTTX_R_JDaj-B_BZBRFk1FM8NC-KnaMItroDtLkrpYogxFSzFssAQvjwGvWeV2pChoCpBLxEl5NYPYhJqLR9SXu7FS1u_aJPTVk4hkkrnUp1E9_-zv3duW-3Uf0RLCM/SpellBook06_103.png?psid=1&width=172&height=172&cropMode=center",
+      "https://bn1303files.storage.live.com/y4mi-qA6kfZAs6o9xBqmYSwI1HqaYYYM-A1CeqiHgzcBkn_V9g-AzMQmkRN64M9pkLahLxIQ7CEy3ZyMCEDjxCsM8tCZR7Nc1NXa4GQUnQSdrwAdHhQbd4kgb8kdl5UtSxsqiPqZUCT9-y_cjQkJ4KQ4gE6HnOj7FK34a7vSENdrMVKsb-2JeOC_8BuSUnzQAAOV9OaU2F3lZNXg4hatQxkkg/SpellBook06_103.png?psid=1&width=174&height=174&cropMode=center",
   },
   {
     name: "15 Min Gather",

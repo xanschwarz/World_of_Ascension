@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 
-import Auth from '../utils/auth';
-import Profile from './Profile';
+import Auth from "../utils/auth";
+import Profile from "./Profile";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -45,14 +45,14 @@ const Signup = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-purple-900.svg"
-            alt="Workflow"
+            src="https://tailwindui.com/img/logos/ascension-mark-purple-900.svg"
+            alt="ascension"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
+            Or{" "}
             <a
               href="#"
               className="font-medium text-purple-900 hover:text-indigo-500"
@@ -66,7 +66,7 @@ const Signup = () => {
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             {data ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
@@ -159,7 +159,7 @@ const Signup = () => {
 
                 <div>
                   <button
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >

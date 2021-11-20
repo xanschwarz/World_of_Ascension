@@ -107,13 +107,13 @@ const Gathering = () => {
           <div className="relative mb-20">
             <img
               id="sunImage"
-              className="relative mx-auto mt-5 h-41 w-41 rounded-full"
-              src="https://bn1303files.storage.live.com/y4pq8X5LqtFHD10_eJH_4a65nOmqkuHePgxfFTF0672ugKjJXu3Xu7urMeVh4SZtUXV3eb089mEeBSm2MuSvYZSN5dsRy4f77JCdP_lz8TWKd839qvlfNi8KDoDW7T_ZryaSeBK-26erqtUlb5UuM9G77sWFJSmw4KznmmIEpICoyrWkkvHaqkzLvsErH2QiNKaZYR1Y7WZ6aN24jWxEZoUScYxyPwfxao1t6fdEUfm7p4/b_39.PNG?psid=1&width=256&height=256&cropMode=center"
+              className="relative mx-auto mt-5 h-60 w-60 rounded-full"
+              src="https://bn1303files.storage.live.com/y4mdZi1FKthlGPz9KM9l2UctSec_CBSfrK1DkaJaWlKzKIx6G1CfhfMH_Mv10yQuC1B7ysqapxacM9uUz7fQQG3zy79glSJFIl455UpJpfmMLrtBPvkoaGcBFcoRIoVXDeGQYLvc-s_p2tD3fmMnZe70lCHnzj_xwFXcyCjuiFRvYQJ6dYDzYi6LialEKx9P4o2zHj5zxQmwf5XmQRgVi28FQ/b_39.PNG?psid=1&width=174&height=174&cropMode=center"
               alt="Arcana"
             />
             <img
               id="arcanaImage"
-              className="relative mx-auto -mt-52 h-40 w-40  rounded-full "
+              className="relative mx-auto -mt-52 h-44 w-44  rounded-full "
               src="https://bn1303files.storage.live.com/y4m4aC5V7U5xCwrRaNBavZfxa6Mj8RxliXU5q4PpIGkjoaMWQzTjE98mbOHnOJLl3FhOJqhzI-DFN5iwbb_ALGRZHJ3lZlQ0xVDCb-EGFSbjZ9yH4osWC3No5dAO2iGFv3ACrhAZLli4VPR3cm1tk6K0UaqPlGOP9a3xSV1CSmFRhzBMqb7P-X6gFoFo6faXgrJmqEXRnk3qUNaqrb_sqMiwQ/SpellBook07_18.png?psid=1&width=152&height=152&cropMode=center"
               alt=""
             />

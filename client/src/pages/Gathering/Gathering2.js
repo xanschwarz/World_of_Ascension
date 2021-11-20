@@ -110,13 +110,13 @@ const Gathering = () => {
             <img
               id="sunImage"
               className="relative mx-auto mt-5 h-64 w-64 rounded-full"
-              src="https://bn1303files.storage.live.com/y4pEOyVrHlH-MXFc7qrW57sIS7ndx7Mr7Xba_3zzriiHfB34jjSyWeS3-sW3ko9xQnW84h_f9f5vahBIgByWr14SHY7eGF2PPvLPQB2uikiNOpOrzKy1MTTnIrvy0Z2k5n0RgOgbVexGrGeLYIa7_M4WuhE0-uZ3ZaFPCw-VvsM5706mgsZvV1zVKZ05HiNXJ-xogNKCOTRgGtXyXLTCcLVRwbLxj_qCyVUTUkCovis8wU/SpellBook06_10.png?psid=1&width=172&height=172&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mcahFzKSTtMkd3-_wBOKjblncCylU2gyD00Yqs4JEAiZ_p6ABNIqb1vxTvtWwoboFY7RpuEG52GhqxdvIfLnKP05edra9T9R2LxG7uJQBUlFuHN5IEitqVWk-RqDlxfzNYnElmqBAZm5ZgESXcSzoPfrC6hVuQIhU4SNEaJydJ1pacLFGJQJtzK9ApmfR4ilRlIC7wXYGL5KXuQmxMdYoog/SpellBook06_10.png?psid=1&width=256&height=256&cropMode=center"
               alt="Arcana"
             />
             <img
               id="arcanaImage"
               className="relative mx-auto -mt-52 h-40 w-40  rounded-full "
-              src="https://bn1303files.storage.live.com/y4paIQWZtNeC6XpcQQv35fJN5WpCdxwrueLbfNZ7llbPof2kxxaAONdLRGsyQqLrdD0SxfnPvnGMtolDvAtrTiPsfhoiSV5fma8BfBCAMwLa7fTlTTX_R_JDaj-B_BZBRFk1FM8NC-KnaMItroDtLkrpYogxFSzFssAQvjwGvWeV2pChoCpBLxEl5NYPYhJqLR9SXu7FS1u_aJPTVk4hkkrnUp1E9_-zv3duW-3Uf0RLCM/SpellBook06_103.png?psid=1&width=172&height=172&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mi-qA6kfZAs6o9xBqmYSwI1HqaYYYM-A1CeqiHgzcBkn_V9g-AzMQmkRN64M9pkLahLxIQ7CEy3ZyMCEDjxCsM8tCZR7Nc1NXa4GQUnQSdrwAdHhQbd4kgb8kdl5UtSxsqiPqZUCT9-y_cjQkJ4KQ4gE6HnOj7FK34a7vSENdrMVKsb-2JeOC_8BuSUnzQAAOV9OaU2F3lZNXg4hatQxkkg/SpellBook06_103.png?psid=1&width=174&height=174&cropMode=center"
               alt=""
             />
           </div>
