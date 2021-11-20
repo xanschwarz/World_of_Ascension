@@ -102,4 +102,4 @@ Anthony Zamora: https://github.com/xBOBOYx
 
 ## <ins>Questions</ins>
 
-Contact BOBOY at boboy.zamora@gmail.com. Github link: https://github.com/xBOBOYx
+Contact me at xanschwarz@gmail.com. Github link: https://github.com/xanschwarz
