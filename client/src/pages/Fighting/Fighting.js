@@ -67,9 +67,9 @@ const enemies = [
   },
 
   {
-    name: "Demio's Harpie",
+    name: "Demio's Harpy",
     pathName: "MinionBattle3",
-    link: "Battle Demio's Harpie",
+    link: "Battle Demio's Harpy",
     drop: "25",
     icon: (
       <ChipIcon

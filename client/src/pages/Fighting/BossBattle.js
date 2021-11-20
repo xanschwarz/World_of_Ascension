@@ -199,7 +199,7 @@ const BossBattle = () => {
             <div className="space-y-12">
               <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                  Battle Pyro's Hatchling
+                Battle {enemies[0].name}
                 </h2>
                 <p className="text-xl text-gray-300"></p>
               </div>
