@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // import Auth from "../utils/auth";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_USER } from "../utils/queries";
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME, QUERY_USER } from '../utils/queries';
+import Auth from '../utils/auth';
 
 import {
   BeakerIcon,
@@ -10,9 +11,8 @@ import {
   ChipIcon,
   LightningBoltIcon,
   SparklesIcon,
-} from "@heroicons/react/solid";
+} from '@heroicons/react/solid';
 // import { Menu, Transition } from "@headlessui/react";
-
 
 export default function StatsBar() {
   const { username: userParam } = useParams();
@@ -35,49 +35,55 @@ export default function StatsBar() {
   // console.log(data);
   return (
     <div className="lg:flex lg:items-center lg:justify-between bg-gray-800">
-      <div className="flex-1 min-w-0">
-        <h2 className="mt-2 text-2xl font-bold leading-7 text-white sm:text-3xl sm:truncate">
-          {statBarData.username}
-        </h2>
-        <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
-          <div className="mt-2 flex items-center text-sm text-gray-300">
-            <BeakerIcon
-              className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
-              aria-hidden="true"
-            />
-            Arcana: {arcana}
+      {Auth.loggedIn() ? (
+        <div>
+          <div className="flex-1 min-w-0">
+            <h2 className="mt-2 text-2xl font-bold leading-7 text-white sm:text-3xl sm:truncate">
+              {statBarData.username}
+            </h2>
+            <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
+              <div className="mt-2 flex items-center text-sm text-gray-300">
+                <BeakerIcon
+                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                Arcana: {arcana}
+              </div>
+              <div className="mt-2 flex items-center text-sm text-gray-300">
+                <SparklesIcon
+                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                Essence: {statBarData.essence}
+              </div>
+              <div className="mt-2 flex items-center text-sm text-gray-300">
+                <ChipIcon
+                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                Scale: {statBarData.scale}
+              </div>
+              <div className="mt-2 flex items-center text-sm text-gray-300">
+                <HeartIcon
+                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                Health: {20 * Math.pow(5, statBarData.cloak)}
+              </div>
+              <div className="mt-2 flex items-center text-sm text-gray-300">
+                <LightningBoltIcon
+                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                Power: {20 * (Math.pow(5, statBarData.ring) / 5)}
+              </div>
+            </div>
           </div>
-          <div className="mt-2 flex items-center text-sm text-gray-300">
-            <SparklesIcon
-              className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
-              aria-hidden="true"
-            />
-            Essence: {statBarData.essence}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-300">
-            <ChipIcon
-              className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
-              aria-hidden="true"
-            />
-            Scale: {statBarData.scale}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-300">
-            <HeartIcon
-              className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
-              aria-hidden="true"
-            />
-            Health: {20 * Math.pow(5, statBarData.cloak)}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-300">
-            <LightningBoltIcon
-              className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-500"
-              aria-hidden="true"
-            />
-            Power: {20 * (Math.pow(5, statBarData.ring) / 5)}
-          </div>
+          <div className="mt-5 flex lg:mt-0 lg:ml-4"></div>
         </div>
-      </div>
-      <div className="mt-5 flex lg:mt-0 lg:ml-4"></div>
+      ) : (
+        <div style={{ height: '30px' }}></div>
+      )}
     </div>
   );
 }
