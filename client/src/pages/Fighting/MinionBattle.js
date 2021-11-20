@@ -7,7 +7,7 @@ import Auth from '../../utils/auth';
 
 //sentences listed after the round, stating a win, loss or draw
 const successSentences = [
-  'Your Spell has Landed, and it was Supper Effective!',
+  'Your Spell has Landed, and it was Super Effective!',
   'A Remarkable shot, The minion has been hurt greatly',
 ];
 const failureSentences = [
