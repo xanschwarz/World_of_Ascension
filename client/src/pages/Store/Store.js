@@ -262,6 +262,9 @@ const Store = () => {
                                   id={item.htmlId}
                                   className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                   onClick={() => {
+                                    document.getElementById(
+                                      item.htmlId
+                                    ).disabled = true;
                                     buyRing(item.cost);
                                   }}
                                 >
@@ -276,9 +279,7 @@ const Store = () => {
                                     type="button"
                                     id={item.htmlId}
                                     className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
-                                    onClick={() => {
-                                      buyRing(item.cost);
-                                    }}
+                                    disabled
                                   >
                                     You need to earn more before you can buy
                                     this upgrade.
@@ -338,6 +339,9 @@ const Store = () => {
                                   id={item.htmlId}
                                   className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                   onClick={() => {
+                                    document.getElementById(
+                                      item.htmlId
+                                    ).disabled = true;
                                     buyCloak(item.cost);
                                   }}
                                 >
@@ -352,9 +356,7 @@ const Store = () => {
                                     type="button"
                                     id={item.htmlId}
                                     className="inline-flex items-center m-2 px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-not-allowed"
-                                    onClick={() => {
-                                      buyCloak(item.cost);
-                                    }}
+                                    disabled
                                   >
                                     You need to earn more before you can buy
                                     this upgrade.
