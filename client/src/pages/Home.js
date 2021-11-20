@@ -5,7 +5,6 @@ import React from "react";
 // import StatsBar from '../components/StatsBar.js';
 // import GameContainer from '../components/GameContainer.js';
 
-
 import {
   HandIcon,
   SparklesIcon,
@@ -25,7 +24,7 @@ const features = [
   {
     name: "Battle",
     description:
-      "The Acscension realm is guarded by Pyro, a fire breathing dragon, and his hatchlings. Slay Pyro's hatchlings to obtain dragon scales and prove yourself to those you meet.",
+      "The Acscension realm is guarded by Master,the powerful, and his servants. Each tier is guarded by minions and his servants, defeat them in order to recieve materials.",
     icon: FireIcon,
   },
   {
@@ -52,13 +51,12 @@ const currencies = [
   {
     name: "Scales",
     description:
-      "The creatures of the Ascension realm grow scales as they mature. Slay dragon whelps to obtain scales and prove yourself to those you meet.",
+      "The creatures of the Ascension drop scales. Slay minions, in order to obtain their scales.",
     icon: ChipIcon,
   },
 ];
 
 const Home = () => {
- 
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +65,12 @@ const Home = () => {
             Welcome to the World of Ascension
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Many perished in the war of mages and necromancers. In a desperate move to defeat the surge of necromantic spells, a coven of arcane mages linked themselves together to cast a spell so powerful, it hid their souls from Death himself. Your journey back begins in the realm of lowest existence, guarded by Pyro, the fire-breathing dragon.
+            Many perished in the war of mages and necromancers. In a desperate
+            move to defeat the surge of necromantic spells, a coven of arcane
+            mages linked themselves together to cast a spell so powerful, it hid
+            their souls from Death himself. Your journey back begins in the
+            realm of lowest existence, guarded by Pyro, the fire-breathing
+            dragon.
           </p>
         </div>
 
@@ -82,7 +85,7 @@ const Home = () => {
                 <div key={feature.name}>
                   <dt>
                     <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                      <feature.icon className="h-6 w-6" aria-hidden="true" /> 
+                      <feature.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
                     <p className="mt-5 text-lg leading-6 font-medium text-gray-900">
                       {feature.name}
