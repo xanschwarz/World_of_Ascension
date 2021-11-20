@@ -38,14 +38,17 @@ const mageSchema = new Schema({
   //boss drop
   essence: {
     type: Number,
+    default: 0,
   },
   //gathering drop
   arcana: {
     type: Number,
+    default: 0,
   },
   //minion drop
   scale: {
     type: Number,
+    default: 0,
   },
 });
 

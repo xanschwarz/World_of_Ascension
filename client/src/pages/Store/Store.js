@@ -130,7 +130,6 @@ const Store = () => {
   const { data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  console.log(data);
   const storeData = data?.me || {};
 
   const [upgradeRingTier, { errUpRing }] = useMutation(UPGRADE_RING_TIER);
@@ -140,8 +139,6 @@ const Store = () => {
   const [subtractScale, { errSubScale }] = useMutation(SUBTRACT_SCALE);
 
   const buyRing = async (purchaseCost) => {
-    console.log('You bought a ring!');
-
     const currentId = data.me._id;
 
     try {
@@ -180,8 +177,6 @@ const Store = () => {
   };
 
   const buyCloak = async (purchaseCost) => {
-    console.log('You bought a cloak!');
-
     const currentId = data.me._id;
 
     try {
@@ -259,9 +254,9 @@ const Store = () => {
                                   You already own this ring!
                                 </button>
                               ) : storeData.ring === item.tierCheck &&
-                                storeData.arcana > item.cost[0] &&
-                                storeData.essence > item.cost[1] &&
-                                storeData.scale > item.cost[2] ? (
+                                storeData.arcana >= item.cost[0] &&
+                                storeData.essence >= item.cost[1] &&
+                                storeData.scale >= item.cost[2] ? (
                                 <button
                                   type="button"
                                   id={item.htmlId}
@@ -335,9 +330,9 @@ const Store = () => {
                                   You already own this cloak!
                                 </button>
                               ) : storeData.cloak === item.tierCheck &&
-                                storeData.arcana > item.cost[0] &&
-                                storeData.essence > item.cost[1] &&
-                                storeData.scale > item.cost[2] ? (
+                                storeData.arcana >= item.cost[0] &&
+                                storeData.essence >= item.cost[1] &&
+                                storeData.scale >= item.cost[2] ? (
                                 <button
                                   type="button"
                                   id={item.htmlId}
