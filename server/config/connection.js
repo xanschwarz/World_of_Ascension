@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/ascensionGame',
+  process.env.MONGODB_URI || 'mongodb://localhost/ascension',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

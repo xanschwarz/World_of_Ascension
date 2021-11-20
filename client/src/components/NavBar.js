@@ -170,7 +170,7 @@ export default function NavBar() {
               <div>
                 <img
                   className="h-10 w-auto"
-                  src="https://bn1303files.storage.live.com/y4m8WRE90FZ07dbOsWZJIeL3I73wOiFju8_IMTh6UKHjD8GwvlNmPV9PaJOVYF0vL08PGfC11K9K6N9laytlccuc3ELj_j6Iwp4FMrasPXOfMryw7L-GrFrjRZekbX0OynpLa95-UDtYbRZMQ_uY73gJKWIMY7Xsi4EI9Uf_mWB_3wbQDFK2ltlVsJyc4XWuNvj6AxH5jgA0J8FzwvIFIaqYw/Male_18_R.png?psid=1&width=300&height=300&cropMode=center"
+                  src="https://bn1303files.storage.live.com/y4m4jv38eK292qFPGffwG1rjKj8Uk_VYNMJDsIfAtxrQ-JwKchlmirZO0s1bB3XSIlPEshYQbZwXDK7WypWzhOEtSskV--YsFce0XQDKPv5xwe2mEL8Aggoh7AMcyFhPHfXYOvdtVjDIHFQjK35M0G62X_2uDKpV9TwjftFR4uUIsyK_ejgUAzX73thWIdAGz7RHsTkdoNMHKaoy4Ke8ccM3A/Tex_skill_23.PNG?psid=1&width=174&height=174&cropMode=center"
                   alt="ascension"
                 />
               </div>
