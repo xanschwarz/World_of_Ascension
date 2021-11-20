@@ -108,7 +108,7 @@ const Gathering = () => {
             <img
               id="sunImage"
               className="relative mx-auto mt-5 h-41 w-41 rounded-full"
-              src="https://bn1303files.storage.live.com/y4p681J9psmDCIY6grBlVXZww5LsFzrtSNkoHi7xVb46j_TCsQscIetX43a5KNnArEUQk-UYDzwJU5rm1QGHYHibmMEk2HExLmOzXdoEajSDuKHu6-icTEZqP7U7hdrAaytq9w40XGNkRlOt8PBgsyTxWNvsHiOCEbeY2XoFtHLH073KJTFmQmhygASyv6KPHkOrKbz9ucTbetOwbBzitKjDUgOvvg0qK5Wg6NJXARxuiU/SpellBook06_75.png?psid=1&width=256&height=256&cropMode=center"
+              src="https://bn1303files.storage.live.com/y4mbozS6MJVK1F4y1ey3PHzRdsg_xsdPBaWhe2puNbxECfjauiPRn5FUnvCo6Vq1k6k4M6Eq6gOsVDD9Qke1GGK2ZrKHgZj7B-XNSDvyAcGI_NhVgjyexaPLFJzCYvMLEmXVkdfQyKEX9QJHu8FggJTJBcDcNVJBBGFLq00IinBfVAUB6LgSLSV0ZtPfUbepvHyR9pZnd6DDObz_Vr4E3ZMHA/SpellBook06_75.png?psid=1&width=256&height=256&cropMode=center"
               alt="Arcana"
             />
             <img

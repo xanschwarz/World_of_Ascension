@@ -234,44 +234,44 @@ const MinionBattle = () => {
                     <p className="text-white">{result}</p>
                   </div>
                   <div className="flex justify-center mx-auto">
-                  <div className="inline-flex mx-auto">
-                    <div>
-                      <progress
-                        className="h-10 "
-                        id="userHealthBar"
-                        value={userHealth}
-                        max={healthCoefficient}
-                      ></progress>
-                      <p className="-mt-9 mb-5 text-white flex justify-center">
-                        Health: {userHealth}
-                      </p>
-                      <img
-                        id="userIcon"
-                        className=" mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
-                        src="https://bn1303files.storage.live.com/y4mJyU2GJmDnv5nmFVwhxScRBNDB9WJgZMMC3Wbqi8Fi7JZfbkiOFJRi1aZZTRaTOf4EnmkFfnJjBDytJRwv9NW5fAwJxJtKzne9Dm3tfzpFnUuS0xRmGG3NCmUcvuQeJt--_iYvli6aCx6TaF_jhJIxLgtCRNrH92uWPSqtpnHxG2UY9Vgpxn6P1FEhFqLE8XU0tBcqlZXnHQs4Wa7E0Tj2A/Male_18_R.png?psid=1&width=188&height=188&cropMode=center"
-                        alt=""
-                      />
-                    </div>
-                    <a className="text-white align-center px-4 mt-2">VS</a>
-                    <div>
-                      <progress
-                        className="h-10 "
-                        id="minionHealthBar"
-                        value="1250"
-                        max="1250"
-                      ></progress>
-                      <p className="-mt-9 mb-5 text-white flex justify-center">
-                        Health: {minionHealth}
-                      </p>
+                    <div className="inline-flex mx-auto">
+                      <div>
+                        <progress
+                          className="h-10 "
+                          id="userHealthBar"
+                          value={userHealth}
+                          max={healthCoefficient}
+                        ></progress>
+                        <p className="-mt-9 mb-5 text-white flex justify-center">
+                          Health: {userHealth}
+                        </p>
+                        <img
+                          id="userIcon"
+                          className=" mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
+                          src="https://bn1303files.storage.live.com/y4mDF-2j2jrwggrF0o66l6ycfkUKqndee3G0p4I1ubnKjVtdmhIPyOsv_HqMEn8BmKFZogtphp3vyWTfjWp2GolArSLHwJELByD3ALz836oczX6KaU1jKonQMEzWb_b_-OCfug6zKEHkFj9zaeEZCZ5cn1LAAgNY2_MEsc4hVR91rtvusrtpthFhFblqZzpwCsvr7k2bP2J4Cb2xJH75wd0eA/Male_18.png?psid=1&width=174&height=174&cropMode=center"
+                          alt=""
+                        />
+                      </div>
+                      <a className="text-white align-center px-4 mt-2">VS</a>
+                      <div>
+                        <progress
+                          className="h-10 "
+                          id="minionHealthBar"
+                          value="1250"
+                          max="1250"
+                        ></progress>
+                        <p className="-mt-9 mb-5 text-white flex justify-center">
+                          Health: {minionHealth}
+                        </p>
 
-                      <img
-                        id="minionIcon"
-                        className="mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
-                        src={enemy.imageUrl}
-                        alt=""
-                      />
+                        <img
+                          id="minionIcon"
+                          className="mx-auto h-40 w-40 rounded border-4 border-black xl:w-56 xl:h-56"
+                          src={enemy.imageUrl}
+                          alt=""
+                        />
+                      </div>
                     </div>
-                  </div>
                   </div>
                   <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
                     <div className="font-medium  break-words text-lg leading-6 space-y-1">
