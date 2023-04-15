@@ -19,7 +19,7 @@ import Home from "./pages/Home";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: "/functions/graphql",
+  uri: "/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
